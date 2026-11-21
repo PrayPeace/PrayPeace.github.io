@@ -540,5 +540,3517 @@
    "sure": false
   },
   "hasSource": true
+ },
+ {
+  "id": "s-002",
+  "no": 2,
+  "title": "CoC 호화여객선의 기적",
+  "scenarioId": "sc-002",
+  "playthroughId": "pt-002-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-002"
+  ],
+  "date": {
+   "v": null,
+   "prec": "unknown",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-004",
+  "no": 4,
+  "title": "CoC 행맨",
+  "scenarioId": "sc-004",
+  "playthroughId": "pt-004-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": null,
+   "prec": "unknown",
+   "sure": false
+  },
+  "hasSource": false
+ },
+ {
+  "id": "s-005",
+  "no": 5,
+  "title": "CoC 백장미정원",
+  "scenarioId": "sc-005",
+  "playthroughId": "pt-005-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": null,
+   "prec": "unknown",
+   "sure": false
+  },
+  "hasSource": false
+ },
+ {
+  "id": "s-006",
+  "no": 6,
+  "title": "CoC 독스프_남은재료",
+  "scenarioId": "sc-006",
+  "playthroughId": "pt-006-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-045"
+  ],
+  "date": {
+   "v": "2021-06-04",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-007",
+  "no": 7,
+  "title": "CoC 위험한초대(텍)",
+  "scenarioId": "sc-007",
+  "playthroughId": "pt-007-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-044"
+  ],
+  "date": {
+   "v": "2021-06-05",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-008",
+  "no": 8,
+  "title": "CoC 우리들의 우당탕탕 담력체험기(텍)",
+  "scenarioId": "sc-008",
+  "playthroughId": "pt-008-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-046"
+  ],
+  "date": {
+   "v": "2021-06-06",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-009",
+  "no": 9,
+  "title": "CoC 락, 페이퍼, 시저",
+  "scenarioId": "sc-009",
+  "playthroughId": "pt-009-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-047"
+  ],
+  "date": {
+   "v": "2021-06-08",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-010",
+  "no": 10,
+  "title": "CoC_당신의 기억은 한여름 밤의 꿈과도 같아서",
+  "scenarioId": "sc-010",
+  "playthroughId": "pt-010-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-048"
+  ],
+  "date": {
+   "v": "2021-06-10",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-011",
+  "no": 11,
+  "title": "CoC_요괴록 배나무골의 귀곡성",
+  "scenarioId": "sc-011",
+  "playthroughId": "pt-011-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-003"
+  ],
+  "date": {
+   "v": "2021-06-13",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-012",
+  "no": 12,
+  "title": "아리안로드_이세계 피버 배틀 나이트",
+  "scenarioId": "sc-012",
+  "playthroughId": "pt-012-1",
+  "rule": "아리안로드",
+  "role": "PL",
+  "pcs": [
+   {
+    "name": "오르페시아"
+   }
+  ],
+  "date": {
+   "v": "2021-06-15",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-013",
+  "no": 13,
+  "title": "CoC 호질",
+  "scenarioId": "sc-013",
+  "playthroughId": "pt-013-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": null,
+   "prec": "unknown",
+   "sure": false
+  },
+  "hasSource": false
+ },
+ {
+  "id": "s-014",
+  "no": 14,
+  "title": "CoC_얽히고 설킨 한밤중",
+  "scenarioId": "sc-014",
+  "playthroughId": "pt-014-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-004"
+  ],
+  "date": {
+   "v": "2021-06-23",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-015",
+  "no": 15,
+  "title": "CoC_인형회랑",
+  "scenarioId": "sc-015",
+  "playthroughId": "pt-015-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-049"
+  ],
+  "date": {
+   "v": "2021-06-24",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-016",
+  "no": 16,
+  "title": "CoC_호완굴에 뜨는 어스름",
+  "scenarioId": "sc-016",
+  "playthroughId": "pt-016-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   {
+    "name": "공민"
+   }
+  ],
+  "date": {
+   "v": "2021-06-26",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-017",
+  "no": 17,
+  "title": "CoC_리볼버",
+  "scenarioId": "sc-017",
+  "playthroughId": "pt-017-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-050"
+  ],
+  "date": {
+   "v": "2021-06-27",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-018",
+  "no": 18,
+  "title": "CoC 유령의집",
+  "scenarioId": "sc-018",
+  "playthroughId": "pt-018-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": null,
+   "prec": "unknown",
+   "sure": false
+  },
+  "hasSource": false
+ },
+ {
+  "id": "s-019",
+  "no": 19,
+  "title": "카미가카리 단편",
+  "scenarioId": "sc-019",
+  "playthroughId": "pt-019-1",
+  "rule": "카미가카리",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2021-07-02",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-020",
+  "no": 20,
+  "title": "CoC_수집가의 별장",
+  "scenarioId": "sc-020",
+  "playthroughId": "pt-020-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-051"
+  ],
+  "date": {
+   "v": "2021-07-03",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-021",
+  "no": 21,
+  "title": "CoC_황금빛 찻잔",
+  "scenarioId": "sc-021",
+  "playthroughId": "pt-021-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-052"
+  ],
+  "date": {
+   "v": "2021-07-04",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-022",
+  "no": 22,
+  "title": "DnD A Chance Encounter",
+  "scenarioId": "sc-022",
+  "playthroughId": "pt-022-1",
+  "rule": "DnD",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": null,
+   "prec": "unknown",
+   "sure": false
+  },
+  "hasSource": false
+ },
+ {
+  "id": "s-023",
+  "no": 23,
+  "title": "CoC_카타시로",
+  "scenarioId": "sc-023",
+  "playthroughId": "pt-023-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-053"
+  ],
+  "date": {
+   "v": "2021-07-10",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-024",
+  "no": 24,
+  "title": "CoC_더 나이트 워",
+  "scenarioId": "sc-024",
+  "playthroughId": "pt-024-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-004"
+  ],
+  "date": {
+   "v": "2021-07-11",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-025",
+  "no": 25,
+  "title": "CoC_Misty Call",
+  "scenarioId": "sc-025",
+  "playthroughId": "pt-025-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-054"
+  ],
+  "date": {
+   "v": "2021-07-13",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-026",
+  "no": 26,
+  "title": "CoC_카레파티",
+  "scenarioId": "sc-026",
+  "playthroughId": "pt-026-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-055"
+  ],
+  "date": {
+   "v": "2021-07-17",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-027",
+  "no": 27,
+  "title": "저녁노을어스름_여우 신사에서",
+  "scenarioId": "sc-027",
+  "playthroughId": "pt-027-1",
+  "rule": "저녁노을어스름",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2021-07-25",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-028",
+  "no": 28,
+  "title": "저녁노을어스름_소금쟁이 빨갛구나",
+  "scenarioId": "sc-028",
+  "playthroughId": "pt-028-1",
+  "rule": "저녁노을어스름",
+  "role": "PL",
+  "pcs": [
+   "etc-002"
+  ],
+  "date": {
+   "v": "2021-07-31",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-029",
+  "no": 29,
+  "title": "아곤_크리오스",
+  "scenarioId": "sc-029",
+  "playthroughId": "pt-029-1",
+  "rule": "아곤",
+  "role": "PL",
+  "pcs": [
+   "etc-005"
+  ],
+  "date": {
+   "v": "2021-08-01",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-030",
+  "no": 30,
+  "title": "CoC_특별한 여행",
+  "scenarioId": "sc-030",
+  "playthroughId": "pt-030-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-056"
+  ],
+  "date": {
+   "v": "2021-08-01",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-031",
+  "no": 31,
+  "title": "CoC_어둠의 가장자리",
+  "scenarioId": "sc-031",
+  "playthroughId": "pt-031-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-005"
+  ],
+  "date": {
+   "v": "2021-08-06",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-032",
+  "no": 32,
+  "title": "CoC_인형과 줄과 당신의 가위",
+  "scenarioId": "sc-032",
+  "playthroughId": "pt-032-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-057"
+  ],
+  "date": {
+   "v": "2021-08-07",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-033",
+  "no": 33,
+  "title": "CoC_안개섬의 재회",
+  "scenarioId": "sc-033",
+  "playthroughId": "pt-033-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-006"
+  ],
+  "date": {
+   "v": "2021-08-08",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-034",
+  "no": 34,
+  "title": "CoC_파자마 파티",
+  "scenarioId": "sc-034",
+  "playthroughId": "pt-034-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   {
+    "name": "정평화"
+   }
+  ],
+  "date": {
+   "v": "2021-08-14",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-035",
+  "no": 35,
+  "title": "CoC_오사이비자",
+  "scenarioId": "sc-035",
+  "playthroughId": "pt-035-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-058"
+  ],
+  "date": {
+   "v": "2021-08-21",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-036",
+  "no": 36,
+  "title": "CoC_공중그네의 엘리",
+  "scenarioId": "sc-036",
+  "playthroughId": "pt-036-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-059"
+  ],
+  "date": {
+   "v": "2021-08-22",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-037",
+  "no": 37,
+  "title": "CoC_땅끝의 레일",
+  "scenarioId": "sc-037",
+  "playthroughId": "pt-037-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-060"
+  ],
+  "date": {
+   "v": "2021-08-27",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-038",
+  "no": 38,
+  "title": "CoC_아웃브레이크",
+  "scenarioId": "sc-038",
+  "playthroughId": "pt-038-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-061"
+  ],
+  "date": {
+   "v": "2021-08-28",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-039",
+  "no": 39,
+  "title": "피아스코 범죄조직_탈모",
+  "scenarioId": "sc-039",
+  "playthroughId": "pt-039-1",
+  "rule": "피아스코",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": null,
+   "prec": "unknown",
+   "sure": false
+  },
+  "hasSource": false
+ },
+ {
+  "id": "s-040",
+  "no": 40,
+  "title": "CoC_저녁식사에는 붉은색 압생트를",
+  "scenarioId": "sc-040",
+  "playthroughId": "pt-040-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-007"
+  ],
+  "date": {
+   "v": "2021-09-04",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-041",
+  "no": 41,
+  "title": "CoC_휴먼신드롬",
+  "scenarioId": "sc-041",
+  "playthroughId": "pt-041-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-045"
+  ],
+  "date": {
+   "v": "2021-09-04",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-042",
+  "no": 42,
+  "title": "CoC 베르됭 고지",
+  "scenarioId": "sc-042",
+  "playthroughId": "pt-042-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": null,
+   "prec": "unknown",
+   "sure": false
+  },
+  "hasSource": false
+ },
+ {
+  "id": "s-044",
+  "no": 44,
+  "title": "CoC_푸른 문의 원더랜드",
+  "scenarioId": "sc-044",
+  "playthroughId": "pt-044-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-062"
+  ],
+  "date": {
+   "v": "2021-09-12",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-045",
+  "no": 45,
+  "title": "CoC_바위의 휴식처",
+  "scenarioId": "sc-045",
+  "playthroughId": "pt-045-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-048"
+  ],
+  "date": {
+   "v": "2021-09-17",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-046",
+  "no": 46,
+  "title": "CoC_신약테스트",
+  "scenarioId": "sc-046",
+  "playthroughId": "pt-046-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-063"
+  ],
+  "date": {
+   "v": "2021-09-18",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-047",
+  "no": 47,
+  "title": "CoC_아빠 침대 밑에 괴물있어요",
+  "scenarioId": "sc-047",
+  "playthroughId": "pt-047-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2021-09-27",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-048",
+  "no": 48,
+  "title": "CoC_눈 떠보니 이곳은 조선시대 였습니다",
+  "scenarioId": "sc-048",
+  "playthroughId": "pt-048-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-065"
+  ],
+  "date": {
+   "v": "2021-10-02",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-049",
+  "no": 49,
+  "title": "CoC_Mythology 모서리의 공포",
+  "scenarioId": "sc-049",
+  "playthroughId": "pt-049-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2021-10-05",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-050",
+  "no": 50,
+  "title": "CoC_지하철에서",
+  "scenarioId": "sc-050",
+  "playthroughId": "pt-050-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-066"
+  ],
+  "date": {
+   "v": "2021-10-10",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-051",
+  "no": 51,
+  "title": "CoC_네게 헬리오트로프를",
+  "scenarioId": "sc-051",
+  "playthroughId": "pt-051-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-067"
+  ],
+  "date": {
+   "v": "2021-10-12",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-052",
+  "no": 52,
+  "title": "CoC_자기물건",
+  "scenarioId": "sc-052",
+  "playthroughId": "pt-052-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-068"
+  ],
+  "date": {
+   "v": "2021-10-15",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-053",
+  "no": 53,
+  "title": "CoC_오래된 숲속에서",
+  "scenarioId": "sc-053",
+  "playthroughId": "pt-053-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2021-10-17",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-054",
+  "no": 54,
+  "title": "앨리스가 사라졌다",
+  "scenarioId": "sc-054",
+  "playthroughId": "pt-054-1",
+  "rule": "기타",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2021-10-18",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-055",
+  "no": 55,
+  "title": "CoC_극독",
+  "scenarioId": "sc-055",
+  "playthroughId": "pt-055-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2021-10-21",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-056",
+  "no": 56,
+  "title": "CoC_저 아래에 무언가 있다",
+  "scenarioId": "sc-056",
+  "playthroughId": "pt-056-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": null,
+   "prec": "unknown",
+   "sure": false
+  },
+  "hasSource": false
+ },
+ {
+  "id": "s-057",
+  "no": 57,
+  "title": "저녁노을어스름_여우 신사에서(개변)",
+  "scenarioId": "sc-057",
+  "playthroughId": "pt-057-1",
+  "rule": "저녁노을어스름",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2021-10-24",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-058",
+  "no": 58,
+  "title": "CoC_거울섬의 재회",
+  "scenarioId": "sc-058",
+  "playthroughId": "pt-058-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-069"
+  ],
+  "date": {
+   "v": "2021-10-27",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-059",
+  "no": 59,
+  "title": "CoC_서울 한 밤",
+  "scenarioId": "sc-059",
+  "playthroughId": "pt-059-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-070"
+  ],
+  "date": {
+   "v": "2021-11-14",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-060",
+  "no": 60,
+  "title": "CoC_두근두근 살해현장",
+  "scenarioId": "sc-060",
+  "playthroughId": "pt-060-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-057"
+  ],
+  "date": {
+   "v": "2021-11-15",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-061",
+  "no": 61,
+  "title": "던전월드_강도가 되는거야",
+  "scenarioId": "sc-061",
+  "playthroughId": "pt-061-1",
+  "rule": "던전월드",
+  "role": "PL",
+  "pcs": [
+   "etc-010"
+  ],
+  "date": {
+   "v": "2021-11-16",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-062",
+  "no": 62,
+  "title": "CoC_충암바위",
+  "scenarioId": "sc-062",
+  "playthroughId": "pt-062-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2021-11-17",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-063",
+  "no": 63,
+  "title": "CoC_피스메이커",
+  "scenarioId": "sc-063",
+  "playthroughId": "pt-063-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-071"
+  ],
+  "date": {
+   "v": "2021-11-16",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-064",
+  "no": 64,
+  "title": "CoC_기억에 없는 장소",
+  "scenarioId": "sc-064",
+  "playthroughId": "pt-064-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-072"
+  ],
+  "date": {
+   "v": "2021-11-22",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-065",
+  "no": 65,
+  "part": 2,
+  "title": "던전월드_강도가 되는거야2",
+  "scenarioId": "sc-061",
+  "playthroughId": "pt-061-1",
+  "rule": "던전월드",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2021-11-23",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-066",
+  "no": 66,
+  "title": "CoC_여름밤의 황홀경",
+  "scenarioId": "sc-066",
+  "playthroughId": "pt-066-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-073"
+  ],
+  "date": {
+   "v": "2021-11-27",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-067",
+  "no": 67,
+  "title": "크라임씬_4번. 아쿠아리움 살인사건",
+  "scenarioId": "sc-067",
+  "playthroughId": "pt-067-1",
+  "rule": "크라임씬",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2021-11-29",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-068",
+  "no": 68,
+  "title": "던전월드_무지성 도둑파티 3회",
+  "scenarioId": "sc-068",
+  "playthroughId": "pt-068-1",
+  "rule": "던전월드",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2021-11-30",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-069",
+  "no": 69,
+  "title": "CoC_붉은 서류",
+  "scenarioId": "sc-069",
+  "playthroughId": "pt-069-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-010"
+  ],
+  "date": {
+   "v": "2021-12-01",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-071",
+  "no": 71,
+  "title": "둘이서 수사 상자 속의 고양이",
+  "scenarioId": "sc-071",
+  "playthroughId": "pt-071-1",
+  "rule": "둘이서 수사",
+  "role": "PL",
+  "pcs": [
+   "etc-008"
+  ],
+  "date": {
+   "v": "2021-12-03",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-072",
+  "no": 72,
+  "title": "용사여! 죽어버리다니 한심하다!",
+  "scenarioId": "sc-072",
+  "playthroughId": "pt-072-1",
+  "rule": "머더미스터리",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2021-12-04",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-073",
+  "no": 73,
+  "title": "던전월드_신화적 존재",
+  "scenarioId": "sc-073",
+  "playthroughId": "pt-073-1",
+  "rule": "던전월드",
+  "role": "PL",
+  "pcs": [
+   "etc-011"
+  ],
+  "date": {
+   "v": "2021-12-04",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-074",
+  "no": 74,
+  "title": "CoC_유령저택",
+  "scenarioId": "sc-074",
+  "playthroughId": "pt-074-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-075"
+  ],
+  "date": {
+   "v": "2021-12-09",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-075",
+  "no": 75,
+  "title": "CoC_키스키스뱅크뱅크",
+  "scenarioId": "sc-075",
+  "playthroughId": "pt-075-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2021-12-11",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-076",
+  "no": 76,
+  "title": "CoC_딱히 너같은건 좋아하지 않으니까!",
+  "scenarioId": "sc-076",
+  "playthroughId": "pt-076-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-077"
+  ],
+  "date": {
+   "v": "2021-12-12",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-078",
+  "no": 78,
+  "part": 2,
+  "title": "CoC_키스키스뱅크뱅크2",
+  "scenarioId": "sc-075",
+  "playthroughId": "pt-075-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": null,
+   "prec": "unknown",
+   "sure": false
+  },
+  "hasSource": false
+ },
+ {
+  "id": "s-079",
+  "no": 79,
+  "title": "CoC_그림자 속 괴물",
+  "scenarioId": "sc-079",
+  "playthroughId": "pt-079-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-078"
+  ],
+  "date": {
+   "v": "2021-12-20",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-080",
+  "no": 80,
+  "title": "인세인_인형들의 합창",
+  "scenarioId": "sc-080",
+  "playthroughId": "pt-080-1",
+  "rule": "인세인",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2021-12-22",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-081",
+  "no": 81,
+  "title": "CoC_정원사는 무엇을 읊조리는가",
+  "scenarioId": "sc-081",
+  "playthroughId": "pt-081-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-079"
+  ],
+  "date": {
+   "v": "2021-12-23",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-082",
+  "no": 82,
+  "title": "CoC_게스트 하우스",
+  "scenarioId": "sc-082",
+  "playthroughId": "pt-082-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   {
+    "name": "정평화"
+   }
+  ],
+  "date": {
+   "v": "2021-12-24",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-083",
+  "no": 83,
+  "title": "CoC_크리스마스의 악몽",
+  "scenarioId": "sc-083",
+  "playthroughId": "pt-083-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2021-12-25",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-084",
+  "no": 84,
+  "title": "CoC_괴태",
+  "scenarioId": "sc-084",
+  "playthroughId": "pt-084-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-080"
+  ],
+  "date": {
+   "v": "2021-12-26",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-085",
+  "no": 85,
+  "title": "CoC_연과 목숨은 이어져 있지 않으리",
+  "scenarioId": "sc-085",
+  "playthroughId": "pt-085-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-082"
+  ],
+  "date": {
+   "v": "2021-12-27",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-086",
+  "no": 86,
+  "title": "CoC_샷건 키싱 메리지",
+  "scenarioId": "sc-086",
+  "playthroughId": "pt-086-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2021-12-30",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-087",
+  "no": 87,
+  "title": "CoC_흑백의 도서관",
+  "scenarioId": "sc-087",
+  "playthroughId": "pt-087-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-066"
+  ],
+  "date": {
+   "v": "2022-01-01",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-088",
+  "no": 88,
+  "title": "CoC_천사의 감옥",
+  "scenarioId": "sc-088",
+  "playthroughId": "pt-088-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-080"
+  ],
+  "date": {
+   "v": "2022-01-05",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-089",
+  "no": 89,
+  "title": "CoC_한파",
+  "scenarioId": "sc-089",
+  "playthroughId": "pt-089-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-066"
+  ],
+  "date": {
+   "v": "2022-01-06",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-091",
+  "no": 91,
+  "title": "CoC_아컴의 낭만주의자",
+  "scenarioId": "sc-091",
+  "playthroughId": "pt-091-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2022-01-16",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-092",
+  "no": 92,
+  "title": "CoC_무당벌레야 무당벌레야 집으로 날아가렴",
+  "scenarioId": "sc-092",
+  "playthroughId": "pt-092-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-084"
+  ],
+  "date": {
+   "v": "2022-01-17",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-093",
+  "no": 93,
+  "title": "CoC_시안마젠타_블랙",
+  "scenarioId": "sc-093",
+  "playthroughId": "pt-093-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2022-01-22",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-094",
+  "no": 94,
+  "title": "CoC_누가 락을 죽이는 것인가",
+  "scenarioId": "sc-094",
+  "playthroughId": "pt-094-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-086"
+  ],
+  "date": {
+   "v": "2022-01-23",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-095",
+  "no": 95,
+  "title": "CoC_아토포스",
+  "scenarioId": "sc-095",
+  "playthroughId": "pt-095-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2022-01-29",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-096",
+  "no": 96,
+  "title": "CoC_잊어버린 것",
+  "scenarioId": "sc-096",
+  "playthroughId": "pt-096-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-088"
+  ],
+  "date": {
+   "v": "2022-02-02",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-097",
+  "no": 97,
+  "title": "CoC_심연",
+  "scenarioId": "sc-097",
+  "playthroughId": "pt-097-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2022-02-04",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-099",
+  "no": 99,
+  "title": "CoC_프롤로그",
+  "scenarioId": "sc-099",
+  "playthroughId": "pt-099-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-056"
+  ],
+  "date": {
+   "v": "2022-02-19",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-100",
+  "no": 100,
+  "title": "저녁노을어스름 어느산 벚꽃나무 아래",
+  "scenarioId": "sc-100",
+  "playthroughId": "pt-100-1",
+  "rule": "저녁노을어스름",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2022-02-22",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-101",
+  "no": 101,
+  "title": "CoC_당신을 위한 상점",
+  "scenarioId": "sc-101",
+  "playthroughId": "pt-101-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2022-02-24",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-102",
+  "no": 102,
+  "title": "CoC_내림",
+  "scenarioId": "sc-102",
+  "playthroughId": "pt-102-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2022-03-04",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-103",
+  "no": 103,
+  "title": "조선아곤_유랑야담 응천부",
+  "scenarioId": "sc-103",
+  "playthroughId": "pt-103-1",
+  "campaignId": "cp-yurang",
+  "rule": "조선아곤",
+  "role": "PL",
+  "pcs": [
+   {
+    "name": "일진"
+   }
+  ],
+  "date": {
+   "v": "2022-03-05",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-104",
+  "no": 104,
+  "title": "CoC_악어가 우는 천칭",
+  "scenarioId": "sc-104",
+  "playthroughId": "pt-104-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2022-03-13",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-105",
+  "no": 105,
+  "title": "조선아곤_유랑야담 금성",
+  "scenarioId": "sc-105",
+  "playthroughId": "pt-105-1",
+  "campaignId": "cp-yurang",
+  "rule": "조선아곤",
+  "role": "PL",
+  "pcs": [
+   {
+    "name": "일진"
+   }
+  ],
+  "date": {
+   "v": "2022-03-25",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-106",
+  "no": 106,
+  "title": "CoC_성역",
+  "scenarioId": "sc-106",
+  "playthroughId": "pt-106-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2022-04-03",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-107",
+  "no": 107,
+  "title": "머더미스테리_은하의 저편에서",
+  "scenarioId": "sc-107",
+  "playthroughId": "pt-107-1",
+  "rule": "머더미스터리",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2022-04-06",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-108",
+  "no": 108,
+  "title": "UW 작은일탈",
+  "scenarioId": "sc-108",
+  "playthroughId": "pt-108-1",
+  "rule": "UW",
+  "role": "PL",
+  "pcs": [
+   "uw-001"
+  ],
+  "date": {
+   "v": "2022-04-16",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-109",
+  "no": 109,
+  "title": "CoC_꽃이 피었다",
+  "scenarioId": "sc-109",
+  "playthroughId": "pt-109-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-091"
+  ],
+  "date": {
+   "v": "2022-04-16",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-110",
+  "no": 110,
+  "title": "저 너머로부터의 복수",
+  "scenarioId": "sc-110",
+  "playthroughId": "pt-110-1",
+  "rule": "기타",
+  "role": "PL",
+  "pcs": [
+   "coc-013"
+  ],
+  "date": {
+   "v": "2022-04-22",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-111",
+  "no": 111,
+  "title": "CoC_과거로 가는 말",
+  "scenarioId": "sc-111",
+  "playthroughId": "pt-111-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-013"
+  ],
+  "date": {
+   "v": "2022-04-27",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-113",
+  "no": 113,
+  "title": "리얼월드_선익동 주택",
+  "scenarioId": "sc-113",
+  "playthroughId": "pt-113-1",
+  "rule": "리얼월드",
+  "role": "PL",
+  "pcs": [
+   {
+    "name": "이성호"
+   }
+  ],
+  "date": {
+   "v": "2022-05-01",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-115",
+  "no": 115,
+  "title": "CoC_토오랸세",
+  "scenarioId": "sc-115",
+  "playthroughId": "pt-115-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-093"
+  ],
+  "date": {
+   "v": "2022-05-15",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-116",
+  "no": 116,
+  "title": "너냐?!_장문인 폐관살인사건",
+  "scenarioId": "sc-116",
+  "playthroughId": "pt-116-1",
+  "rule": "너냐?!",
+  "role": "PL",
+  "pcs": [
+   "etc-025"
+  ],
+  "date": {
+   "v": "2022-05-18",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-117",
+  "no": 117,
+  "title": "N선상의 코스모스",
+  "scenarioId": "sc-117",
+  "playthroughId": "pt-117-1",
+  "rule": "기타",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2022-05-21",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-118",
+  "no": 118,
+  "title": "너나?!_마법소녀 배신자 찾기",
+  "scenarioId": "sc-118",
+  "playthroughId": "pt-118-1",
+  "rule": "너냐?!",
+  "role": "PL",
+  "pcs": [
+   "etc-026"
+  ],
+  "date": {
+   "v": "2022-06-01",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-119",
+  "no": 119,
+  "title": "CoC_북극성의 무덤",
+  "scenarioId": "sc-119",
+  "playthroughId": "pt-119-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-094"
+  ],
+  "date": {
+   "v": "2022-06-04",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-120",
+  "no": 120,
+  "title": "CoC_끝없는 원한",
+  "scenarioId": "sc-120",
+  "playthroughId": "pt-120-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2022-06-06",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-121",
+  "no": 121,
+  "title": "CoC_어머니의 사랑",
+  "scenarioId": "sc-121",
+  "playthroughId": "pt-121-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-015"
+  ],
+  "date": {
+   "v": "2022-06-11",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-122",
+  "no": 122,
+  "title": "CoC_나비",
+  "scenarioId": "sc-122",
+  "playthroughId": "pt-122-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-066"
+  ],
+  "date": {
+   "v": "2022-07-28",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-123",
+  "no": 123,
+  "title": "CoC_친절한 코빗씨",
+  "scenarioId": "sc-123",
+  "playthroughId": "pt-123-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-016"
+  ],
+  "date": {
+   "v": "2022-07-30",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-125",
+  "no": 125,
+  "part": 2,
+  "title": "CoC_니알라토텝의 가면들 -뉴욕",
+  "scenarioId": "sc-masks",
+  "playthroughId": "pt-masks-1",
+  "campaignId": "cp-masks",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2022-08-08",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-126",
+  "no": 126,
+  "title": "CoC_델타그린. 마지막 방정식",
+  "scenarioId": "sc-126",
+  "playthroughId": "pt-126-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "etc-015"
+  ],
+  "date": {
+   "v": "2022-08-12",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-127",
+  "no": 127,
+  "title": "아곤_니모스",
+  "scenarioId": "sc-127",
+  "playthroughId": "pt-127-1",
+  "rule": "아곤",
+  "role": "PL",
+  "pcs": [
+   "etc-023"
+  ],
+  "date": {
+   "v": "2022-08-13",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-129",
+  "no": 129,
+  "title": "CoC_스필즈베리 #9485",
+  "scenarioId": "sc-129",
+  "playthroughId": "pt-129-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2022-09-04",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-131",
+  "no": 131,
+  "title": "CoC_시레사사 반도 발목 표착사건",
+  "scenarioId": "sc-131",
+  "playthroughId": "pt-131-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": null,
+   "prec": "unknown",
+   "sure": false
+  },
+  "hasSource": false
+ },
+ {
+  "id": "s-132",
+  "no": 132,
+  "title": "CoC_더 데어",
+  "scenarioId": "sc-132",
+  "playthroughId": "pt-132-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2022-10-31",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-133",
+  "no": 133,
+  "title": "CoC_유린하는 것은 내 손으로",
+  "scenarioId": "sc-133",
+  "playthroughId": "pt-133-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-102"
+  ],
+  "date": {
+   "v": "2022-11-25",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-134",
+  "no": 134,
+  "title": "CoC_지각을 뚫고",
+  "scenarioId": "sc-134",
+  "playthroughId": "pt-134-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-096"
+  ],
+  "date": {
+   "v": "2022-11-26",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-135",
+  "no": 135,
+  "title": "둘수사_푸딩을 먹으면 안 됩니다!",
+  "scenarioId": "sc-135",
+  "playthroughId": "pt-135-1",
+  "rule": "둘이서 수사",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2022-11-27",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-136",
+  "no": 136,
+  "title": "던전월드_대충 망한 세상",
+  "scenarioId": "sc-136",
+  "playthroughId": "pt-136-1",
+  "rule": "던전월드",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": null,
+   "prec": "unknown",
+   "sure": false
+  },
+  "hasSource": false
+ },
+ {
+  "id": "s-137",
+  "no": 137,
+  "title": "CoC_바이럴",
+  "scenarioId": "sc-137",
+  "playthroughId": "pt-137-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2022-12-16",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-138",
+  "no": 138,
+  "title": "CoC_난파선",
+  "scenarioId": "sc-138",
+  "playthroughId": "pt-138-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2023-01-03",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-139",
+  "no": 139,
+  "title": "CoC_지옥호텔",
+  "scenarioId": "sc-139",
+  "playthroughId": "pt-139-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2023-01-12",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-140",
+  "no": 140,
+  "title": "CoC_첫 번째 의뢰",
+  "scenarioId": "sc-140",
+  "playthroughId": "pt-140-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-018"
+  ],
+  "date": {
+   "v": "2023-01-24",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-141",
+  "no": 141,
+  "title": "CoC_홈커밍",
+  "scenarioId": "sc-141",
+  "playthroughId": "pt-141-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-043"
+  ],
+  "date": {
+   "v": "2023-02-09",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-142",
+  "no": 142,
+  "title": "CoC_무덤의 걱정거리에 대하여",
+  "scenarioId": "sc-142",
+  "playthroughId": "pt-142-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-013"
+  ],
+  "date": {
+   "v": "2023-06-27",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-143",
+  "no": 143,
+  "title": "CC_수도의 색채",
+  "scenarioId": "sc-143",
+  "playthroughId": "pt-143-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-041"
+  ],
+  "date": {
+   "v": "2023-08-06",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-144",
+  "no": 144,
+  "title": "CoC_피싱",
+  "scenarioId": "sc-144",
+  "playthroughId": "pt-144-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2023-08-09",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-145",
+  "no": 145,
+  "title": "CoC_불길한 달이 떠오를 때",
+  "scenarioId": "sc-145",
+  "playthroughId": "pt-145-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-038"
+  ],
+  "date": {
+   "v": "2023-10-06",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-146",
+  "no": 146,
+  "title": "UW 언리미티드 월드_좌충우돌 세인 탐험기 7대 미궁",
+  "scenarioId": "sc-146",
+  "playthroughId": "pt-146-1",
+  "rule": "UW",
+  "role": "PL",
+  "pcs": [
+   "uw-002"
+  ],
+  "date": {
+   "v": "2023-11-28",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-147",
+  "no": 147,
+  "title": "UW 언리미티드 월드_다만 우리의 염원이 닿게 하소서",
+  "scenarioId": "sc-147",
+  "playthroughId": "pt-147-1",
+  "rule": "UW",
+  "role": "PL",
+  "pcs": [
+   "uw-003"
+  ],
+  "date": {
+   "v": "2023-12-06",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-149",
+  "no": 149,
+  "title": "CoC_수금하러 갔다가",
+  "scenarioId": "sc-149",
+  "playthroughId": "pt-149-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-019"
+  ],
+  "date": {
+   "v": "2024-01-21",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-150",
+  "no": 150,
+  "title": "UW장막너머 도시의 밤_나의 세인 아카데미아",
+  "scenarioId": "sc-150",
+  "playthroughId": "pt-150-1",
+  "rule": "UW",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2024-03-19",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-151",
+  "no": 151,
+  "title": "CoC_죽음의 빛",
+  "scenarioId": "sc-151",
+  "playthroughId": "pt-151-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-020"
+  ],
+  "date": {
+   "v": "2024-06-25",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-152",
+  "no": 152,
+  "title": "UW_덜떨어진 우리들의 이세계 모험기",
+  "scenarioId": "sc-152",
+  "playthroughId": "pt-152-1",
+  "rule": "UW",
+  "role": "PL",
+  "pcs": [
+   "uw-005"
+  ],
+  "date": {
+   "v": "2024-08-06",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-153",
+  "no": 153,
+  "title": "CoC_로빈슨 그루섬",
+  "scenarioId": "sc-153",
+  "playthroughId": "pt-153-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": null,
+   "prec": "unknown",
+   "sure": false
+  },
+  "hasSource": false
+ },
+ {
+  "id": "s-154",
+  "no": 154,
+  "title": "UW_2부 사랑은 정신병이 맞다",
+  "scenarioId": "sc-154",
+  "playthroughId": "pt-154-1",
+  "rule": "UW",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": null,
+   "prec": "unknown",
+   "sure": false
+  },
+  "hasSource": false
+ },
+ {
+  "id": "s-155",
+  "no": 155,
+  "title": "CoC_인스머스에서의 탈출",
+  "scenarioId": "sc-155",
+  "playthroughId": "pt-155-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-021"
+  ],
+  "date": {
+   "v": "2024-09-30",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-156",
+  "no": 156,
+  "title": "UW히로아카",
+  "scenarioId": "sc-156",
+  "playthroughId": "pt-156-1",
+  "rule": "UW",
+  "role": "PL",
+  "pcs": [
+   "uw-036"
+  ],
+  "date": {
+   "v": "2024-10-16",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-157",
+  "no": 157,
+  "title": "CoC_불 꺼진 비콘 섬",
+  "scenarioId": "sc-157",
+  "playthroughId": "pt-157-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-022"
+  ],
+  "date": {
+   "v": "2024-10-28",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-158",
+  "no": 158,
+  "title": "CoC_인스머스 습격-탈출",
+  "scenarioId": "sc-158",
+  "playthroughId": "pt-158-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2024-12-02",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-159",
+  "no": 159,
+  "title": "머더미스테리_광기의 산맥",
+  "scenarioId": "sc-159",
+  "playthroughId": "pt-159-1",
+  "rule": "머더미스터리",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2024-12-05",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-160",
+  "no": 160,
+  "title": "CoC_신의 꿈",
+  "scenarioId": "sc-160",
+  "playthroughId": "pt-160-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-023"
+  ],
+  "date": {
+   "v": "2025-03-08",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-161",
+  "no": 161,
+  "title": "UW_테일탄탄",
+  "scenarioId": "sc-161",
+  "playthroughId": "pt-161-1",
+  "rule": "UW",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2025-01-25",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-162",
+  "no": 162,
+  "title": "CoC_경식 비행선",
+  "scenarioId": "sc-162",
+  "playthroughId": "pt-162-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-024"
+  ],
+  "date": {
+   "v": "2025-04-12",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-163",
+  "no": 163,
+  "title": "CoC_만병 통치약",
+  "scenarioId": "sc-163",
+  "playthroughId": "pt-163-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2025-05-18",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-164",
+  "no": 164,
+  "title": "UW_EP1. 브랜디 럭스의 ~도박사의 오류~",
+  "scenarioId": "sc-164",
+  "playthroughId": "pt-164-1",
+  "rule": "UW",
+  "role": "PL",
+  "pcs": [
+   "uw-007"
+  ],
+  "date": {
+   "v": "2025-07-26",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-165",
+  "no": 165,
+  "title": "UW_생존교실",
+  "scenarioId": "sc-165",
+  "playthroughId": "pt-165-1",
+  "rule": "UW",
+  "role": "PL",
+  "pcs": [
+   "uw-008"
+  ],
+  "date": {
+   "v": "2025-07-17",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-166",
+  "no": 166,
+  "title": "UW_루넨베르크 오브 더 비지니스",
+  "scenarioId": "sc-166",
+  "playthroughId": "pt-166-1",
+  "rule": "UW",
+  "role": "PL",
+  "pcs": [
+   "uw-014"
+  ],
+  "date": {
+   "v": "2025-06-21",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-167",
+  "no": 167,
+  "title": "CoC_창백한 신",
+  "scenarioId": "sc-167",
+  "playthroughId": "pt-167-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2025-08-02",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-168",
+  "no": 168,
+  "title": "CoC_요양원",
+  "scenarioId": "sc-168",
+  "playthroughId": "pt-168-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": null,
+   "prec": "unknown",
+   "sure": false
+  },
+  "hasSource": false
+ },
+ {
+  "id": "s-169",
+  "no": 169,
+  "title": "CoC_황색 징표를 본 있습니까",
+  "scenarioId": "sc-169",
+  "playthroughId": "pt-169-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-027"
+  ],
+  "date": {
+   "v": "2025-09-27",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-170",
+  "no": 170,
+  "title": "UW_스모그펑크",
+  "scenarioId": "sc-170",
+  "playthroughId": "pt-170-1",
+  "rule": "UW",
+  "role": "PL",
+  "pcs": [
+   "uw-009"
+  ],
+  "date": {
+   "v": "2025-10-23",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-171",
+  "no": 171,
+  "title": "UW_밑바닥 아카데미아",
+  "scenarioId": "sc-171",
+  "playthroughId": "pt-171-1",
+  "rule": "UW",
+  "role": "PL",
+  "pcs": [
+   "uw-012"
+  ],
+  "date": {
+   "v": "2025-11-09",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-172",
+  "no": 172,
+  "title": "UW_마지막에 피어나는 것",
+  "scenarioId": "sc-172",
+  "playthroughId": "pt-172-1",
+  "rule": "UW",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2025-10-17",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-173",
+  "no": 173,
+  "title": "UW_뭐든지 할 수 있는 연금술",
+  "scenarioId": "sc-173",
+  "playthroughId": "pt-173-1",
+  "rule": "UW",
+  "role": "PL",
+  "pcs": [
+   "uw-010"
+  ],
+  "date": {
+   "v": "2025-11-01",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-174",
+  "no": 174,
+  "title": "에모크로아_로르샤흐 신드롬",
+  "scenarioId": "sc-174",
+  "playthroughId": "pt-174-1",
+  "rule": "에모크로아",
+  "role": "PL",
+  "pcs": [
+   "etc-016"
+  ],
+  "date": {
+   "v": "2025-11-19",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-175",
+  "no": 175,
+  "title": "에모크로아_변장",
+  "scenarioId": "sc-175",
+  "playthroughId": "pt-175-1",
+  "rule": "에모크로아",
+  "role": "PL",
+  "pcs": [
+   "etc-017"
+  ],
+  "date": {
+   "v": "2025-11-28",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-176",
+  "no": 176,
+  "title": "에모크로아_오리카미",
+  "scenarioId": "sc-176",
+  "playthroughId": "pt-176-1",
+  "rule": "에모크로아",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2025-12-07",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-178",
+  "no": 178,
+  "title": "시노비가미_검 비급 무덤",
+  "scenarioId": "sc-178",
+  "playthroughId": "pt-178-1",
+  "rule": "시노비가미",
+  "role": "PL",
+  "pcs": [
+   "sg-001"
+  ],
+  "date": {
+   "v": "2025-12-20",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-179",
+  "no": 179,
+  "title": "CoC_차일드 리플레이",
+  "scenarioId": "sc-179",
+  "playthroughId": "pt-179-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-098"
+  ],
+  "date": {
+   "v": "2026-02-07",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-180",
+  "no": 180,
+  "title": "UW_글루미 시티",
+  "scenarioId": "sc-180",
+  "playthroughId": "pt-180-1",
+  "rule": "UW",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2026-02-12",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-181",
+  "no": 181,
+  "title": "UW_더 다키스트",
+  "scenarioId": "sc-181",
+  "playthroughId": "pt-181-1",
+  "rule": "UW",
+  "role": "PL",
+  "pcs": [
+   "uw-038"
+  ],
+  "date": {
+   "v": "2026-02-19",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-182",
+  "no": 182,
+  "title": "UW_모여라 환상의 섬",
+  "scenarioId": "sc-182",
+  "playthroughId": "pt-182-1",
+  "rule": "UW",
+  "role": "PL",
+  "pcs": [
+   "uw-018"
+  ],
+  "date": {
+   "v": "2026-02-28",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-183",
+  "no": 183,
+  "title": "CoC_소멸기",
+  "scenarioId": "sc-183",
+  "playthroughId": "pt-183-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-040"
+  ],
+  "date": {
+   "v": "2026-02-14",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-184",
+  "no": 184,
+  "title": "CoC_판도라의 상자",
+  "scenarioId": "sc-184",
+  "playthroughId": "pt-184-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-040"
+  ],
+  "date": {
+   "v": "2026-03-01",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-185",
+  "no": 185,
+  "title": "UW_피와 등대와 자살록",
+  "scenarioId": "sc-185",
+  "playthroughId": "pt-185-1",
+  "rule": "UW",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2026-03-04",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-186",
+  "no": 186,
+  "title": "UW_러브러브 아카데미 데이즈",
+  "scenarioId": "sc-186",
+  "playthroughId": "pt-186-1",
+  "rule": "UW",
+  "role": "PL",
+  "pcs": [
+   "uw-020"
+  ],
+  "date": {
+   "v": "2026-03-14",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-187",
+  "no": 187,
+  "title": "시노비가미_개는 배신하지 않는다?",
+  "scenarioId": "sc-187",
+  "playthroughId": "pt-187-1",
+  "rule": "시노비가미",
+  "role": "PL",
+  "pcs": [
+   "sg-002"
+  ],
+  "date": {
+   "v": "2026-03-15",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-188",
+  "no": 188,
+  "title": "UW_한 마리 잡을 때까지 말도 안 되게 억까인 판타지",
+  "scenarioId": "sc-188",
+  "playthroughId": "pt-188-1",
+  "rule": "UW",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2026-03-25",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-189",
+  "no": 189,
+  "title": "UW_금과 석탄",
+  "scenarioId": "sc-189",
+  "playthroughId": "pt-189-1",
+  "rule": "UW",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2026-03-26",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-190",
+  "no": 190,
+  "title": "UW_나인 에코즈",
+  "scenarioId": "sc-190",
+  "playthroughId": "pt-190-1",
+  "rule": "UW",
+  "role": "PL",
+  "pcs": [
+   "uw-022"
+  ],
+  "date": {
+   "v": "2026-03-31",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-191",
+  "no": 191,
+  "title": "UW 미궁에서 살아남기",
+  "scenarioId": "sc-191",
+  "playthroughId": "pt-191-1",
+  "rule": "UW",
+  "role": "PL",
+  "pcs": [
+   "uw-023"
+  ],
+  "date": {
+   "v": "2026-04-01",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-192",
+  "no": 192,
+  "title": "UW 동쪽에서 뜨는 달",
+  "scenarioId": "sc-192",
+  "playthroughId": "pt-192-1",
+  "rule": "UW",
+  "role": "PL",
+  "pcs": [
+   "uw-025"
+  ],
+  "date": {
+   "v": "2026-04-11",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-193",
+  "no": 193,
+  "title": "UW 이세계 편의점",
+  "scenarioId": "sc-193",
+  "playthroughId": "pt-193-1",
+  "rule": "UW",
+  "role": "PL",
+  "pcs": [
+   "uw-027"
+  ],
+  "date": {
+   "v": "2026-04-13",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-194",
+  "no": 194,
+  "title": "시노비가미_탁류",
+  "scenarioId": "sc-194",
+  "playthroughId": "pt-194-1",
+  "rule": "시노비가미",
+  "role": "PL",
+  "pcs": [
+   "sg-003"
+  ],
+  "date": {
+   "v": "2026-04-22",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-196",
+  "no": 196,
+  "title": "CoC_붉은 초",
+  "scenarioId": "sc-196",
+  "playthroughId": "pt-196-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2026-05-29",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-198",
+  "no": 198,
+  "title": "CoC_좀 더 먹고 싶어",
+  "scenarioId": "sc-198",
+  "playthroughId": "pt-198-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-100"
+  ],
+  "date": {
+   "v": "2026-06-05",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-200",
+  "no": 200,
+  "title": "CoC_강철의 유령",
+  "scenarioId": "sc-200",
+  "playthroughId": "pt-200-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-027"
+  ],
+  "date": {
+   "v": "2026-06-16",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-201",
+  "no": 201,
+  "title": "CoC_차토구아의 자취",
+  "scenarioId": "sc-201",
+  "playthroughId": "pt-201-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-029",
+   "coc-030",
+   "coc-031"
+  ],
+  "date": {
+   "v": "2026-06-07",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-203",
+  "no": 203,
+  "title": "UW_블리치",
+  "scenarioId": "sc-203",
+  "playthroughId": "pt-203-1",
+  "rule": "UW",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2026-07-09",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-204",
+  "no": 204,
+  "title": "UW_클래식 중세판타지",
+  "scenarioId": "sc-204",
+  "playthroughId": "pt-204-1",
+  "rule": "UW",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2026-07-10",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-205",
+  "no": 205,
+  "title": "UW_전독시 같은 것",
+  "scenarioId": "sc-205",
+  "playthroughId": "pt-205-1",
+  "rule": "UW",
+  "role": "PL",
+  "pcs": [
+   "uw-040"
+  ],
+  "date": {
+   "v": "2026-07-19",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-206",
+  "no": 206,
+  "title": "CoC_갈라지고 뒤틀린 저택",
+  "scenarioId": "sc-206",
+  "playthroughId": "pt-206-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-034"
+  ],
+  "date": {
+   "v": "2026-08-07",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-207",
+  "no": 207,
+  "title": "1시간히어로",
+  "scenarioId": "sc-207",
+  "playthroughId": "pt-207-1",
+  "rule": "1시간히어로",
+  "role": "PL",
+  "pcs": [
+   "coc-104"
+  ],
+  "date": {
+   "v": "2026-09-11",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-208",
+  "no": 208,
+  "title": "CoC_타오르는 별들",
+  "scenarioId": "sc-208",
+  "playthroughId": "pt-208-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-035"
+  ],
+  "date": {
+   "v": "2026-09-23",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-209",
+  "no": 209,
+  "title": "UW_프로젝트 어비스",
+  "scenarioId": "sc-209",
+  "playthroughId": "pt-209-1",
+  "rule": "UW",
+  "role": "PL",
+  "pcs": [
+   "uw-035"
+  ],
+  "date": {
+   "v": "2026-09-28",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-210",
+  "no": 210,
+  "title": "탐공사_유령선이 잠에 들 때",
+  "scenarioId": "sc-210",
+  "playthroughId": "pt-210-1",
+  "rule": "탐공사",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2026-10-03",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-211",
+  "no": 211,
+  "title": "인세인_닭무덤",
+  "scenarioId": "sc-211",
+  "playthroughId": "pt-211-1",
+  "rule": "인세인",
+  "role": "PL",
+  "pcs": [
+   "etc-027"
+  ],
+  "date": {
+   "v": "2026-10-17",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-x01",
+  "title": "CoC_Dear, Happy New Year",
+  "scenarioId": "sc-x01",
+  "playthroughId": "pt-x01-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2021-06-11",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-x02",
+  "title": "UW 0307",
+  "scenarioId": "sc-x02",
+  "playthroughId": "pt-x02-1",
+  "rule": "UW",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2026-03-08",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-x03",
+  "title": "UW 신식의 밤",
+  "scenarioId": "sc-x03",
+  "playthroughId": "pt-x03-1",
+  "rule": "UW",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2026-05-15",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-x04",
+  "title": "UW 어비스 포터",
+  "scenarioId": "sc-x04",
+  "playthroughId": "pt-x04-1",
+  "rule": "UW",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2026-04-08",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-x05",
+  "title": "UW 전생몬",
+  "scenarioId": "sc-x05",
+  "playthroughId": "pt-x05-1",
+  "rule": "UW",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2025-08-08",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-x06",
+  "title": "UW 판도라 하츠",
+  "scenarioId": "sc-x06",
+  "playthroughId": "pt-x06-1",
+  "rule": "UW",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2026-01-11",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-x07",
+  "title": "UW_F.D.O Case-BIP",
+  "scenarioId": "sc-x07",
+  "playthroughId": "pt-x07-1",
+  "rule": "UW",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2026-01-25",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-x08",
+  "title": "UW_프리즌 브레이크",
+  "scenarioId": "sc-x08",
+  "playthroughId": "pt-x08-1",
+  "rule": "UW",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2026-05-12",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-x09",
+  "title": "UW 드래곤 코어즈",
+  "scenarioId": "sc-x09",
+  "playthroughId": "pt-x09-1",
+  "rule": "UW",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2025-12-21",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-x10",
+  "title": "무협 언월",
+  "scenarioId": "sc-x10",
+  "playthroughId": "pt-x10-1",
+  "rule": "UW",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": "2025-08-31",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
  }
 ]

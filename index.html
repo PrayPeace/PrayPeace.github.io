@@ -18,15 +18,16 @@
   <header class="top">
     <a class="mark" href="#">P · A</a>
     <nav class="menu" aria-label="서고 메뉴">
-      <a href="#">처음</a><a href="#sessions">SESSION</a><a href="#characters">CHARACTER</a><a href="#scenarios">SCENARIO</a><a href="#memory">MEMORY</a><a href="#journey">발자취</a><a href="#inbox" data-admin>작업함</a><a href="#check" data-admin>점검</a>
+      <a href="#">처음</a><a href="#sessions">SESSION</a><a href="#characters">CHARACTER</a><a href="#scenarios">SCENARIO</a><a href="#memory">MEMORY</a><a href="#player">PLAYER</a><a href="#journey">발자취</a><a href="#inbox" data-admin>작업함</a><a href="#check" data-admin>점검</a>
     </nav>
     <div class="tools">
       <button class="btn" id="searchBtn" aria-label="통합 검색 열기">⌕ 검색 <span class="kbd">Ctrl K</span></button>
+      <button class="btn" id="loginBtn" data-login>로그인</button>
     </div>
   </header>
   <p class="notice" id="notice" hidden><span id="noticeText"></span><button aria-label="안내 닫기" data-hide-notice>✕</button></p>
   <main id="view" aria-live="polite"></main>
-  <footer>PRAYPEACE · PERSONAL TRPG COLLECTION<br><button class="btn sm" id="motionBtn"></button></footer>
+  <footer>PRAYPEACE · PERSONAL TRPG COLLECTION<br><button class="btn sm" id="motionBtn"></button> <label class="locked">캐릭터 입장 연출 <select class="inp" id="fxSel" style="width:auto;display:inline-block;padding:2px 6px"><option value="first">처음 한 번</option><option value="always">매번</option><option value="off">끄기</option></select></label></footer>
 </div>
 
 <dialog class="search" id="searchDlg" aria-label="통합 검색">
@@ -35,7 +36,16 @@
 </dialog>
 <dialog class="lb" id="lb" aria-label="그림 크게 보기">
   <img id="lbImg" alt="">
-  <div class="bar"><button class="btn sm" data-lb="-1" aria-label="이전 그림">‹</button><span id="lbCap"></span><button class="btn sm" data-lb="1" aria-label="다음 그림">›</button><button class="btn sm" data-lb="x">닫기</button></div>
+  <div class="bar"><button class="btn sm" data-lb="-1" aria-label="이전 그림">‹</button><span id="lbCap"></span><button class="btn sm" data-lb="1" aria-label="다음 그림">›</button><button class="btn sm" id="lbCover" data-cover hidden>대표로 정하기</button><button class="btn sm" data-lb="x">닫기</button></div>
+</dialog>
+<dialog class="login" id="loginDlg" aria-label="로그인">
+  <form id="loginForm" method="dialog">
+    <h3>서고 열쇠</h3>
+    <p class="locked">친구 비밀번호는 읽기, 관리자 비밀번호는 작업함까지 열려요. 비밀번호는 한 번만 보내고, 이 기기에는 14일짜리 표만 남아요.</p>
+    <input class="inp" id="pw" type="password" autocomplete="current-password" placeholder="비밀번호" required>
+    <p id="pwmsg" class="locked" role="status"></p>
+    <div class="row-actions"><button class="btn gilt" type="submit" value="go">들어가기</button><button class="btn" type="button" data-logindlg-close>닫기</button></div>
+  </form>
 </dialog>
 <script src="js/archives.js"></script>
 </body>

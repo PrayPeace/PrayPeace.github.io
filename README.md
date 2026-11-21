@@ -11,7 +11,10 @@ EX LIBRIS · EST. 2021 — 수많은 세계, 수많은 삶, 그리고 우리가 
 | `index.html` · `css/archives.css` · `js/archives.js` | 서고 화면 (처음 · SESSION · CHARACTER · SCENARIO · MEMORY · 발자취) |
 | `dice.html` | Oracle Dice — AI 세션용 주사위. 캐릭터 상세의 "판정 굴리기"로 판정을 넘겨받음 |
 | `data/*.json` | **공개 데이터만.** `tools/build_public.py`가 비공개 원본에서 허용한 칸만 골라 만든다 |
-| `tools/check_public.py` | 공개 데이터 검사(허용 칸 · 모양 · 참조 · 날짜 · 비공개 글 대조). 실패하면 배포하지 않음 |
+| `tools/check_public.py` | 공개 데이터 검사(허용 칸 · 모양 · 참조 · 날짜 · 비공개 글 대조, `--nicknames`로 친구 닉네임 검사). 실패하면 배포하지 않음 |
+| `tools/import_list.py` | 세션 목록 표(CSV) → 비공개 원본에 빠진 세션·시나리오·회차를 채움. 손으로 다듬은 기록은 건드리지 않음 |
+| `tools/build_private.py` | 비공개 원본 → 관리자 작업함용 묶음. 대장 드라이브에 `praypeace-archives-private.json`으로 올림(저장소에 안 둠) |
+| 로그인 | 캐릭터 서고와 같은 앱 스크립트 웹 앱. 친구(읽기) · 관리자(쓰기)는 서버가 정함. 작업함 승인은 서버에 저장되고, 방문객은 `?op=pa_pub`로 승인·공개된 것만 받음 |
 | `tests/site.test.js` | 방문객 화면 시험(Playwright). `CA_DIR=<Character_Archive 경로> node tests/site.test.js` |
 
 캐릭터는 지금의 캐릭터 서고(`/Character_Archive/characters.json`)를 그대로 읽는다. 그쪽의 자동 반영(원본 시트 → 매일 05시)이 이곳에도 바로 보인다.

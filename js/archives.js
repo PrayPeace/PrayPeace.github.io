@@ -6,10 +6,10 @@ const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.
 let D=null, role='visitor';
 // 검토 기록: 정식판에서는 서버에 저장한다. 공개 데이터에는 이미 승인된 것만 들어 있어 방문객 화면은 이것을 쓰지 않는다.
 let RV={};
-const saveRV=()=>{};
+let saveRV=()=>{};
 // 즐겨찾기: 지금 캐릭터 서고(/Character_Archive/)와 같은 주소라 같은 'fav' 칸을 함께 쓴다
 let FAV=new Set(store.get('fav',[]));
-const saveFav=()=>store.set('fav',[...FAV]);
+let saveFav=()=>store.set('fav',[...FAV]);
 let still=store.get('pa-still',false);
 function applyMotion(){document.documentElement.classList.toggle('still',still);$('#motionBtn').textContent=still?'배경 움직임 켜기':'배경 움직임 끄기'}
 applyMotion();
@@ -93,6 +93,18 @@ function yearsAll(){
   const lo=Math.min(...ys), hi=Math.max(new Date().getFullYear(),...ys);
   return Array.from({length:hi-lo+1},(_,i)=>lo+i);
 }
+function exhibit(){
+  const C=D.characters, rich=c=>sessionsOfChar(c.id).length*3+(c['연대기']||[]).length*2+(c['앨범']||[]).length+(c['이야기']?2:0);
+  let picks=PICKS.map(id=>chars[id]).filter(Boolean); const auto=!picks.length; if(auto)picks=[...C].sort((a,b)=>rich(b)-rich(a)).slice(0,3);
+  const d=new Date(), md=String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+  const onDay=D.sessions.filter(s=>s.date&&s.date.prec==='day'&&s.date.v.slice(5)===md&&(s.pcs||[]).some(p=>chars[p]));
+  const seed=Math.floor(Date.now()/864e5), withImg=C.filter(c=>c.img);
+  const todS=onDay.length?onDay[seed%onDay.length]:null, tod=todS?chars[todS.pcs.find(p=>chars[p])]:withImg[seed%withImg.length];
+  const short=c=>c['한마디']||(c['이야기']||'').split(/(?<=[.!?。])\s/)[0];
+  const card=(c,why)=>`<a class="pick" href="#${c.id}"><span class="pp">${c.img?`<img src="${esc(c.img)}" alt="" loading="lazy">`:`<span class="ini">${esc(c['이름'][0])}</span>`}</span><span class="ptx"><small>${esc(why)}</small><b>${esc(c['이름'])}</b>${short(c)?`<q>${esc(short(c))}</q>`:''}</span></a>`;
+  return `<div class="sect-t">${auto?'LONG STORIES · 오래 이어진 이야기':'CURATOR\'S PICK · 서고지기의 추천'}</div>
+  <section class="picks">${picks.map(c=>card(c,auto?`${Math.max(sessionsOfChar(c.id).length,playsOf(c))}번의 모험`:'서고지기의 추천')).join('')}${tod?card(tod,todS?`오늘의 캐릭터 · ${todS.date.v.slice(0,4)}년 오늘 플레이`:'오늘의 캐릭터'):''}</section>`;
+}
 function home(){
   const real=D.meta.totalsReal.characters, nS=D.sessions.length, nSc=D.scenarios.length;
   const pool=D.sessions.filter(s=>s.summary&&sumPub(s)!=null); const pick=pool.length?pool[Math.floor(Date.now()/864e5)%pool.length]:null;
@@ -110,9 +122,10 @@ function home(){
   </section>
   <div class="sect-t">THE COLLECTIONS</div>
   <section class="cols">
-    ${[['sessions','session','01','SESSION','세션 기록','함께 만들어 온 이야기'],['characters','character','02','CHARACTER','캐릭터 서고','우리가 살아 보았던 삶'],['scenarios','scenario','03','SCENARIO','시나리오 서고','모험이 기다리는 세계'],['memory','memory','04','MEMORY','추억관','잊고 싶지 않은 순간들']].map(([h,i,n,t,k,p])=>`
+    ${[['sessions','session','01','SESSION','세션 기록','함께 만들어 온 이야기'],['characters','character','02','CHARACTER','캐릭터 서고','우리가 살아 보았던 삶'],['scenarios','scenario','03','SCENARIO','시나리오 서고','모험이 기다리는 세계'],['memory','memory','04','MEMORY','추억관','잊고 싶지 않은 순간들'],['player','player','05','PLAYER','플레이어 서고','이 서고의 주인은 어떤 플레이어일까']].map(([h,i,n,t,k,p])=>`
     <a class="coll" href="#${h}"><div class="ph"><img src="img/coll-${i}.svg" alt="" loading="lazy"></div><div class="meta"><div class="no">${n}</div><h3>${t}</h3><p><b>${k}</b>${p}</p></div></a>`).join('')}
   </section>
+  ${exhibit()}
   <section class="duo">
     <div class="panel"><div class="k">FROM THE ARCHIVES</div><h2>서고에서 꺼낸 오래된 기억</h2>
     ${pick?`<a class="memory" href="#${pick.id}">${pc?`<img src="${esc(pc.img)}" alt="">`:'<span class="noimg"></span>'}<div><b>${esc(pick.title)}</b><div style="color:var(--dust);font-size:13px">${dateText(pick.date)}${pc?' · '+esc(pc['이름']):''}</div><div style="font-size:13.5px;margin-top:4px">${esc(sumPub(pick))}</div><div style="color:var(--gilt);font-size:12.5px;margin-top:4px">다시 만나기 →</div></div></a>`
@@ -223,19 +236,56 @@ function sessionDetail(s){
   <div class="box"><h4>스포일러 없는 요약</h4>${sum}</div>
   ${pt.ss.length>1?`<div class="box"><h4>같은 회차의 세션</h4>${pt.ss.map((x,i)=>x===s?`<div><b>${i+1}번째 · 지금 보는 세션</b></div>`:`<div><a href="#${x.id}">${i+1}번째 · ${esc(x.title)}</a> <small class="locked">${dateText(x.date)}</small></div>`).join('')}<div class="row-actions">${prev?`<a class="btn sm" href="#${prev.id}">‹ 이전 세션</a>`:''}${next?`<a class="btn sm" href="#${next.id}">다음 세션 ›</a>`:''}</div></div>`:''}
   ${campSS.length?`<div class="box"><h4>같은 캠페인 · ${esc(camp[s.campaignId].title)}</h4>${campSS.map(x=>`<div><a href="#${x.id}">${esc(x.title)}</a> <small class="locked">${dateText(x.date)}</small></div>`).join('')}</div>`:''}
-  <div class="box"><h4>함께한 사람 · 녹화 · 기록 원문</h4>${role==='visitor'?'<p class="locked" style="margin:0">친구 비밀번호로 들어오면 보여요.</p>':`<p style="margin:0;font-size:13.5px">KP·PL 닉네임과 녹화 링크는 정식판에서 로그인한 뒤 서버가 보내 줘요(공개 파일에는 넣지 않아요).<br>녹화: ${s.recording===true?'있음':s.recording===false?'없음':'모름'} · 원문: ${s.source?.file?'있음':'없음'}${isAdmin()&&s.source?`<br>원본 파일: <code>${esc(s.source.file)}</code>`:''}</p>`}</div>
+  <div class="box"><h4>함께한 사람 · 녹화 · 기록 원문</h4>${logBox(s)}</div>
   ${isAdmin()&&s.notes?`<div class="box"><h4>관리 메모 (관리자만)</h4><p style="margin:0;font-size:13.5px">${esc(s.notes)}</p></div>`:''}
   </div>`;
 }
 
 // ---------- SCENARIO ----------
+// 시나리오 서고: 찾기 · 룰 · 조건 · 정렬. 해 봄·키퍼링·여러 번은 세션에서 자동으로 붙는다.
+const RULE_LABEL={CoC:'CoC',UW:'언리미티드 월드','트라이앵글 에이전시':'트라이앵글 에이전시',던전월드:'던전 월드',조선아곤:'조선 아곤',아곤:'아곤',에모크로아:'에모크로아',저녁노을어스름:'저녁노을 어스름',머더미스터리:'머더 미스터리',시노비가미:'시노비가미','둘이서 수사':'둘이서 수사',인세인:'인세인','너냐?!':'너냐?!',DnD:'D&D',아리안로드:'아리안로드',카미가카리:'카미가카리',피아스코:'피아스코',크라임씬:'크라임씬',리얼월드:'리얼 월드','1시간히어로':'1시간 히어로',탐공사:'탐공사',기타:'기타'};
+const ruleLabel=r=>RULE_LABEL[r]||r;
+let SCS={rule:'',q:'',on:[],sort:'recent',...store.get('pa-scs',{})};
+const saveSCS=()=>store.set('pa-scs',SCS);
+const scSessions=sc=>D.sessions.filter(s=>s.scenarioId===sc.id).sort(cmpAsc);
+function scenInfo(sc){
+  const ss=scSessions(sc), dated=ss.filter(s=>s.date&&s.date.v);
+  const pcs=[...new Set(ss.flatMap(s=>(s.pcs||[]).filter(p=>typeof p==='string'&&chars[p])))];
+  return {ss,n:ss.length,pts:new Set(ss.map(s=>s.playthroughId)).size,first:dated[0]?.date,last:dated[dated.length-1]?.date,pcs};
+}
+const SC_TAGS=['해 봄','키퍼링','여러 번 한 판','여러 세션','캠페인','자작','보유','하고 싶음'];
+function scenTags(sc,I){const t=scenStatus(sc);if(I.pts>1)t.push('여러 번 한 판');if(I.n>1)t.push('여러 세션');if(sc.campaignId)t.push('캠페인');return t}
+function scenList(){
+  const q=SCS.q.trim().toLowerCase();
+  const L=D.scenarios.map(sc=>({sc,I:scenInfo(sc)})).map(x=>({...x,tags:scenTags(x.sc,x.I)}))
+    .filter(({sc,I,tags})=>(!SCS.rule||sc.rule===SCS.rule)&&SCS.on.every(t=>tags.includes(t))
+      &&(!q||[sc.title,ruleLabel(sc.rule),sc.era,camp[sc.campaignId]?.title,...I.ss.map(s=>s.title+' '+(s.no??'')),...I.pcs.map(p=>chars[p]['이름'])].join(' ').toLowerCase().includes(q)));
+  const dk=d=>d&&d.v?padDate(d.v):'';
+  const cmp={recent:(a,b)=>dk(b.I.last).localeCompare(dk(a.I.last)),old:(a,b)=>(dk(a.I.first)||'9999').localeCompare(dk(b.I.first)||'9999'),name:(a,b)=>a.sc.title.localeCompare(b.sc.title,'ko'),many:(a,b)=>b.I.n-a.I.n||b.I.pts-a.I.pts||dk(b.I.last).localeCompare(dk(a.I.last))}[SCS.sort];
+  return L.sort(cmp);
+}
 function scenariosView(){
-  const tabs=['전체','해 봄','키퍼링','보유','하고 싶음','자작'], on=store.get('pa-tabs',[]);
-  const list=D.scenarios.filter(sc=>{const st=scenStatus(sc);return on.every(t=>st.includes(t))});
-  return `<div class="pagehead"><h2>SCENARIO<span>시나리오 서고</span></h2><p>여러 조건을 함께 누르면 모두 해당하는 시나리오만 남아요. 해 봄·키퍼링은 세션에서 자동으로 붙고, 완주는 대장이 확인한 회차만 세요.</p></div>
-  <div class="chips">${tabs.map(t=>`<button class="chip" data-tab="${t}" aria-pressed="${t==='전체'?on.length===0:on.includes(t)}">${t}</button>`).join('')}</div>
-  ${list.length?`<div class="cards">${list.map(sc=>{const pts=playthroughs(sc),n=D.sessions.filter(s=>s.scenarioId===sc.id).length,done=pts.filter(p=>p.info.shown==='완주').length,guess=pts.filter(p=>!p.info.sure&&p.info.status==='완주').length;return `<a class="scard" href="#${sc.id}"><b>${esc(sc.title)}</b><small>${esc(sc.rule)}${sc.era?' · '+esc(sc.era):''}</small><div>${scenStatus(sc).map(t=>`<span class="tag ${t==='키퍼링'||t==='자작'?'gold':''}">${t}</span>`).join('')}${sc.source==='자작'&&sc.sourceSure===false?'<span class="tag warn">자작 추정</span>':''}</div><small>${pts.length}회차 · 세션 ${n}회 · 완주 ${done}${isAdmin()&&guess?` <span style="color:var(--warn)">(AI 추정 ${guess})</span>`:''}</small></a>`}).join('')}</div>`
-  :`<p class="empty">조건에 맞는 시나리오가 없어요. 보유·하고 싶음은 아직 아무것도 체크하지 않았어요.</p>`}`;
+  const rules=[...new Set(D.scenarios.map(s=>s.rule))].sort((a,b)=>D.scenarios.filter(s=>s.rule===b).length-D.scenarios.filter(s=>s.rule===a).length);
+  const again=D.scenarios.filter(sc=>scenInfo(sc).pts>1).length;
+  return `<div class="pagehead"><h2>SCENARIO<span>시나리오 서고</span></h2><p>모험했던 세계 ${D.scenarios.length}곳 · 룰 ${rules.length}가지 · 두 번 이상 한 시나리오 ${again}개. 해 봄·키퍼링·여러 번은 세션 기록에서 자동으로 붙고, 완주는 대장이 확인한 회차만 세요.</p></div>
+  <div class="chips"><button class="chip" data-scrule="" aria-pressed="${!SCS.rule}">전체 ${D.scenarios.length}</button>${rules.map(r=>`<button class="chip" data-scrule="${esc(r)}" aria-pressed="${SCS.rule===r}">${esc(ruleLabel(r))} ${D.scenarios.filter(s=>s.rule===r).length}</button>`).join('')}</div>
+  <div class="listbar">
+    <input class="inp" id="scq" data-scs="q" type="search" value="${esc(SCS.q)}" placeholder="시나리오 · 세션 번호 · 캐릭터 이름" style="flex:1;min-width:180px" aria-label="시나리오 찾기">
+    <select class="inp" data-scs="sort" aria-label="정렬" style="width:auto">${[['recent','최근에 한 순'],['old','처음 한 순'],['name','이름 순'],['many','세션 많은 순']].map(([v,l])=>`<option value="${v}"${SCS.sort===v?' selected':''}>${l}</option>`).join('')}</select>
+  </div>
+  <div class="chips sm" aria-label="조건">${SC_TAGS.map(t=>`<button class="chip" data-sctag="${t}" aria-pressed="${SCS.on.includes(t)}">${t}</button>`).join('')}${SCS.on.length?'<button class="chip" data-sctag="">조건 지우기</button>':''}</div>
+  <div id="sclist"></div>`;
+}
+function renderScenList(){
+  const el=$('#sclist'); if(!el) return; const L=scenList();
+  const span=I=>!I.first?'일자 미상':I.first===I.last||I.first.v===I.last.v?dateText(I.first,true):`${dateText(I.first,true)} ~ ${dateText(I.last,true)}`;
+  el.innerHTML=`<p class="locked" style="margin:0 0 8px">${L.length}곳</p>`+(L.length?`<div class="cards">${L.map(({sc,I,tags})=>{const pts=playthroughs(sc),done=pts.filter(p=>p.info.shown==='완주').length;
+    return `<a class="scard" href="#${sc.id}"><small class="rl">${esc(ruleLabel(sc.rule))}${sc.era?' · '+esc(sc.era):''}${sc.campaignId?' · '+esc(camp[sc.campaignId].title):''}</small><b>${esc(sc.title)}</b>
+    <small>${span(I)}</small>
+    <div>${tags.filter(t=>t!=='여러 세션').map(t=>`<span class="tag ${t==='키퍼링'||t==='자작'||t==='여러 번 한 판'?'gold':''}">${t}</span>`).join('')}${sc.source==='자작'&&sc.sourceSure===false?'<span class="tag warn">자작 추정</span>':''}</div>
+    ${I.pcs.length?`<div class="mini">${I.pcs.slice(0,4).map(p=>{const c=chars[p];return c.img?`<img src="${esc(c.img)}" alt="${esc(c['이름'])}" title="${esc(c['이름'])}" loading="lazy">`:`<span class="ini" title="${esc(c['이름'])}">${esc(c['이름'][0])}</span>`}).join('')}<small>${esc(I.pcs.map(p=>chars[p]['이름']).slice(0,2).join(', '))}${I.pcs.length>2?' 외 '+(I.pcs.length-2):''}</small></div>`:''}
+    <small>${I.pts}회차 · 세션 ${I.n}회${done?' · 완주 '+done:''}</small></a>`}).join('')}</div>`
+    :`<p class="empty">조건에 맞는 시나리오가 없어요.${SCS.on.some(t=>t==='보유'||t==='하고 싶음')?' 보유·하고 싶음은 아직 아무것도 체크하지 않았어요.':''}</p>`);
 }
 function scenarioDetail(sc){
   const pts=playthroughs(sc);
@@ -243,9 +293,9 @@ function scenarioDetail(sc){
   return `<div class="detail" style="padding:6px 0 20px"><a href="#scenarios" class="btn back">← 시나리오 서고</a>
   <div class="pagehead" style="padding-top:14px"><h2 style="font-family:var(--f-head);font-size:24px">${esc(sc.title)}</h2></div>
   <div>${scenStatus(sc).map(t=>`<span class="tag gold">${t}</span>`).join('')}<span class="tag">${esc(sc.source)}</span>${sc.sourceSure===false?'<span class="tag warn">자작인지 확인 필요</span>':''}</div>
-  <dl class="kv"><dt>룰</dt><dd>${esc(sc.rule)}</dd><dt>시대·배경</dt><dd>${esc(sc.era||'미기록')}</dd>${sc.campaignId?`<dt>캠페인</dt><dd>${esc(camp[sc.campaignId].title)}</dd>`:''}${sc.note?`<dt>메모</dt><dd>${esc(sc.note)}</dd>`:''}
+  <dl class="kv"><dt>룰</dt><dd>${esc(ruleLabel(sc.rule))}</dd>${(()=>{const I=scenInfo(sc);return (I.first?`<dt>플레이한 때</dt><dd>${dateText(I.first)}${I.last&&I.last.v!==I.first.v?' ~ '+dateText(I.last):''}</dd>`:'')+(I.pcs.length?`<dt>대장 캐릭터</dt><dd>${I.pcs.map(p=>pcChip(p)).join(' ')}</dd>`:'')})()}<dt>시대·배경</dt><dd>${esc(sc.era||'미기록')}</dd>${sc.campaignId?`<dt>캠페인</dt><dd>${esc(camp[sc.campaignId].title)}</dd>`:''}${sc.note?`<dt>메모</dt><dd>${esc(sc.note)}</dd>`:''}
   ${field('author','작가')}${field('players','권장 인원')}${field('time','예상 시간')}${field('genre','장르')}
-  <dt>평점</dt><dd class="locked">작품 평점과 플레이 경험 평점을 따로 매겨요 · 아직 없음</dd></dl>
+  ${isAdmin()?'<dt>평점</dt><dd class="locked">작품 평점과 플레이 경험 평점을 따로 매겨요 · 아직 없음</dd>':''}</dl>
   ${pts.map((p,i)=>{const rv=RV['rev:'+p.id];return `<div class="pt"><h5>${pts.length>1?`${i+1}회차`:'플레이 기록'} · 세션 ${p.ss.length}회 ${ptLabel(p.info)}</h5>${isAdmin()&&p.info.note?`<div class="locked">${esc(p.info.note)}</div>`:''}${p.ss.map(s=>`<div><a href="#${s.id}">${p.ss.length>1&&s.part?s.part+'번째 · ':''}${esc(s.title)}</a> <small style="color:var(--dust)">${dateText(s.date)}</small> ${(s.pcs||[]).map(x=>`<span class="tag">${esc(pcName(x))}</span>`).join('')}</div>`).join('')}
     ${rv&&rv.text&&(isAdmin()||rv.vis==='공개'||(rv.vis==='친구'&&role==='friend'))?`<div class="box" style="margin-top:8px"><h4>대장 후기${isAdmin()?` · ${esc(rv.vis)}`:''}</h4><p style="margin:0;white-space:pre-line">${esc(rv.text)}</p></div>`:''}
     ${isAdmin()?`<details style="margin-top:6px"><summary class="locked" style="cursor:pointer">이 회차 후기 쓰기</summary><textarea class="inp" id="rev-${esc(p.id)}" placeholder="스포일러가 있으면 공개 범위를 비공개나 친구로">${esc(rv?.text||'')}</textarea><div class="row-actions"><select class="inp" id="revv-${esc(p.id)}">${['비공개','친구','공개'].map(v=>`<option${(rv?.vis||'비공개')===v?' selected':''}>${v}</option>`).join('')}</select><button class="btn sm gilt" data-rev="${esc(p.id)}">후기 저장</button></div></details>`:''}
@@ -329,21 +379,23 @@ function charDetail(c){
   const kv=[['원어/별명','원어·별명'],['성별','성별'],['나이','나이'],['국적','국적'],['종족','종족'],['직업','직업'],['시대','시대'],['이성','이성'],['시스템','룰']].filter(([k])=>c[k]).map(([k,l])=>`<dt>${l}</dt><dd>${esc(c[k])}</dd>`).join('');
   const tagList=[c['시대'],c['직업'],...(c['시나리오']||[])].filter(Boolean);
   const panes={
-    '인물':`${c['한마디']?`<blockquote class="quote">“${esc(c['한마디'])}”</blockquote>`:''}
+    '인물':`${memHTML(c)}${c['한마디']?`<blockquote class="quote">“${esc(c['한마디'])}”</blockquote>`:''}
       <dl class="kv">${kv}</dl>
       ${story?`<div class="prose"><h4>이야기</h4>${role==='admin'||store.get('pa-spoil-'+c.id,false)||first===story?`<p>${esc(story)}</p>`:`<p>${esc(first)}</p><button class="btn sm" data-spoil="${c.id}">스포일러 포함 · 이어서 읽기</button>`}</div>`:''}
       <div class="prose">${prose||'<p class="locked">인물 소개가 아직 없어요.</p>'}${c['비고']?`<h4>비고</h4><p>${esc(String(c['비고']).replace(/ \/ /g,'\n'))}</p>`:''}</div>
-      ${tagList.length?`<div style="margin-top:12px">${tagList.map(t=>`<button class="tag" style="background:none;cursor:pointer" data-searchfor="${esc(t)}">#${esc(t)}</button>`).join('')}</div>`:''}`,
-    '시트':sheetHTML(c['시트']),
+      ${tagList.length?`<div style="margin-top:12px">${tagList.map(t=>`<button class="tag" style="background:none;cursor:pointer" data-searchfor="${esc(t)}">#${esc(t)}</button>`).join('')}</div>`:''}
+      <div class="prose">${relHTML(c)}</div>`,
+    '시트':sheetHTML(c['시트'])+histHTML(c),
     '연대기':`<p class="locked" style="margin:0 0 8px">세션 기록 ${CH.fromSessions}줄과 지금 캐릭터 서고의 연대기 ${CH.fromOld}줄을 합쳐 시간순으로 보여요. 기존 기록은 지우지 않아요.</p><ol class="chron">${CH.rows.map(r=>r.s?`<li><span class="n">${r.no??'—'}</span><a href="#${r.s.id}">${esc(r.s.title)}${r.s.part&&ptSessions(r.s.playthroughId).length>1?` · ${r.s.part}번째`:''}</a><span class="d">${r.dateHTML}</span></li>`:`<li><span class="n">${esc(r.no)}</span><span>${esc(r.old.title)} <span class="tag">기존 서고 기록</span></span><span class="d">${r.dateHTML}</span></li>`).join('')}</ol>${!CH.rows.length?'<p class="locked">기록이 없어요.</p>':''}`,
     '앨범':album.length?`<div class="album">${album.map(([p,cap],i)=>`<figure><button data-lbopen="${c.id}" data-i="${i}" aria-label="${esc(cap||'그림')} 크게 보기"><img src="${esc(p)}" alt="${esc(cap||'')}" loading="lazy"></button>${cap?`<figcaption>${esc(cap)}</figcaption>`:''}</figure>`).join('')}</div>`:'<p class="locked">앨범 그림이 아직 없어요.</p>'
   };
   const t=tabs.includes(tab)?tab:'인물';
-  return `<a href="#characters" class="btn back">← 캐릭터 서고</a>
-  <div class="cd"><aside>${c.img?'':'<div class="portrait ini">'+esc(c['이름'][0])+'</div>'}<img class="portrait"${c.img?'':' hidden'} src="${esc(c.img)}" alt="${esc(c['이름'])}" data-lbopen="${c.id}" data-i="-1"><div>
+  const {prev,next}=prevNext(c);
+  return `<div class="cnav"><a href="#characters" class="btn back">← 캐릭터 서고</a><span>${prev?`<a class="btn sm" href="#${prev.id}" title="${esc(prev['이름'])}">‹ 이전</a>`:''}${next?`<a class="btn sm" href="#${next.id}" title="${esc(next['이름'])}">다음 ›</a>`:''}</span></div>
+  <div class="cd ${enterClass(c)}"><aside>${c.img?'':'<div class="portrait ini">'+esc(c['이름'][0])+'</div>'}<img class="portrait"${c.img?'':' hidden'} src="${esc(c.img)}" alt="${esc(c['이름'])}" data-lbopen="${c.id}" data-i="-1"><div>
     <h2>${esc(c['이름'])}</h2><div><span class="tag gold">${esc(RULES[shelfOf(c)]||shelfOf(c))}</span><span class="tag">${esc(c['상태']||'')}</span><span class="tag" title="세션 기록에 연결된 수">세션 기록 ${ss.length}</span>${playsOf(c)?`<span class="tag" title="캐릭터 시트에 적힌 시나리오 수">시나리오 ${playsOf(c)}</span>`:''}</div>
     <div class="locked" style="margin-top:6px">${esc([c['시스템']||c['룰'],c['직업']].filter(Boolean).join(' · '))}</div>
-    <div class="actions"><button class="btn" data-fav="${c.id}" aria-pressed="${FAV.has(c.id)}">${FAV.has(c.id)?'★ 즐겨찾기됨':'☆ 즐겨찾기'}</button><button class="btn" data-share="${c.id}">링크 복사</button>${dice.ok.length?`<button class="btn gilt" data-dice="${c.id}">🎲 판정 굴리기</button>`:''}</div>
+    <div class="actions"><button class="btn" data-fav="${c.id}" aria-pressed="${FAV.has(c.id)}">${FAV.has(c.id)?'★ 즐겨찾기됨':'☆ 즐겨찾기'}</button><button class="btn" data-share="${c.id}">링크 복사</button><button class="btn" data-card="${c.id}">소개 카드 PNG</button>${isAdmin()?`<button class="btn" data-pick="${c.id}" aria-pressed="${PICKS.includes(c.id)}">${PICKS.includes(c.id)?'★ 첫 화면 추천됨':'첫 화면에 추천'}</button>`:''}${dice.ok.length?`<button class="btn gilt" data-dice="${c.id}">🎲 판정 굴리기</button>`:''}</div>
     ${album.length?`<div class="locked" style="margin-top:8px">그림을 누르면 크게 보여요 · 앨범 ${album.length}장</div>`:''}
   </div></aside>
   <section><div class="tabs" role="tablist">${tabs.map(x=>`<button role="tab" aria-selected="${x===t}" data-ctab="${x}">${x}${x==='앨범'&&album.length?` ${album.length}`:''}${x==='연대기'?` ${CH.rows.length}`:''}</button>`).join('')}</div>
@@ -536,6 +588,183 @@ function checkView(){
   return `<div class="pagehead"><h2>CHECK<span>점검</span></h2><p>시험 데이터로 돌린 자동 검사예요. 링크를 누르면 해당 기록으로 바로 가요. 실제 사이트에서는 "문제"가 하나라도 있으면 반영하지 않아요.</p></div><ul class="checks">${items.join('')}</ul>`;
 }
 
+// ---------- PLAYER: 플레이어 서고 (대장 프레이피스의 플레이 특징). 공개 데이터와 캐릭터 서고에서 셈만 한다. 지어낸 글은 넣지 않는다.
+const normGender=g=>/^(남|男|m)/i.test(g||'')?'남':/^(여|女|f)/i.test(g||'')?'여':'';
+const normNation=n=>{n=String(n||'').split(/[\/(]/)[0].trim();return /^(한국|대한민국|서울|조선)/.test(n)?'한국':n};
+const ageNum=a=>{const m=String(a||'').match(/\d+/);return m?+m[0]:null};
+const JOBS=[['학생','학생|고등|대학생|중학'],['의료','의사|간호|약사|약리|외과|의학|수의'],['탐정·수사','탐정|형사|수사|경찰|경사|경위|FBI|요원'],['학자·교수','교수|학자|연구|박사|고고|신비학'],['군인·용병','군|소령|대위|병사|용병|저격'],['예술·연예','배우|가수|작가|화가|음악|아이돌|기자|사진'],['범죄·뒷골목','밀주|갱|마피아|도둑|사기|킬러|암살|현상금'],['종교·오컬트','신부|목사|수녀|무당|도사|퇴마|사제|수도'],['부유층','딜레탕트|귀족|부호|사업가|회장|상속'],['직장인','회사|사원|직원|공무원|교사|변호사|기술|엔지니어|운전']];
+const jobCat=j=>{for(const [k,re] of JOBS)if(new RegExp(re).test(j||''))return k;return j?'그 밖':''};
+function bars(rows,opt={}){const max=Math.max(1,...rows.map(r=>r[1]));const tot=rows.reduce((a,r)=>a+r[1],0);
+  return `<ul class="bars">${rows.map(([k,v,href])=>`<li>${href?`<a href="${href}">${esc(k)}</a>`:`<span>${esc(k)}</span>`}<i style="--w:${(v/max*100).toFixed(1)}%"></i><b>${v}${opt.pct&&tot?` <small>${Math.round(v/tot*100)}%</small>`:''}</b></li>`).join('')}</ul>`}
+const countBy=(xs,f)=>{const m=new Map();xs.forEach(x=>{const k=f(x);if(k)m.set(k,(m.get(k)||0)+1)});return [...m].sort((a,b)=>b[1]-a[1])};
+function playerView(){
+  const S=D.sessions, C=D.characters, dated=S.filter(s=>s.date&&s.date.v).sort(cmpAsc);
+  const first=dated[0], years=yearsAll(), nKP=S.filter(s=>s.role==='KP').length;
+  const byRule=countBy(S,s=>s.rule), top=byRule[0]||['',0];
+  const ruleFirst=r=>{const x=dated.find(s=>s.rule===r);return x?yearOf(x):null};
+  const perYear=years.map(y=>{const ys=S.filter(s=>yearOf(s)===y);const tr=countBy(ys,s=>s.rule)[0];return [y+'년',ys.length,'#journey/'+y,tr]});
+  const days=S.filter(s=>s.date&&s.date.prec==='day');
+  const wd=['일','월','화','수','목','금','토'].map((d,i)=>[d+'요일',days.filter(s=>new Date(s.date.v+'T12:00:00').getDay()===i).length]);
+  const months=Array.from({length:12},(_,i)=>[(i+1)+'월',days.filter(s=>+s.date.v.slice(5,7)===i+1).length]);
+  const gender=countBy(C,c=>normGender(c['성별'])), ages=C.map(c=>ageNum(c['나이'])).filter(a=>a&&a<200);
+  const band=countBy(ages,a=>a<20?'10대 이하':a<30?'20대':a<40?'30대':a<50?'40대':'50대 이상').sort((a,b)=>a[0].localeCompare(b[0],'ko'));
+  const avg=ages.length?Math.round(ages.reduce((a,b)=>a+b,0)/ages.length):null;
+  const nation=countBy(C,c=>normNation(c['국적'])).slice(0,6), jobs=countBy(C,c=>jobCat(c['직업'])).filter(r=>r[0]!=='그 밖').slice(0,8);
+  const lost=C.filter(isLost).length, shelf=countBy(C,shelfOf);
+  const mostPlayed=C.map(c=>({c,n:Math.max(sessionsOfChar(c.id).length,playsOf(c))})).filter(x=>x.n>1).sort((a,b)=>b.n-a.n).slice(0,6);
+  const longest=C.map(c=>{const ss=sessionsOfChar(c.id).filter(s=>s.date&&s.date.v);return ss.length>1?{c,a:ss[0],b:ss[ss.length-1],d:(new Date(padDate(ss[ss.length-1].date.v).replace(/-00/g,'-01'))-new Date(padDate(ss[0].date.v).replace(/-00/g,'-01')))/864e5}:null}).filter(Boolean).sort((x,y)=>y.d-x.d).slice(0,3);
+  const again=D.scenarios.map(sc=>({sc,I:scenInfo(sc)})).filter(x=>x.I.pts>1||x.I.n>2).sort((a,b)=>b.I.n-a.I.n).slice(0,6);
+  const kpList=S.filter(s=>s.role==='KP');
+  const facts=[
+    first&&`${dateText(first.date,true).replace(' 추정','')}에 첫 기록을 남긴 뒤 ${years.length}해 동안 세션 ${S.length}번을 기록했어요.`,
+    top[0]&&`가장 많이 한 룰은 ${ruleLabel(top[0])}로, 전체 세션의 ${Math.round(top[1]/S.length*100)}%예요.`,
+    byRule.length>1&&`룰은 모두 ${byRule.length}가지를 해 봤어요.`,
+    (()=>{const r=byRule.find(([k])=>k!==top[0]);const y=r&&ruleFirst(r[0]);return r&&y?`두 번째로 많은 ${ruleLabel(r[0])}는 ${y}년부터 시작했어요.`:''})(),
+    perYear.length&&(()=>{const m=[...perYear].sort((a,b)=>b[1]-a[1])[0];return `가장 바빴던 해는 ${m[0]}, 세션 ${m[1]}번이에요.`})(),
+    gender.length&&`캐릭터 ${C.length}명 가운데 성별이 적힌 ${gender.reduce((a,g)=>a+g[1],0)}명 중 ${gender[0][0]==='남'?'남성':'여성'}이 ${gender[0][1]}명이에요.`,
+    avg&&`나이가 적힌 캐릭터의 평균 나이는 ${avg}살이에요.`,
+    `잃어버린 캐릭터(로스트·사망·격리 등)는 ${lost}명이에요.`,
+    nKP?`대부분은 플레이어로 참여했고, 키퍼·마스터로 연 세션은 ${nKP}번이에요.`:'',
+  ].filter(Boolean);
+  const card=(c,sub)=>`<a class="ccard" href="#${c.id}"><div class="pic">${c.img?`<img src="${esc(c.img)}" alt="" loading="lazy">`:`<span class="ini">${esc(c['이름'][0])}</span>`}</div><div class="cap"><b>${esc(c['이름'])}</b><small>${sub}</small></div></a>`;
+  return `<div class="pagehead"><h2>PLAYER<span>플레이어 서고</span></h2><p>서고의 주인 프레이피스는 어떤 플레이어일까요? 세션 기록과 캐릭터 서고에서 센 숫자로 보는 플레이 특징이에요. 날짜는 대부분 파일 날짜로 추정한 값이에요.</p></div>
+  <section class="stats pstats">
+    <div class="stat"><b>${S.length}</b><small>SESSIONS</small><span>기록한 세션</span></div>
+    <div class="stat"><b>${C.length}</b><small>CHARACTERS</small><span>만든 캐릭터</span></div>
+    <div class="stat"><b>${D.scenarios.length}</b><small>SCENARIOS</small><span>다녀온 세계</span></div>
+    <div class="stat"><b>${byRule.length}</b><small>SYSTEMS</small><span>해 본 룰</span></div>
+  </section>
+  <div class="box ptraits"><h4>숫자로 본 특징</h4><ul>${facts.map(f=>`<li>${esc(f)}</li>`).join('')}</ul></div>
+  <div class="pgrid">
+    <div class="box"><h4>룰 취향 <small class="locked">세션 수</small></h4>${bars(byRule.slice(0,10).map(([k,v])=>[ruleLabel(k),v]),{pct:true})}${byRule.length>10?`<p class="locked">그 밖 ${byRule.length-10}가지 룰 ${byRule.slice(10).reduce((a,r)=>a+r[1],0)}번</p>`:''}</div>
+    <div class="box"><h4>해마다 <small class="locked">세션 수 · 그해 가장 많이 한 룰</small></h4>${bars(perYear.map(([k,v,h])=>[k,v,h]))}<p class="locked">${perYear.map(r=>`${r[0]} ${r[3]?ruleLabel(r[3][0]):''}`).join(' · ')}</p></div>
+    <div class="box"><h4>세션 요일 <small class="locked">날짜가 날 단위로 남은 ${days.length}번</small></h4>${bars(wd)}</div>
+    <div class="box"><h4>세션 달 <small class="locked">같은 ${days.length}번</small></h4>${bars(months)}</div>
+    <div class="box"><h4>캐릭터 서가 <small class="locked">캐릭터 수</small></h4>${bars(shelf.slice(0,8).map(([k,v])=>[RULES[k]||k,v,'#characters']),{pct:true})}</div>
+    <div class="box"><h4>자주 맡는 직업 <small class="locked">직업 칸을 묶어서</small></h4>${jobs.length?bars(jobs):'<p class="locked">직업이 적힌 캐릭터가 없어요.</p>'}</div>
+    <div class="box"><h4>캐릭터 나이</h4>${bars(band)}${avg?`<p class="locked">평균 ${avg}살 · 나이가 적힌 ${ages.length}명</p>`:''}</div>
+    <div class="box"><h4>캐릭터 국적 <small class="locked">많은 순 6</small></h4>${bars(nation)}</div>
+  </div>
+  ${mostPlayed.length?`<div class="sect-t">MOST PLAYED</div><p class="locked">가장 여러 번 함께 모험한 캐릭터</p><div class="gallery">${mostPlayed.map(({c,n})=>card(c,`${n}번의 모험`)).join('')}</div>`:''}
+  ${longest.length?`<div class="sect-t">LONGEST JOURNEY</div><p class="locked">첫 세션과 마지막 세션 사이가 가장 긴 캐릭터</p><div class="gallery">${longest.map(({c,a,b})=>card(c,`${dateText(a.date,true)} ~ ${dateText(b.date,true)}`)).join('')}</div>`:''}
+  ${again.length?`<div class="sect-t">FAVORITE WORLDS</div><p class="locked">여러 세션이나 여러 회차를 한 시나리오</p><div class="cards">${again.map(({sc,I})=>`<a class="scard" href="#${sc.id}"><small class="rl">${esc(ruleLabel(sc.rule))}</small><b>${esc(sc.title)}</b><small>${I.pts}회차 · 세션 ${I.n}회</small></a>`).join('')}</div>`:''}
+  ${kpList.length?`<div class="sect-t">AS KEEPER</div><p class="locked">대장이 키퍼·마스터로 연 세션</p><div class="cards">${kpList.map(s=>`<a class="scard" href="#${s.id}"><small class="rl">${esc(ruleLabel(s.rule))}</small><b>${esc(s.title)}</b><small>${dateText(s.date,true)}</small></a>`).join('')}</div>`:''}`;
+}
+
+// ---------- 로그인 · 서버 (캐릭터 서고와 같은 앱 스크립트 웹 앱) ----------
+// 비밀번호는 로그인 때 한 번만 보내고, 웹 앱이 준 표(14일)만 이 기기에 둔다. 캐릭터 서고와 같은 주소라 같은 'tok' 칸을 함께 쓴다.
+// 권한은 서버가 정한다: 관리자(쓰기) · 친구(읽기). 방문객은 공개 데이터 + 승인·공개된 것(pa_pub)만 본다.
+const LOG_URL='https://script.google.com/macros/s/AKfycbzDq0ROuPIsXvQ1wV1X5ilVRuhm6m3iM3-RxQpgiFIQVtbbSNO2tcJ4tidr4UPk9CDU3g/exec';
+const lsDel=k=>{try{localStorage.removeItem(k)}catch{}};
+function tokObj(){try{const t=JSON.parse(localStorage.getItem('tok')||'null');if(t&&t.exp>Date.now())return t;lsDel('tok')}catch{}return null}
+const tok=()=>tokObj()?.t||'';
+async function api(op,data){const r=await fetch(LOG_URL,{method:'POST',body:JSON.stringify({op,token:tok(),...(data||{})})});const j=await r.json();if(!j.ok&&j.error==='auth'){lsDel('tok');setRole('visitor')}return j}
+let LOGS=null, PICKS=[], SERVER={pub:false,priv:false};
+function setRole(r){role=r;document.body.dataset.role=r;const b=$('#loginBtn');if(b){b.textContent=r==='visitor'?'로그인':r==='admin'?'관리자 · 로그아웃':'친구 · 로그아웃';b.setAttribute('aria-label',r==='visitor'?'로그인':'로그아웃')}
+  // 즐겨찾기: 관리자는 서버(어느 기기에서나 같음, 'ofav'), 그 밖은 이 브라우저('fav'). 캐릭터 서고와 같은 규칙
+  FAV=new Set(store.get(r==='admin'?'ofav':'fav',[]))}
+saveFav=()=>{store.set(role==='admin'?'ofav':'fav',[...FAV]);if(role==='admin')api('favset',{ids:[...FAV]}).catch(()=>{})};
+// 작업함 검토 기록은 서버에 저장 (잠깐 모아서 한 번에)
+let rvTimer=null;
+saveRV=()=>{if(role!=='admin'||!SERVER.priv){toast('서버 자료를 아직 못 받아서 저장하지 않았어요');return}clearTimeout(rvTimer);rvTimer=setTimeout(()=>api('pa_set',{rv:RV}).then(j=>{if(!j.ok)toast('작업함을 서버에 저장하지 못했어요. 다시 로그인해 주세요')}).catch(()=>toast('작업함을 서버에 저장하지 못했어요. 인터넷 연결을 확인해 주세요')),600)};
+// 공개 겹치기: 승인한 요약, 범위 안의 결말, 확정한 회차
+function overlayPub(o){if(!o)return;
+  Object.entries(o.sum||{}).forEach(([id,t])=>{const s=byId[id];if(s&&!isAdmin())s.summary={text:t,status:'approved'}});
+  Object.entries(o.end||{}).forEach(([id,t])=>{const s=byId[id];if(s&&!isAdmin())s.ending={text:t,status:'approved',vis:role==='friend'?'친구':'공개'}});
+  Object.entries(o.pt||{}).forEach(([id,p])=>{if(PT[id]){PT[id].status=p.status;PT[id].by='대장 확인';if(p.endedAt)PT[id].endedAt=p.endedAt}});
+  Object.entries(o.rev||{}).forEach(([id,r])=>{if(!isAdmin())RV['rev:'+id]=r});
+}
+// 관리자: 비공개 원본(초안·메모)을 공개 데이터 위에 겹친다
+function overlayPriv(pv){if(!pv)return;
+  Object.entries(pv.sessions||{}).forEach(([id,x])=>{const s=byId[id];if(!s)return;if(x.summary)s.summary=x.summary;if(x.ending)s.ending=x.ending;if(x.notes)s.notes=x.notes;
+    if(x.pcNotes)s.pcs=s.pcs.map(p=>typeof p==='object'?(x.pcNotes.find(n=>n.name===p.name)||p):p)});
+  Object.entries(pv.playthroughs||{}).forEach(([id,p])=>{if(PT[id])Object.assign(PT[id],p)});
+}
+async function syncServer(){
+  try{const j=await(await fetch(LOG_URL+'?op=covers')).json();if(j.ok){applyCovers(j.cover);PICKS=j.picks||[]}}catch{}
+  if(!tok()){try{const j=await(await fetch(LOG_URL+'?op=pa_pub')).json();if(j.ok){overlayPub(j);SERVER.pub=true}}catch{}render();return}
+  try{
+    const w=await api('whoami'); if(!w.ok){setRole('visitor');return syncServer()}
+    setRole(w.role==='admin'?'admin':'friend');
+    if(role==='admin'){const g=await api('pa_get');if(g.ok){RV=g.rv||{};overlayPriv(g.priv);SERVER.priv=true}
+      const f=await api('fav');if(f.ok){FAV=new Set(f.fav||[]);store.set('ofav',[...FAV])}}
+    else{const v=await api('pa_view');if(v.ok){overlayPub(v);SERVER.pub=true}}
+    const l=await api('sessions');if(l.ok)LOGS=l.sessions||[];
+  }catch{toast('서버에 닿지 못했어요. 공개 자료로 보여 드려요')}
+  render();
+}
+// 대표 그림: 웹 앱 COVER (경로는 캐릭터 서고 기준 img/...)
+function applyCovers(m){if(!m)return;const base=D.meta.charImgBase||'';D.characters.forEach(c=>{if(!c.img0)c.img0=c.img;const v=m[c.id];if(v){const full=base+v;if([c.img0,...(c['앨범']||[]).map(a=>a[0])].includes(full))c.img=full}})}
+async function setCover(c,src){const base=D.meta.charImgBase||'';const rel=src===c.img0?'':src.slice(base.length);
+  const j=await api('coverset',{id:c.id,src:rel});if(!j.ok)throw 0;c.img=src}
+// 로그인 창
+function loginOpen(){if(role!=='visitor'){logout();return}$('#pwmsg').textContent='';$('#loginDlg').showModal();$('#pw').focus()}
+async function login(pw){$('#pwmsg').textContent='확인 중…';
+  try{const j=await(await fetch(LOG_URL,{method:'POST',body:JSON.stringify({op:'login',pw})})).json();
+    if(!j.ok){$('#pwmsg').textContent=j.error==='locked'?'여러 번 틀려서 15분 동안 잠겼어요.':'비밀번호가 맞지 않아요.';return}
+    store.set('tok',{t:j.token,exp:j.exp,role:j.role});$('#pw').value='';$('#loginDlg').close();toast(j.role==='admin'?'관리자로 들어왔어요':'친구로 들어왔어요');
+    location.reload();
+  }catch{$('#pwmsg').textContent='서버에 닿지 못했어요. 잠시 뒤 다시 해 보세요.'}}
+async function logout(){try{await api('logout')}catch{}lsDel('tok');lsDel('ofav');toast('로그아웃했어요. 이 기기에서 표를 지웠어요');setTimeout(()=>location.reload(),400)}
+// 세션 로그(비공개 시트) 한 줄 찾기: 번호가 같은 줄
+const logFor=s=>LOGS&&s.no!=null?LOGS.filter(x=>String(x['번호'])===String(s.no)):[];
+function vids(v){return String(v||'').split(/\n+/).map(t=>{const m=t.match(/https?:\/\/\S+/);return m?`<a href="${esc(m[0])}" target="_blank" rel="noopener">▶ ${esc(t.replace(m[0],'').trim()||'영상')}</a>`:''}).filter(Boolean).join(' ')}
+function logBox(s){
+  if(role==='visitor')return '<p class="locked" style="margin:0">친구·관리자 비밀번호로 로그인하면 함께한 사람, 녹화, 한글 기록이 보여요.</p>';
+  if(!LOGS)return '<p class="locked" style="margin:0">세션 로그를 불러오는 중이에요…</p>';
+  const L=logFor(s);
+  return (L.length?L.map(x=>`<dl class="kv" style="margin:0"><dt>키퍼</dt><dd>${esc(x['KP']||'—')}</dd><dt>플레이어</dt><dd>${esc(x['PL']||'—')}</dd>${x['대장PC']?`<dt>내 캐릭터</dt><dd>${esc(x['대장PC'])}</dd>`:''}<dt>녹화</dt><dd>${esc(x['녹화']||'모름')} ${vids(x['영상'])}</dd>${x['링크']?`<dt>기록 원문</dt><dd><a href="${esc(x['링크'])}" target="_blank" rel="noopener">한글 파일 열기</a></dd>`:''}</dl>`).join(''):'<p class="locked" style="margin:0">세션 로그에 이 번호 줄이 없어요.</p>')
+    +(isAdmin()&&s.source?.file?`<p class="locked" style="margin:6px 0 0">원본 파일: <code>${esc(s.source.file)}</code></p>`:'');
+}
+
+// ---------- 캐릭터 서고에서 옮긴 것: 관련 인물 · 기억 · 성장 기록 · 소개 카드 · 이전/다음 · 입장 연출 ----------
+/* 관련 인물: 같은 세션·시나리오 > 같은 분류 > 같은 직업 > 같은 서가·시대 */
+function related(c){
+  const k=x=>String(x).replace(/\[[^\]]*\]|CoC|UW|[\s_\-·.,:!?~'"()]/gi,'');
+  const mySess=new Set(sessionsOfChar(c.id).map(s=>s.scenarioId));
+  const mine=new Set([...(c['시나리오']||[]),...(c['연대기']||[]).map(x=>x[1])].map(k).filter(x=>x.length>1));
+  const jw=o=>new Set(String(o['직업']||'').match(/[가-힣A-Za-z]{2,}/g)||[]), my=jw(c);
+  return D.characters.filter(o=>o.id!==c.id).map(o=>{let v=0,why='';
+    if(sessionsOfChar(o.id).some(s=>mySess.has(s.scenarioId))||[...(o['시나리오']||[]),...(o['연대기']||[]).map(x=>x[1])].map(k).some(x=>mine.has(x))){v+=10;why='같은 시나리오'}
+    else if(c['분류']&&o['분류']===c['분류']){v+=10;why=c['분류']}
+    const jj=[...jw(o)].filter(w=>my.has(w));if(jj.length){v+=4;why=why||'같은 직업 · '+jj[0]}
+    if(shelfOf(o)===shelfOf(c))v+=1;if(o['시대']&&o['시대']===c['시대'])v+=1;return {o,v,why}})
+    .filter(x=>x.v>=5).sort((a,b)=>b.v-a.v).slice(0,6);
+}
+function relHTML(c){const L=related(c);return L.length?`<h4>관련 인물</h4><div class="rel">${L.map(({o,why})=>`<a href="#${o.id}">${o.img?`<img src="${esc(o.img)}" alt="" loading="lazy">`:`<span class="ini">${esc(o['이름'][0])}</span>`}<span>${esc(o['이름'])}<small>${esc(why)}</small></span></a>`).join('')}</div>`:''}
+/* 추모 기록: 시트·손으로 적은 칸만(지어내지 않음) */
+function memHTML(c){if(!isLost(c)&&!c['최후'])return '';
+  const C=c['연대기']||[],L=C[C.length-1],ss=sessionsOfChar(c.id),last=ss.length?ss[ss.length-1].title+' ('+dateText(ss[ss.length-1].date,true)+')':L?L[1]+(L[2]?' ('+L[2]+')':''):'';
+  const rows=[['최후',c['최후']],['마지막 말',c['마지막말']],['마지막 세션',last],['복귀 가능성',c['복귀']],['추모글',c['추모글']]].filter(x=>x[1]);
+  return `<div class="box memo-box"><h4>🕯 기억</h4>${rows.length?`<dl class="kv" style="margin:0">${rows.map(([k,v])=>`<dt>${k}</dt><dd>${esc(v)}</dd>`).join('')}</dl>`:''}${c['최후']||c['마지막말']?'':'<p class="locked" style="margin:6px 0 0">최후와 마지막 말은 아직 적혀 있지 않아요.</p>'}</div>`}
+/* 시트 성장 기록: 자동 반영 때 바뀐 예전 시트(시트이력) */
+function histHTML(c){const H=c['시트이력']||[];if(!H.length)return '';
+  const num=s=>{const m={};['특성치','기능','기본'].forEach(k=>(s&&s[k]||[]).forEach(([n,v])=>{const x=parseFloat(v);if(!isNaN(x))m[n]=x}));return m};
+  const st=[...H.map(h=>({d:h['날짜'],s:h['시트']})),{d:'지금',s:c['시트']}],li=[];
+  for(let i=1;i<st.length;i++){const a=num(st[i-1].s),b=num(st[i].s),ch=Object.keys(b).filter(k=>k in a&&a[k]!==b[k]).map(k=>`<span class="${b[k]>a[k]?'up':'down'}">${esc(k)} ${a[k]}→${b[k]}</span>`);
+    li.push(`<li><b>${esc(st[i-1].d)} → ${esc(st[i].d)}</b> ${ch.length?ch.join(', '):'숫자 변화 없음(글 내용만 바뀜)'}</li>`)}
+  return `<div class="sheet-sec"><h4>성장 기록</h4><ol class="hist">${li.join('')}</ol></div>`}
+/* 소개 카드 PNG: 그림 · 이름 · 서가 · 직업 · 한마디 (서고 색) */
+async function shareCard(c){const W=1080,H=600,cv=document.createElement('canvas');cv.width=W;cv.height=H;const g=cv.getContext('2d');
+  g.fillStyle='#1a1918';g.fillRect(0,0,W,H);g.fillStyle='#22201d';g.fillRect(24,24,W-48,H-48);g.strokeStyle='#e2b14a';g.lineWidth=2;g.strokeRect(24,24,W-48,H-48);
+  if(c.img)await new Promise(r=>{const im=new Image();im.onload=()=>{const w=380,h=H-48,sc=Math.max(w/im.width,h/im.height),sw=w/sc,sh=h/sc;g.drawImage(im,(im.width-sw)/2,0,sw,sh,24,24,w,h);r()};im.onerror=r;im.src=c.img});
+  const x=440;try{await document.fonts.ready}catch{}
+  g.fillStyle='#e2b14a';g.font='500 22px Georgia,serif';g.fillText((RULES[shelfOf(c)]||shelfOf(c))+' · '+c.id,x,96);
+  g.fillStyle='#efe6d2';g.font='700 60px serif';g.fillText(c['이름'],x,176);
+  g.fillStyle='#a69c8a';g.font='26px sans-serif';g.fillText([c['직업'],c['나이']&&c['나이']+(/\d$/.test(c['나이'])?'세':''),c['시대']].filter(Boolean).join(' · ').slice(0,34),x,224);g.fillText(c['상태']||'',x,262);
+  const q=c['한마디']||'';if(q){g.fillStyle='#efe6d2';g.font='700 30px serif';let line='',y=340;for(const ch of '“'+q+'”'){if(g.measureText(line+ch).width>W-x-60){g.fillText(line,x,y);line='';y+=44;if(y>480)break}line+=ch}g.fillText(line,x,y)}
+  g.fillStyle='#a69c8a';g.font='20px Georgia,serif';g.fillText('THE PRAYPEACE ARCHIVES · 프레이피스 서고',x,H-60);
+  const a=document.createElement('a');a.download=c['이름']+'_소개카드.png';a.href=cv.toDataURL('image/png');document.body.appendChild(a);a.click();a.remove()}
+/* 이전/다음: 지금 캐릭터 목록(서가·필터·정렬) 순서 */
+function prevNext(c){const L=charList(),i=L.findIndex(x=>x.id===c.id);if(i<0)return {};return {prev:L[i-1],next:L[i+1]}}
+/* 입장 연출: 룰마다 한 번, 천천히, 깜빡임·원 모양 없음. 설정: 처음 한 번(기본) · 매번 · 끄기 */
+const ENTER={CoC1920:'e-coc1920',CoC현대:'e-coc',델타그린:'e-coc',SG:'e-sg',인세인:'e-insane',UW:'e-uw'};
+let LASTC='';
+function enterClass(c){const again=LASTC===c.id;LASTC=c.id;if(again)return '';   // 탭만 바꿀 때는 다시 안 함
+  const fx=store.get('fx','first');if(fx==='off'||still||matchMedia('(prefers-reduced-motion:reduce)').matches)return '';
+  if(fx==='first'){const s=store.get('pa-seen',[]);if(s.includes(c.id))return '';store.set('pa-seen',[...s,c.id].slice(-400))}
+  return 'enter '+(ENTER[shelfOf(c)]||'')}
+
 // ---------- 화면 고르기 ----------
 const listPages=new Set(['sessions','characters','scenarios']);
 function render(){
@@ -549,18 +778,21 @@ function render(){
   else if(h==='scenarios'){html=scenariosView();page='list'}
   else if(h==='characters'){html=charactersView();page='list'}
   else if(h==='memory'){html=memoryView();page='memory'}
+  else if(h==='player'){html=playerView();page='list'}
   else if(base==='journey'){html=journeyView(+h.split('/')[1]||null);page='journey'}
   else if(base==='inbox'||base==='check') {html=isAdmin()?(base==='inbox'?inboxView():checkView()):`<p class="empty" style="margin-top:20px">관리자 화면이에요. 관리자 로그인은 다음 단계에서 열려요.</p>`;page='detail'}
   else if(byId[h]){html=sessionDetail(byId[h]);page='read'}
   else if(scen[h]){html=scenarioDetail(scen[h]);page='read'}
   else if(chars[h]){html=charDetail(chars[h]);page='detail'}
   else html=`<p class="empty" style="margin-top:20px">찾는 페이지가 없어요. <a href="#">처음으로</a></p>`;
+  if(!chars[h])LASTC='';
   document.body.dataset.page=page;
   $('#view').innerHTML=html;
   if(h==='sessions') renderSessionList();
   if(h==='characters') renderCharList();
+  if(h==='scenarios') renderScenList();
   if(base==='inbox'&&isAdmin()) renderInbox();
-  const t={'':'프레이피스 서고',sessions:'세션 기록',characters:'캐릭터 서고',scenarios:'시나리오 서고',memory:'추억관',journey:'발자취',inbox:'작업함',check:'점검'}[base];
+  const t={'':'프레이피스 서고',sessions:'세션 기록',characters:'캐릭터 서고',scenarios:'시나리오 서고',memory:'추억관',player:'플레이어 서고',journey:'발자취',inbox:'작업함',check:'점검'}[base];
   document.title=(t||(byId[h]?.title||scen[h]?.title||chars[h]?.['이름']||'프레이피스 서고'))+' · THE PRAYPEACE ARCHIVES';
 }
 const saveSQ=()=>store.set('pa-sq',SQ);
@@ -569,6 +801,7 @@ document.addEventListener('input',e=>{
   if(t.dataset.draft){const k=t.dataset.draft,s0=byId[k.slice(4)];if(t.value===sumText(s0))delete DR[k];else DR[k]=t.value;saveDR();const dd=$('#inbDirty');if(dd)dd.innerHTML=DR[k]!=null?'<span class="tag gold">저장 안 한 변경</span>':'';const sv=$('#inbSaved');if(sv)sv.textContent=DR[k]!=null?'임시 저장됨 · 다른 항목을 승인하거나 페이지를 옮겨도 남아요':'바뀐 것 없음';const row=document.querySelector(`[data-inbsel="${k}"] span`);if(row&&DR[k]!=null&&!row.querySelector('.gold'))row.insertAdjacentHTML('afterbegin','<i class="tag gold">임시 저장</i>')}
   else if(t.dataset.inbq!==undefined){INB.q=t.value;saveINB();renderInbox()}
   else if(t.dataset.sq){SQ[t.dataset.sq]=t.value;SQ.page=1;saveSQ();renderSessionList()}
+  else if(t.dataset.scs){SCS[t.dataset.scs]=t.value;saveSCS();renderScenList()}
   else if(t.dataset.cs){CS[t.dataset.cs]=t.value;store.set('pa-cs',CS);renderCharList()}
 });
 document.addEventListener('change',e=>{if(e.target.dataset.inbf!==undefined){INB.f=e.target.value;INB.sel=null;saveINB();renderInbox()}});
@@ -580,13 +813,18 @@ document.addEventListener('click',e=>{
   else if(d.sqreset!==undefined){SQ={...SQ0,sort:SQ.sort,group:SQ.group};saveSQ();render()}
   else if(d.sqgroup!==undefined){SQ.group=!SQ.group;SQ.page=1;saveSQ();t.setAttribute('aria-pressed',SQ.group);renderSessionList()}
   else if(d.pg){SQ.page=+d.pg;saveSQ();renderSessionList();$('#slist').scrollIntoView({block:'start'});window.scrollBy(0,-90)}
-  else if(d.tab){let on=store.get('pa-tabs',[]);const v=d.tab;on=v==='전체'?[]:(on.includes(v)?on.filter(x=>x!==v):[...on,v]);store.set('pa-tabs',on);render()}
+  else if(d.scrule!==undefined){SCS.rule=d.scrule;saveSCS();document.querySelectorAll('[data-scrule]').forEach(b=>b.setAttribute('aria-pressed',b===t));renderScenList()}
+  else if(d.sctag!==undefined){const v=d.sctag;SCS.on=!v?[]:SCS.on.includes(v)?SCS.on.filter(x=>x!==v):[...SCS.on,v];saveSCS();render()}
   else if(d.shelf!==undefined){CS.shelf=d.shelf;store.set('pa-cs',CS);document.querySelectorAll('[data-shelf]').forEach(b=>b.setAttribute('aria-pressed',b===t));renderCharList()}
   else if(d.favonly!==undefined){CS.fav=!CS.fav;store.set('pa-cs',CS);t.setAttribute('aria-pressed',CS.fav);renderCharList()}
   else if(d.rnd!==undefined){const l=charList();if(l.length)location.hash=l[Math.floor(Math.random()*l.length)].id}
   else if(d.ctab){store.set('pa-ctab',d.ctab);render()}
   else if(d.spoil){store.set('pa-spoil-'+d.spoil,true);render()}
   else if(d.fav){FAV.has(d.fav)?FAV.delete(d.fav):FAV.add(d.fav);saveFav();render()}
+  else if(d.card){shareCard(chars[d.card]).catch(()=>toast('카드를 만들지 못했어요'))}
+  else if(d.pick){const id=d.pick;const L=PICKS.includes(id)?PICKS.filter(x=>x!==id):[...PICKS,id].slice(-6);t.disabled=true;api('pickset',{ids:L}).then(j=>{if(!j.ok)throw 0;PICKS=j.picks;toast(PICKS.includes(id)?'첫 화면 추천에 넣었어요':'추천에서 뺐어요');render()}).catch(()=>{t.disabled=false;toast('저장하지 못했어요')})}
+  else if(d.cover!==undefined){const L=lbList(LB.c),src=L[LB.i+1][0];t.disabled=true;setCover(LB.c,src).then(()=>{toast('대표 그림으로 정했어요');lbShow();render()}).catch(()=>{t.disabled=false;toast('저장하지 못했어요. 관리자로 다시 로그인해 주세요')})}
+  else if(d.login!==undefined){loginOpen()}
   else if(d.share){const u=location.href.split('#')[0]+'#'+d.share;(navigator.clipboard?.writeText(u)||Promise.reject()).then(()=>toast('링크를 복사했어요'),()=>toast(u))}
   else if(d.searchfor){openSearch(d.searchfor)}
   else if(d.dice){const c=chars[d.dice],r=diceRows(c);try{localStorage.setItem('pa-dice-import',JSON.stringify({id:c.id,name:c['이름'],checks:r.ok,skipped:r.skipped}))}catch{} location.href='dice.html'}
@@ -600,9 +838,9 @@ document.addEventListener('click',e=>{
 });
 // 그림 크게 보기: 대표 그림(-1) + 앨범을 넘겨 가며
 let LB={c:null,i:-1};
-function lbList(c){return [[c.img,'대표 그림'],...(c['앨범']||[])]}
-function lbShow(){const L=lbList(LB.c),x=L[LB.i+1];$('#lbImg').src=x[0];$('#lbImg').alt=x[1]||'';$('#lbCap').textContent=`${LB.c['이름']} · ${x[1]||''} (${LB.i+2}/${L.length})`}
-function lbOpen(id,i){LB={c:chars[id],i};lbShow();$('#lb').showModal()}
+function lbList(c){const L=[[c.img0||c.img,'원래 대표 그림']];(c['앨범']||[]).forEach(a=>{if(!L.some(x=>x[0]===a[0]))L.push(a)});return L.filter(x=>x[0])}
+function lbShow(){const L=lbList(LB.c),x=L[LB.i+1];$('#lbImg').src=x[0];$('#lbImg').alt=x[1]||'';$('#lbCap').textContent=`${LB.c['이름']} · ${x[1]||''} (${LB.i+2}/${L.length})`;const cb=$('#lbCover');cb.hidden=!isAdmin();const on=x[0]===LB.c.img;cb.disabled=on;cb.textContent=on?'★ 대표 그림':'대표로 정하기'}
+function lbOpen(id,i){const c=chars[id];if(i===-1){const k=lbList(c).findIndex(x=>x[0]===c.img);i=k>0?k-1:-1}LB={c,i};lbShow();$('#lb').showModal()}
 function lbStep(k){const n=lbList(LB.c).length;LB.i=((LB.i+1+k+n)%n)-1;lbShow()}
 $('#lb').addEventListener('keydown',e=>{if(e.key==='ArrowLeft')lbStep(-1);if(e.key==='ArrowRight')lbStep(1)});
 $('#lb').addEventListener('click',e=>{if(e.target.id==='lb')$('#lb').close()});
@@ -653,10 +891,13 @@ function normalize(D){
   D.meta.totalsReal={characters:D.characters.length};
   return D;
 }
+$('#loginForm').addEventListener('submit',e=>{e.preventDefault();login($('#pw').value)});
+document.querySelector('[data-logindlg-close]').addEventListener('click',()=>$('#loginDlg').close());
+$('#fxSel').value=store.get('fx','first');$('#fxSel').addEventListener('change',e=>store.set('fx',e.target.value));
 function fail(err){$('#view').innerHTML=`<p class="empty" style="margin-top:20px">서고 자료를 읽지 못했어요 (${esc(err.message||err)}). 잠시 뒤 새로고침해 보세요.</p>`}
 Promise.all(NAMES.map(n=>fetch(`data/${n}.json`,{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error(n+'.json');return r.json()})))
  .then(a=>{const d=Object.fromEntries(NAMES.map((n,i)=>[n,a[i]]));
    return fetch(d.meta.charactersUrl,{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('캐릭터 서고');return r.json()}).then(c=>{d.characters=c;return d})})
- .then(d=>{D=normalize(d);idx();render()})
+ .then(d=>{D=normalize(d);idx();const to=tokObj();setRole(to?(to.role==='friend'?'friend':'admin'):'visitor');render();syncServer()})
  .catch(fail);
 })();
