@@ -83,5 +83,1005 @@
   "id": "pt-ta-1",
   "scenarioId": "sc-ta",
   "status": "미확인"
+ },
+ {
+  "id": "pt-002-1",
+  "scenarioId": "sc-002",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-004-1",
+  "scenarioId": "sc-004",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-005-1",
+  "scenarioId": "sc-005",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-006-1",
+  "scenarioId": "sc-006",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-007-1",
+  "scenarioId": "sc-007",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-008-1",
+  "scenarioId": "sc-008",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-009-1",
+  "scenarioId": "sc-009",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-010-1",
+  "scenarioId": "sc-010",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-011-1",
+  "scenarioId": "sc-011",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-012-1",
+  "scenarioId": "sc-012",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-013-1",
+  "scenarioId": "sc-013",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-014-1",
+  "scenarioId": "sc-014",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-015-1",
+  "scenarioId": "sc-015",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-016-1",
+  "scenarioId": "sc-016",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-017-1",
+  "scenarioId": "sc-017",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-018-1",
+  "scenarioId": "sc-018",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-019-1",
+  "scenarioId": "sc-019",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-020-1",
+  "scenarioId": "sc-020",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-021-1",
+  "scenarioId": "sc-021",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-022-1",
+  "scenarioId": "sc-022",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-023-1",
+  "scenarioId": "sc-023",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-024-1",
+  "scenarioId": "sc-024",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-025-1",
+  "scenarioId": "sc-025",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-026-1",
+  "scenarioId": "sc-026",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-027-1",
+  "scenarioId": "sc-027",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-028-1",
+  "scenarioId": "sc-028",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-029-1",
+  "scenarioId": "sc-029",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-030-1",
+  "scenarioId": "sc-030",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-031-1",
+  "scenarioId": "sc-031",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-032-1",
+  "scenarioId": "sc-032",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-033-1",
+  "scenarioId": "sc-033",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-034-1",
+  "scenarioId": "sc-034",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-035-1",
+  "scenarioId": "sc-035",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-036-1",
+  "scenarioId": "sc-036",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-037-1",
+  "scenarioId": "sc-037",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-038-1",
+  "scenarioId": "sc-038",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-039-1",
+  "scenarioId": "sc-039",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-040-1",
+  "scenarioId": "sc-040",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-041-1",
+  "scenarioId": "sc-041",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-042-1",
+  "scenarioId": "sc-042",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-044-1",
+  "scenarioId": "sc-044",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-045-1",
+  "scenarioId": "sc-045",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-046-1",
+  "scenarioId": "sc-046",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-047-1",
+  "scenarioId": "sc-047",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-048-1",
+  "scenarioId": "sc-048",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-049-1",
+  "scenarioId": "sc-049",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-050-1",
+  "scenarioId": "sc-050",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-051-1",
+  "scenarioId": "sc-051",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-052-1",
+  "scenarioId": "sc-052",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-053-1",
+  "scenarioId": "sc-053",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-054-1",
+  "scenarioId": "sc-054",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-055-1",
+  "scenarioId": "sc-055",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-056-1",
+  "scenarioId": "sc-056",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-057-1",
+  "scenarioId": "sc-057",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-058-1",
+  "scenarioId": "sc-058",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-059-1",
+  "scenarioId": "sc-059",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-060-1",
+  "scenarioId": "sc-060",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-061-1",
+  "scenarioId": "sc-061",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-062-1",
+  "scenarioId": "sc-062",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-063-1",
+  "scenarioId": "sc-063",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-064-1",
+  "scenarioId": "sc-064",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-066-1",
+  "scenarioId": "sc-066",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-067-1",
+  "scenarioId": "sc-067",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-068-1",
+  "scenarioId": "sc-068",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-069-1",
+  "scenarioId": "sc-069",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-071-1",
+  "scenarioId": "sc-071",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-072-1",
+  "scenarioId": "sc-072",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-073-1",
+  "scenarioId": "sc-073",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-074-1",
+  "scenarioId": "sc-074",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-075-1",
+  "scenarioId": "sc-075",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-076-1",
+  "scenarioId": "sc-076",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-079-1",
+  "scenarioId": "sc-079",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-080-1",
+  "scenarioId": "sc-080",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-081-1",
+  "scenarioId": "sc-081",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-082-1",
+  "scenarioId": "sc-082",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-083-1",
+  "scenarioId": "sc-083",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-084-1",
+  "scenarioId": "sc-084",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-085-1",
+  "scenarioId": "sc-085",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-086-1",
+  "scenarioId": "sc-086",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-087-1",
+  "scenarioId": "sc-087",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-088-1",
+  "scenarioId": "sc-088",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-089-1",
+  "scenarioId": "sc-089",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-091-1",
+  "scenarioId": "sc-091",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-092-1",
+  "scenarioId": "sc-092",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-093-1",
+  "scenarioId": "sc-093",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-094-1",
+  "scenarioId": "sc-094",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-095-1",
+  "scenarioId": "sc-095",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-096-1",
+  "scenarioId": "sc-096",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-097-1",
+  "scenarioId": "sc-097",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-099-1",
+  "scenarioId": "sc-099",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-100-1",
+  "scenarioId": "sc-100",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-101-1",
+  "scenarioId": "sc-101",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-102-1",
+  "scenarioId": "sc-102",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-103-1",
+  "scenarioId": "sc-103",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-104-1",
+  "scenarioId": "sc-104",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-105-1",
+  "scenarioId": "sc-105",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-106-1",
+  "scenarioId": "sc-106",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-107-1",
+  "scenarioId": "sc-107",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-108-1",
+  "scenarioId": "sc-108",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-109-1",
+  "scenarioId": "sc-109",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-110-1",
+  "scenarioId": "sc-110",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-111-1",
+  "scenarioId": "sc-111",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-113-1",
+  "scenarioId": "sc-113",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-115-1",
+  "scenarioId": "sc-115",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-116-1",
+  "scenarioId": "sc-116",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-117-1",
+  "scenarioId": "sc-117",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-118-1",
+  "scenarioId": "sc-118",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-119-1",
+  "scenarioId": "sc-119",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-120-1",
+  "scenarioId": "sc-120",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-121-1",
+  "scenarioId": "sc-121",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-122-1",
+  "scenarioId": "sc-122",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-123-1",
+  "scenarioId": "sc-123",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-126-1",
+  "scenarioId": "sc-126",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-127-1",
+  "scenarioId": "sc-127",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-129-1",
+  "scenarioId": "sc-129",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-131-1",
+  "scenarioId": "sc-131",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-132-1",
+  "scenarioId": "sc-132",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-133-1",
+  "scenarioId": "sc-133",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-134-1",
+  "scenarioId": "sc-134",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-135-1",
+  "scenarioId": "sc-135",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-136-1",
+  "scenarioId": "sc-136",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-137-1",
+  "scenarioId": "sc-137",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-138-1",
+  "scenarioId": "sc-138",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-139-1",
+  "scenarioId": "sc-139",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-140-1",
+  "scenarioId": "sc-140",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-141-1",
+  "scenarioId": "sc-141",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-142-1",
+  "scenarioId": "sc-142",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-143-1",
+  "scenarioId": "sc-143",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-144-1",
+  "scenarioId": "sc-144",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-145-1",
+  "scenarioId": "sc-145",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-146-1",
+  "scenarioId": "sc-146",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-147-1",
+  "scenarioId": "sc-147",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-149-1",
+  "scenarioId": "sc-149",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-150-1",
+  "scenarioId": "sc-150",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-151-1",
+  "scenarioId": "sc-151",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-152-1",
+  "scenarioId": "sc-152",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-153-1",
+  "scenarioId": "sc-153",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-154-1",
+  "scenarioId": "sc-154",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-155-1",
+  "scenarioId": "sc-155",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-156-1",
+  "scenarioId": "sc-156",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-157-1",
+  "scenarioId": "sc-157",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-158-1",
+  "scenarioId": "sc-158",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-159-1",
+  "scenarioId": "sc-159",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-160-1",
+  "scenarioId": "sc-160",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-161-1",
+  "scenarioId": "sc-161",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-162-1",
+  "scenarioId": "sc-162",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-163-1",
+  "scenarioId": "sc-163",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-164-1",
+  "scenarioId": "sc-164",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-165-1",
+  "scenarioId": "sc-165",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-166-1",
+  "scenarioId": "sc-166",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-167-1",
+  "scenarioId": "sc-167",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-168-1",
+  "scenarioId": "sc-168",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-169-1",
+  "scenarioId": "sc-169",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-170-1",
+  "scenarioId": "sc-170",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-171-1",
+  "scenarioId": "sc-171",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-172-1",
+  "scenarioId": "sc-172",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-173-1",
+  "scenarioId": "sc-173",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-174-1",
+  "scenarioId": "sc-174",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-175-1",
+  "scenarioId": "sc-175",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-176-1",
+  "scenarioId": "sc-176",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-178-1",
+  "scenarioId": "sc-178",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-179-1",
+  "scenarioId": "sc-179",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-180-1",
+  "scenarioId": "sc-180",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-181-1",
+  "scenarioId": "sc-181",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-182-1",
+  "scenarioId": "sc-182",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-183-1",
+  "scenarioId": "sc-183",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-184-1",
+  "scenarioId": "sc-184",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-185-1",
+  "scenarioId": "sc-185",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-186-1",
+  "scenarioId": "sc-186",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-187-1",
+  "scenarioId": "sc-187",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-188-1",
+  "scenarioId": "sc-188",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-189-1",
+  "scenarioId": "sc-189",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-190-1",
+  "scenarioId": "sc-190",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-191-1",
+  "scenarioId": "sc-191",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-192-1",
+  "scenarioId": "sc-192",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-193-1",
+  "scenarioId": "sc-193",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-194-1",
+  "scenarioId": "sc-194",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-196-1",
+  "scenarioId": "sc-196",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-198-1",
+  "scenarioId": "sc-198",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-200-1",
+  "scenarioId": "sc-200",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-201-1",
+  "scenarioId": "sc-201",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-203-1",
+  "scenarioId": "sc-203",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-204-1",
+  "scenarioId": "sc-204",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-205-1",
+  "scenarioId": "sc-205",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-206-1",
+  "scenarioId": "sc-206",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-207-1",
+  "scenarioId": "sc-207",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-208-1",
+  "scenarioId": "sc-208",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-209-1",
+  "scenarioId": "sc-209",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-210-1",
+  "scenarioId": "sc-210",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-211-1",
+  "scenarioId": "sc-211",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-x01-1",
+  "scenarioId": "sc-x01",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-x02-1",
+  "scenarioId": "sc-x02",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-x03-1",
+  "scenarioId": "sc-x03",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-x04-1",
+  "scenarioId": "sc-x04",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-x05-1",
+  "scenarioId": "sc-x05",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-x06-1",
+  "scenarioId": "sc-x06",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-x07-1",
+  "scenarioId": "sc-x07",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-x08-1",
+  "scenarioId": "sc-x08",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-x09-1",
+  "scenarioId": "sc-x09",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-x10-1",
+  "scenarioId": "sc-x10",
+  "status": "미확인"
  }
 ]
