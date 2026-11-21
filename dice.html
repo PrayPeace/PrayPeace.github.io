@@ -1,0 +1,1223 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#111318" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>Oracle Dice</title>
+  <style>
+:root {
+  color-scheme: dark;
+  --bg: #1a1918;
+  --panel: #232120;
+  --panel-2: #3f3627;
+  --line: #5a4b33;
+  --text: #f2e7c9;
+  --muted: #bfae8e;
+  --accent: #e2b14a;
+  --accent-2: #b8862f;
+  --danger: #ff6b77;
+  --crit: #ffd166;
+  --fumble: #ff6b8a;
+  --ok: #7ee2b8;
+  --shadow: 0 14px 40px rgba(0,0,0,.28);
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; background: radial-gradient(circle at 30% -10%, #2c2a27 0, var(--bg) 36%); color: var(--text); font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+body { padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom); }
+button, input, textarea, select { font: inherit; }
+button { cursor: pointer; }
+.app-shell { width: min(1180px, 100%); margin: 0 auto; padding: 14px; }
+.topbar { display:flex; justify-content:space-between; align-items:center; padding: 6px 2px 14px; }
+.eyebrow { color: var(--accent); font-size: .78rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+h1 { margin: 2px 0 0; font-size: clamp(1.45rem, 5vw, 2rem); }
+h2 { margin: 0; font-size: 1.2rem; }
+.card { background: linear-gradient(180deg, rgba(58,49,36,.96), rgba(48,41,31,.98)); border: 1px solid var(--line); border-radius: 18px; box-shadow: var(--shadow); }
+.compact { padding: 12px; }
+.character-strip { width:min(720px,100%); padding:12px; margin:0 auto 12px; }
+.row { display:flex; align-items:center; }
+.wrap { flex-wrap: wrap; }
+.grow { flex:1; min-width:0; }
+.gap-sm { gap:8px; }
+.stack { display:flex; flex-direction:column; }
+.between { justify-content:space-between; }
+.section-label { color:var(--muted); font-size:.86rem; font-weight:700; }
+select, input, textarea { width:100%; background:#141312; color:var(--text); border:1px solid var(--line); border-radius:12px; padding:11px 12px; outline:none; }
+textarea { resize:vertical; line-height:1.45; }
+select:focus, input:focus, textarea:focus { border-color:var(--accent); box-shadow:0 0 0 3px rgba(226,177,74,.12); }
+.primary-btn, .secondary-btn, .danger-btn, .icon-btn, .x-btn, .mini-btn { border:1px solid transparent; border-radius:12px; min-height:42px; padding:0 13px; color:var(--text); font-weight:800; }
+.primary-btn { background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:#0d1020; }
+.secondary-btn { background:var(--panel-2); border-color:var(--line); }
+.danger-btn { background:rgba(255,107,119,.12); border-color:rgba(255,107,119,.32); color:#ff98a1; }
+.icon-btn { min-width:42px; padding:0; background:var(--panel-2); border-color:var(--line); }
+.x-buttons { display:flex; gap:6px; }
+.x-btn { min-width:46px; background:#141312; border-color:var(--line); }
+.x-btn.active { background:var(--accent); color:#0b1020; border-color:transparent; transform:translateY(-1px); }
+.multiplier-rail { grid-column:2; grid-row:2; position:sticky; top:calc(env(safe-area-inset-top) + 8px); z-index:6; width:48px; height:fit-content; display:flex; flex-direction:column; justify-content:center; gap:8px; margin:8px 8px 12px 2px; pointer-events:none; transition:top .16s ease; }
+.last-result-toast:not(.hidden) + .app-shell .multiplier-rail { top:calc(env(safe-area-inset-top) + 59px); }
+.multiplier-rail .section-label { text-align:center; font-size:.72rem; }
+.multiplier-rail .x-btn { width:48px; min-width:48px; padding:0; pointer-events:auto; box-shadow:0 5px 16px rgba(0,0,0,.34); }
+.roll-stage { min-height:190px; margin-bottom:12px; padding:18px; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative; }
+.idle-roll { display:flex; align-items:center; gap:16px; width:100%; }
+.big-d20 { width:72px; height:72px; display:grid; place-items:center; font-size:1.5rem; font-weight:1000; background:linear-gradient(145deg,#293553,#151a25); clip-path:polygon(50% 0, 96% 24%, 82% 78%, 50% 100%, 18% 78%, 4% 24%); border:1px solid var(--line); }
+.muted { color:var(--muted); }
+.small { font-size:.82rem; }
+.hidden { display:none !important; }
+.rolling-view { text-align:center; }
+.rolling-dice-tray, .result-dice-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(108px,140px)); justify-content:center; align-items:center; gap:6px; width:min(100%,760px); margin:0 auto; }
+.rolling-die-unit { width:140px; height:140px; animation:die-enter 1.1s cubic-bezier(.22,.72,.24,1) both; animation-delay:var(--delay,0ms); transform-origin:50% 50%; will-change:transform,opacity; backface-visibility:hidden; contain:paint; }
+.d20-canvas, .result-die { display:block; width:140px; height:140px; filter:drop-shadow(0 9px 7px rgba(0,0,0,.48)); image-rendering:auto; }
+.rolling-die-unit .d20-canvas { animation:dice-wheel-spin 1.1s cubic-bezier(.12,.7,.18,1) both; animation-delay:var(--delay,0ms); transform-origin:50% 50%; will-change:transform; }
+.result-dice-grid { margin:-4px auto 8px; }
+.visual-limit-note { margin:0 auto 10px; color:var(--muted); font-size:.8rem; text-align:center; }
+@keyframes die-enter { 0%{opacity:0;transform:translate3d(var(--entry-x,-100px),-58px,0) scale(.72)} 24%{opacity:1;transform:translate3d(var(--mid-x,-62px),18px,0) scale(.93)} 36%{transform:translate3d(var(--mid-x,-62px),-18px,0) scale(1.04)} 49%{transform:translate3d(var(--near-x,-30px),0,0) scale(.98)} 72%{transform:translate3d(var(--last-x,-12px),0,0) scale(1)} 100%{opacity:1;transform:translate3d(0,0,0) scale(1)} }
+@keyframes dice-wheel-spin { from{transform:rotate(900deg)} to{transform:rotate(0deg)} }
+.result-die.critical-die { animation:critical-die-glow 1.8s ease-in-out 1; }
+.result-die.fumble-die { animation:fumble-die-glow 1.8s ease-in-out 1; }
+@keyframes critical-die-glow { 0%,100%{filter:drop-shadow(0 8px 7px rgba(0,0,0,.48)) drop-shadow(0 0 3px rgba(255,209,102,.3))} 50%{filter:drop-shadow(0 8px 7px rgba(0,0,0,.48)) drop-shadow(0 0 16px #ffd166) drop-shadow(0 0 28px rgba(255,209,102,.8))} }
+@keyframes fumble-die-glow { 0%,100%{filter:drop-shadow(0 8px 7px rgba(0,0,0,.48)) drop-shadow(0 0 3px rgba(255,75,92,.3))} 50%{filter:drop-shadow(0 8px 7px rgba(0,0,0,.48)) drop-shadow(0 0 16px #ff4b5c) drop-shadow(0 0 28px rgba(255,48,70,.85))} }
+.rolling-label { color:var(--muted); margin-top:8px; }
+.result-view { width:100%; }
+.result-title { font-weight:900; font-size:1.1rem; margin-bottom:10px; display:flex; justify-content:space-between; gap:8px; }
+.result-line { background:#141312; border:1px solid var(--line); border-radius:14px; padding:12px; margin-top:8px; }
+.result-main { display:flex; align-items:baseline; gap:8px; flex-wrap:wrap; }
+.result-total { font-size:1.35rem; font-weight:1000; }
+.result-breakdown { color:var(--muted); font-size:.88rem; margin-top:4px; }
+.result-line.critical { border-color:rgba(255,209,102,.72); box-shadow:0 0 0 2px rgba(255,209,102,.10), 0 0 30px rgba(255,209,102,.12); }
+.result-line.fumble { border-color:rgba(255,107,138,.72); box-shadow:0 0 0 2px rgba(255,107,138,.10), 0 0 30px rgba(255,107,138,.12); }
+.badge { padding:3px 8px; border-radius:999px; font-size:.75rem; font-weight:1000; letter-spacing:.03em; }
+.badge.critical { background:rgba(255,209,102,.16); color:var(--crit); }
+.badge.fumble { background:rgba(255,107,138,.16); color:var(--fumble); }
+.toolbar { margin-bottom:12px; }
+.search-input { margin-top:10px; }
+.instant-roll-row { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:8px; margin-top:8px; }
+.instant-roll-row .primary-btn { min-width:76px; }
+.instant-roll-error { min-height:0; margin-top:5px; }
+.workspace { display:block; }
+.sidebar { width:min(720px,100%); min-width:0; margin:0 auto; display:grid; grid-template-columns:minmax(0,1fr) 58px; align-items:start; }
+.sidebar-head { display:flex; align-items:center; justify-content:space-between; gap:8px; padding:10px 12px; }
+.sidebar-head { grid-column:1 / -1; }
+.sidebar-title { font-weight:900; }
+.mode-btn { min-height:34px; padding:0 11px; font-size:.8rem; }
+.mode-btn.editing { color:var(--crit); border-color:rgba(255,209,102,.42); background:rgba(255,209,102,.09); }
+.sidebar-body { grid-column:1; grid-row:2; min-width:0; }
+.palette-section { display:flex; flex-direction:column; gap:10px; padding:0 12px 18px; }
+.category-block { display:flex; flex-direction:column; gap:8px; }
+.category-title { list-style:none; margin:0; padding:11px 12px; color:var(--text); font-size:.88rem; font-weight:900; letter-spacing:.04em; cursor:pointer; background:#141312; border:1px solid var(--line); border-radius:12px; }
+.category-title::-webkit-details-marker { display:none; }
+.category-title::after { content:'▾'; float:right; color:var(--muted); }
+.category-block:not([open]) .category-title::after { content:'▸'; }
+.category-content { display:flex; flex-direction:column; gap:8px; }
+.category-block.special-category .category-title { border-color:rgba(226,177,74,.34); background:rgba(226,177,74,.07); }
+.category-empty { padding:14px 10px; text-align:center; color:var(--muted); font-size:.82rem; border:1px dashed var(--line); border-radius:12px; }
+.preset-card { display:grid; grid-template-columns:1fr auto; gap:8px; align-items:center; background:var(--panel); border:1px solid var(--line); border-radius:15px; overflow:hidden; transition:.15s ease; }
+.preset-card.selected { border-color:var(--accent); box-shadow:0 0 0 2px rgba(226,177,74,.15); }
+.preset-card.dragging { opacity:.45; transform:scale(.985); }
+.preset-main { background:transparent; border:0; color:var(--text); text-align:left; padding:13px 14px; min-height:66px; display:flex; flex-direction:column; justify-content:center; }
+.preset-main:active { background:rgba(226,177,74,.08); }
+.preset-label { font-weight:900; font-size:1rem; }
+.preset-expr { color:var(--muted); margin-top:3px; font-family:ui-monospace,SFMono-Regular,Consolas,monospace; font-size:.82rem; }
+.preset-actions { display:flex; gap:4px; padding-right:8px; }
+.preset-card:not(.edit-mode) .edit-btn,
+.preset-card:not(.edit-mode) .delete-btn { display:none; }
+.mini-btn { min-width:38px; min-height:38px; padding:0; background:#141312; border-color:var(--line); }
+.favorite-btn { color:#717b8c; }
+.favorite-btn.active { color:var(--crit); border-color:rgba(255,209,102,.48); background:rgba(255,209,102,.10); }
+.favorite-btn.confirm-remove { color:var(--danger); border-color:rgba(255,107,119,.62); background:rgba(255,107,119,.14); box-shadow:0 0 0 2px rgba(255,107,119,.08); }
+.empty-state { text-align:center; padding:34px 20px; color:var(--muted); background:var(--panel); border:1px dashed var(--line); border-radius:16px; }
+.modal { border:0; padding:0; background:transparent; width:min(620px, calc(100% - 22px)); color:var(--text); }
+.modal::backdrop { background:rgba(0,0,0,.72); backdrop-filter:blur(4px); }
+.modal-card { background:#121721; border:1px solid var(--line); border-radius:18px; padding:16px; box-shadow:var(--shadow); max-height:min(86vh, 820px); overflow:auto; }
+.roll-modal { width:min(720px, calc(100% - 14px)); cursor:pointer; }
+.roll-modal-card { height:min(82dvh,680px); min-height:0; display:flex; flex-direction:column; justify-content:center; overflow:hidden; touch-action:pan-y; }
+.roll-modal .roll-stage { width:100%; flex:1 1 auto; min-height:0; margin:0; border:0; box-shadow:none; background:transparent; overflow-y:auto; overscroll-behavior:contain; -webkit-overflow-scrolling:touch; align-items:flex-start; }
+.roll-modal .rolling-view { margin:auto; }
+.roll-modal .result-view { padding:2px 2px 10px; }
+.roll-dialog-footer { flex:none; display:flex; align-items:center; justify-content:center; gap:10px; margin-top:10px; }
+.roll-dialog-hint { flex:1; text-align:center; color:var(--muted); font-size:.82rem; font-weight:700; }
+.copy-result-btn { flex:none; }
+.modal-card label { display:block; margin-top:12px; color:var(--muted); font-size:.86rem; font-weight:700; }
+.modal-card label input, .modal-card label select { margin-top:6px; color:var(--text); }
+.modal-head { display:flex; justify-content:space-between; align-items:center; gap:10px; }
+.modal-actions { display:flex; justify-content:flex-end; gap:8px; margin-top:16px; }
+.checkbox-row { display:flex !important; align-items:center; gap:9px; color:var(--text) !important; }
+.checkbox-row input { width:auto; margin:0 !important; }
+.error-text { color:#ff9ca6; font-size:.84rem; min-height:1.2em; margin-top:8px; white-space:pre-wrap; }
+.history-list { display:flex; flex-direction:column; gap:8px; margin-top:12px; }
+.history-item { background:#141312; border:1px solid var(--line); border-radius:12px; padding:11px; }
+.history-head { display:flex; justify-content:space-between; align-items:flex-start; gap:8px; }
+.history-meta { min-width:0; }
+.history-tools { flex:none; display:flex; align-items:center; gap:7px; }
+.history-copy-btn { min-height:30px; padding:0 9px; font-size:.76rem; }
+.history-time { color:var(--muted); font-size:.75rem; }
+.history-body { color:#dce3ee; margin-top:4px; font-family:ui-monospace,SFMono-Regular,Consolas,monospace; font-size:.82rem; white-space:pre-wrap; }
+.file-label { display:grid; place-items:center; }
+.last-result-toast { position:fixed; z-index:60; top:calc(env(safe-area-inset-top) + 7px); left:50%; transform:translateX(-50%); width:min(680px, calc(100% - 16px)); height:44px; display:flex; align-items:center; gap:7px; padding:5px 6px 5px 12px; color:var(--text); background:rgba(18,23,33,.92); border:1px solid rgba(226,177,74,.42); border-radius:13px; box-shadow:0 8px 24px rgba(0,0,0,.38); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); animation:last-result-in .18s ease-out; }
+.last-result-toast.hidden { display:none; }
+.last-result-text { flex:1; min-width:0; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; font-size:.84rem; font-weight:800; }
+.last-result-toast .mini-btn { flex:none; min-width:34px; min-height:32px; padding:0 8px; font-size:.76rem; }
+.last-result-copy { min-width:48px !important; }
+@keyframes last-result-in { from{opacity:0;transform:translate(-50%,-8px)} to{opacity:1;transform:translate(-50%,0)} }
+hr { border:0; border-top:1px solid var(--line); margin:16px 0; }
+code { background:#0b0e14; padding:2px 5px; border-radius:6px; }
+.flash-critical::after, .flash-fumble::after { content:""; position:fixed; inset:0; z-index:999; pointer-events:none; animation:flash .45s ease-out forwards; }
+.flash-critical::after { background:radial-gradient(circle, rgba(255,209,102,.28), transparent 58%); }
+.flash-fumble::after { background:radial-gradient(circle, rgba(255,107,138,.28), transparent 58%); }
+@keyframes flash { from{opacity:1} to{opacity:0} }
+@media (max-width:760px) {
+  .app-shell { padding-left:14px; }
+  .workspace { display:block; }
+  .sidebar { width:100%; }
+  .sidebar-body { overflow:visible; }
+  .multiplier-rail { top:calc(env(safe-area-inset-top) + 8px); margin-right:5px; }
+}
+@media (max-width:600px) {
+  .app-shell { padding:8px; }
+  .topbar { padding:3px 2px 8px; }
+  h1 { font-size:1.3rem; }
+  .card { border-radius:13px; }
+  .character-strip { padding:9px; margin-bottom:8px; }
+  .sidebar-head { padding:7px 9px; }
+  .mode-btn { min-height:31px; }
+  .toolbar { padding:9px; margin-bottom:4px; }
+  .instant-roll-row .primary-btn { min-width:62px; }
+  .palette-section { padding:0 9px 10px; gap:7px; }
+  .category-title { padding:8px 9px; }
+  .category-content { gap:6px; }
+  .preset-main { min-height:52px; padding:9px 10px; }
+  .preset-label { font-size:.92rem; }
+  .preset-actions { padding-right:5px; }
+  .mini-btn { min-width:34px; min-height:34px; }
+  .roll-stage { min-height:132px; padding:8px; margin-bottom:8px; }
+  .roll-modal-card { height:min(88dvh,680px); padding:10px; }
+  .rolling-dice-tray, .result-dice-grid { grid-template-columns:repeat(auto-fit,minmax(76px,96px)); gap:2px; }
+  .rolling-die-unit, .d20-canvas, .result-die { width:96px; height:96px; }
+  .primary-btn, .secondary-btn, .danger-btn, .icon-btn, .x-btn, .mini-btn { min-height:36px; padding-left:9px; padding-right:9px; }
+  .x-btn { min-width:38px; }
+  select, input, textarea { padding:9px 10px; }
+}
+
+  @media (prefers-reduced-motion: reduce){ .rolling-die-unit,.rolling-die-unit .d20-canvas,.result-die.critical-die,.result-die.fumble-die{animation:none!important} }
+  .pa-back{position:fixed;left:max(10px,env(safe-area-inset-left,0px));bottom:max(10px,env(safe-area-inset-bottom,0px));z-index:70;background:#141821;color:#e9dfc6;border:1px solid #6b5a36;border-radius:10px;padding:8px 12px;font-size:13px;text-decoration:none}
+  </style>
+</head>
+<body>
+<a class="pa-back" href="index.html">← 프레이피스 서고</a>
+  <aside id="lastResultToast" class="last-result-toast hidden" role="status" aria-live="polite">
+    <span id="lastResultText" class="last-result-text"></span>
+    <button id="copyLastResultBtn" class="mini-btn last-result-copy" aria-label="최근 결과 복사">복사</button>
+    <button id="dismissLastResultBtn" class="mini-btn" aria-label="최근 결과 닫기">✕</button>
+  </aside>
+  <div class="app-shell">
+    <header class="topbar">
+      <div>
+        <div class="eyebrow">AI 세션용 주사위 · UW</div>
+        <h1>Oracle Dice</h1>
+      </div>
+      <button id="settingsBtn" class="icon-btn" aria-label="설정">⚙️</button>
+    </header>
+
+    <section class="character-strip card">
+      <div class="row gap-sm">
+        <select id="characterSelect" class="grow"></select>
+        <button id="addCharacterBtn" class="secondary-btn">+ 캐릭터</button>
+      </div>
+    </section>
+
+    <main class="workspace">
+      <aside id="sidebar" class="sidebar card">
+        <div class="sidebar-head">
+          <span class="sidebar-title">채팅 팔레트</span>
+          <button id="paletteModeBtn" class="secondary-btn mode-btn" aria-pressed="false">플레이 모드</button>
+        </div>
+        <div id="xButtons" class="x-buttons multiplier-rail" role="group" aria-label="이번 판정 시행 횟수">
+          <span class="section-label">횟수</span>
+          <button data-x="1" class="x-btn active">×1</button>
+          <button data-x="2" class="x-btn">×2</button>
+          <button data-x="3" class="x-btn">×3</button>
+          <button data-x="4" class="x-btn">×4</button>
+        </div>
+        <div class="sidebar-body">
+          <section class="toolbar compact">
+            <div class="row gap-sm wrap">
+              <button id="paletteImportBtn" class="primary-btn">팔레트 붙여넣기</button>
+              <button id="addPresetBtn" class="secondary-btn">+ 판정 추가</button>
+              <button id="historyBtn" class="secondary-btn">기록</button>
+              <button id="toggleCategoriesBtn" class="secondary-btn">모두 접기</button>
+            </div>
+            <input id="searchInput" class="search-input" placeholder="판정 검색" autocomplete="off" />
+            <div class="instant-roll-row">
+              <input id="instantExprInput" placeholder="즉석 굴림 (예: 1d20+3)" autocomplete="off" autocapitalize="off" spellcheck="false" />
+              <button id="instantRollBtn" class="primary-btn">ROLL</button>
+            </div>
+            <div id="instantRollError" class="error-text instant-roll-error"></div>
+          </section>
+          <section id="paletteSection" class="palette-section"></section>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <dialog id="rollDialog" class="modal wide roll-modal" aria-label="주사위 굴림 결과">
+    <div class="modal-card roll-modal-card">
+      <section id="rollStage" class="roll-stage">
+        <div id="rollingView" class="rolling-view hidden" aria-live="polite">
+          <div id="rollingDiceTray" class="rolling-dice-tray"></div>
+          <div id="rollingLabel" class="rolling-label">굴리는 중...</div>
+        </div>
+        <div id="resultView" class="result-view hidden" aria-live="polite"></div>
+      </section>
+      <div class="roll-dialog-footer">
+        <div id="rollDialogHint" class="roll-dialog-hint">화면을 터치하면 애니메이션을 건너뜁니다.</div>
+        <button id="copyResultBtn" data-roll-control class="secondary-btn copy-result-btn hidden">결과 복사</button>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog id="importDialog" class="modal">
+    <form method="dialog" class="modal-card" id="importForm">
+      <div class="modal-head">
+        <h2>채팅 팔레트 붙여넣기</h2>
+        <button value="cancel" formnovalidate class="icon-btn">✕</button>
+      </div>
+      <p class="muted small">한 줄당 하나씩 넣거나, 코코포리아 Character JSON 전체를 붙여넣으세요. <code>AT+5</code>도 자동으로 <code>1d20+5</code>로 변환됩니다.</p>
+      <textarea id="importTextarea" rows="12" placeholder="x1 1d20+5 힘&#10;x1 1d20+2 민첩&#10;x1 1d6+4 피해(맨손)"></textarea>
+      <label class="checkbox-row">
+        <input type="checkbox" id="replacePaletteCheckbox" />
+        기존 팔레트를 지우고 교체
+      </label>
+      <div id="importError" class="error-text"></div>
+      <div class="modal-actions">
+        <button value="cancel" formnovalidate class="secondary-btn">취소</button>
+        <button type="button" id="doImportBtn" class="primary-btn">등록</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="presetDialog" class="modal">
+    <form method="dialog" class="modal-card" id="presetForm">
+      <div class="modal-head">
+        <h2 id="presetDialogTitle">판정 추가</h2>
+        <button value="cancel" formnovalidate class="icon-btn">✕</button>
+      </div>
+      <label>이름<input id="presetLabelInput" required placeholder="물리명중" /></label>
+      <label>주사위 식<input id="presetExprInput" required placeholder="1d20+4" /></label>
+      <label>기본 반복 횟수<input id="presetCountInput" type="number" min="1" max="20" value="1" /></label>
+      <label>카테고리
+        <select id="presetCategoryInput">
+          <option>특성치</option><option>지식</option><option>기술</option><option>대인기능</option><option>회복</option><option>전투</option><option>피해</option>
+        </select>
+      </label>
+      <div id="presetError" class="error-text"></div>
+      <div class="modal-actions">
+        <button value="cancel" formnovalidate class="secondary-btn">취소</button>
+        <button type="button" id="savePresetBtn" class="primary-btn">저장</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="characterDialog" class="modal">
+    <form method="dialog" class="modal-card">
+      <div class="modal-head">
+        <h2>캐릭터 추가</h2>
+        <button value="cancel" formnovalidate class="icon-btn">✕</button>
+      </div>
+      <label>캐릭터 이름<input id="characterNameInput" placeholder="전설의 시작" /></label>
+      <div class="modal-actions">
+        <button value="cancel" formnovalidate class="secondary-btn">취소</button>
+        <button type="button" id="createCharacterBtn" class="primary-btn">추가</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="historyDialog" class="modal wide">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h2>최근 판정 기록</h2>
+        <button id="closeHistoryBtn" class="icon-btn">✕</button>
+      </div>
+      <div id="historyList" class="history-list"></div>
+      <div class="modal-actions between">
+        <button id="clearHistoryBtn" class="danger-btn">전체 삭제</button>
+        <button id="closeHistoryBtn2" class="secondary-btn">닫기</button>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog id="settingsDialog" class="modal">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h2>설정</h2>
+        <button id="closeSettingsBtn" class="icon-btn">✕</button>
+      </div>
+      <label class="checkbox-row"><input type="checkbox" id="animationToggle" checked /> 주사위 애니메이션</label>
+      <label class="checkbox-row"><input type="checkbox" id="soundToggle" checked /> 크리티컬/펌블 효과음</label>
+      <label class="checkbox-row"><input type="checkbox" id="hapticToggle" checked /> 진동 효과 (지원 기기)</label>
+      <hr />
+      <div class="stack gap-sm">
+        <button id="exportBtn" class="secondary-btn">데이터 JSON 내보내기</button>
+        <label class="secondary-btn file-label">JSON 가져오기<input id="importJsonInput" type="file" accept="application/json" hidden /></label>
+        <button id="renameCharacterBtn" class="secondary-btn">현재 캐릭터 이름 변경</button>
+        <button id="deleteCharacterBtn" class="danger-btn">현재 캐릭터 삭제</button>
+      </div>
+      <p class="muted small">데이터는 이 기기의 브라우저 localStorage에 저장됩니다.</p>
+    </div>
+  </dialog>
+
+  <template id="presetTemplate">
+    <article class="preset-card" draggable="true">
+      <button class="preset-main">
+        <span class="preset-label"></span>
+        <span class="preset-expr"></span>
+      </button>
+      <div class="preset-actions">
+        <button class="mini-btn favorite-btn" aria-label="즐겨찾기 추가" aria-pressed="false">★</button>
+        <button class="mini-btn edit-btn" aria-label="수정">✏️</button>
+        <button class="mini-btn delete-btn" aria-label="삭제">🗑️</button>
+      </div>
+    </article>
+  </template>
+
+  <script>
+(() => {
+  'use strict';
+
+  const STORAGE_KEY = 'uw-dice-roller-v1';
+  const DEFAULT_CATEGORY_ORDER = ['특성치','지식','기술','대인기능','회복','전투','피해'];
+  const MAX_PRESET_REPEAT = 20;
+  const MAX_TOTAL_DICE = 500;
+  const MAX_VISUAL_DICE = 24;
+  const samplePalette = `x1 1d20+0 힘
+x1 1d20+0 건강
+x1 1d20+2 민첩
+x1 1d20+0 정신
+x1 1d20+0 지식
+x1 1d20+0 감각
+x1 1d20+0 매력
+x1 1d20+0 행운
+x1 1d20+0 AC(회피,막기)
+x1 1d4+0 체력회복
+x1 1d4+0 마력회복
+x1 1d20+0 물리명중
+x1 1d20+0 마법명중
+x1 1d3+0 피해(맨손)`;
+
+  const $ = (s) => document.querySelector(s);
+  const $$ = (s) => [...document.querySelectorAll(s)];
+
+  const state = loadState();
+  let quickX = 1;
+  let editingPresetId = null;
+  let dragPresetId = null;
+  let activeRollSession = null;
+  let rollPointerGesture = null;
+  let pendingFavoriteRemoval = null;
+
+  const els = {
+    characterSelect: $('#characterSelect'),
+    paletteSection: $('#paletteSection'), searchInput: $('#searchInput'), instantExprInput: $('#instantExprInput'), instantRollError: $('#instantRollError'),
+    rollDialog: $('#rollDialog'), rollDialogHint: $('#rollDialogHint'), copyResultBtn: $('#copyResultBtn'), rollingView: $('#rollingView'), resultView: $('#resultView'), rollingLabel: $('#rollingLabel'), rollingDiceTray: $('#rollingDiceTray'),
+    importDialog: $('#importDialog'), importTextarea: $('#importTextarea'), replacePaletteCheckbox: $('#replacePaletteCheckbox'), importError: $('#importError'),
+    presetDialog: $('#presetDialog'), presetDialogTitle: $('#presetDialogTitle'), presetLabelInput: $('#presetLabelInput'), presetExprInput: $('#presetExprInput'), presetCountInput: $('#presetCountInput'), presetCategoryInput: $('#presetCategoryInput'), presetError: $('#presetError'),
+    characterDialog: $('#characterDialog'), characterNameInput: $('#characterNameInput'),
+    historyDialog: $('#historyDialog'), historyList: $('#historyList'),
+    toggleCategoriesBtn: $('#toggleCategoriesBtn'), paletteModeBtn: $('#paletteModeBtn'),
+    lastResultToast: $('#lastResultToast'), lastResultText: $('#lastResultText'), copyLastResultBtn: $('#copyLastResultBtn'), dismissLastResultBtn: $('#dismissLastResultBtn'),
+    settingsDialog: $('#settingsDialog'), animationToggle: $('#animationToggle'), soundToggle: $('#soundToggle'), hapticToggle: $('#hapticToggle'),
+    importJsonInput: $('#importJsonInput')
+  };
+
+  function defaultState() {
+    const id = uid();
+    return {
+      version: 1,
+      activeCharacterId: id,
+      characters: [{ id, name: '전설의 시작', presets: parsePalette(samplePalette), recentPresetIds:[], categoryOpen:{} }],
+      history: [],
+      lastResult: null,
+      settings: { animation: true, sound: true, haptic: true, paletteEditMode:false }
+    };
+  }
+
+  function loadState() {
+    try {
+      const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY));
+      if (!parsed?.characters?.length) return defaultState();
+      return normalizeStateData(parsed);
+    } catch { return defaultState(); }
+  }
+
+  function normalizeStateData(data) {
+    data.history = Array.isArray(data.history) ? data.history : [];
+    const savedSettings = data.settings && typeof data.settings === 'object' ? data.settings : {};
+    data.settings = {
+      animation: typeof savedSettings.animation === 'boolean' ? savedSettings.animation : true,
+      sound: typeof savedSettings.sound === 'boolean' ? savedSettings.sound : true,
+      haptic: typeof savedSettings.haptic === 'boolean' ? savedSettings.haptic : true,
+      paletteEditMode: !!savedSettings.paletteEditMode
+    };
+    data.lastResult = data.lastResult && typeof data.lastResult === 'object' ? data.lastResult : null;
+    data.characters.forEach(char=>{
+      char.presets = Array.isArray(char.presets) ? char.presets : [];
+      char.categoryOpen = char.categoryOpen && typeof char.categoryOpen === 'object' ? char.categoryOpen : {};
+      const validIds=new Set(char.presets.map(p=>p.id));
+      char.recentPresetIds=[...new Set(Array.isArray(char.recentPresetIds) ? char.recentPresetIds : [])].filter(id=>validIds.has(id)).slice(0,5);
+      char.presets.forEach(p=>{ p.favorite=!!p.favorite; });
+    });
+    return data;
+  }
+
+  function prepareImportedState(rawData) {
+    if (!rawData || typeof rawData !== 'object' || Array.isArray(rawData) || !Array.isArray(rawData.characters) || !rawData.characters.length) {
+      throw new Error('올바른 UW Dice 백업이 아닙니다.');
+    }
+    const candidate = JSON.parse(JSON.stringify(rawData));
+    const usedCharacterIds = new Set();
+    const usedPresetIds = new Set();
+    candidate.characters.forEach((char, charIndex) => {
+      if (!char || typeof char !== 'object' || Array.isArray(char)) throw new Error(`${charIndex + 1}번째 캐릭터 정보가 올바르지 않습니다.`);
+      char.id = typeof char.id === 'string' && char.id.trim() ? char.id : uid();
+      if (usedCharacterIds.has(char.id)) throw new Error('중복된 캐릭터 ID가 있습니다.');
+      usedCharacterIds.add(char.id);
+      char.name = typeof char.name === 'string' && char.name.trim() ? char.name.trim() : `캐릭터 ${charIndex + 1}`;
+      if (!Array.isArray(char.presets)) throw new Error(`${char.name}의 판정 목록이 올바르지 않습니다.`);
+      char.presets.forEach((preset, presetIndex) => {
+        if (!preset || typeof preset !== 'object' || Array.isArray(preset)) throw new Error(`${char.name}의 ${presetIndex + 1}번째 판정이 올바르지 않습니다.`);
+        preset.id = typeof preset.id === 'string' && preset.id.trim() ? preset.id : uid();
+        if (usedPresetIds.has(preset.id)) throw new Error('중복된 판정 ID가 있습니다.');
+        usedPresetIds.add(preset.id);
+        preset.label = typeof preset.label === 'string' ? preset.label.trim() : '';
+        if (!preset.label) throw new Error(`${char.name}의 ${presetIndex + 1}번째 판정 이름이 비어 있습니다.`);
+        preset.expr = normalizeExpressionAlias(typeof preset.expr === 'string' ? preset.expr.trim() : '');
+        validateExpression(preset.expr);
+        preset.count = Number(preset.count ?? 1);
+        if (!Number.isInteger(preset.count) || preset.count < 1 || preset.count > MAX_PRESET_REPEAT) throw new Error(`${preset.label}의 반복 횟수는 1~${MAX_PRESET_REPEAT}이어야 합니다.`);
+        preset.category = DEFAULT_CATEGORY_ORDER.includes(preset.category) ? preset.category : inferCategory(preset.label, preset.expr);
+        preset.favorite = !!preset.favorite;
+      });
+    });
+    if (candidate.history !== undefined && !Array.isArray(candidate.history)) throw new Error('판정 기록 형식이 올바르지 않습니다.');
+    if (!usedCharacterIds.has(candidate.activeCharacterId)) candidate.activeCharacterId = candidate.characters[0].id;
+    return normalizeStateData(candidate);
+  }
+
+  function saveState() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+  function uid() { return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2,8)}`; }
+  function activeCharacter() { return state.characters.find(c => c.id === state.activeCharacterId) || state.characters[0]; }
+
+  function inferCategory(label, expr='') {
+    const base = ['힘','건강','민첩','정신','지식','감각','매력','행운'];
+    const social = ['위협','설득','말재주','매혹'];
+    const knowledge = ['인문학','마법학','신비학','식물학','동물학','마물학','신학','정령학','과학'];
+    const skill = ['기승술','야금술','의술','은신술','연금술','수사','동물 다루기','열쇠공','함정'];
+    const combat = ['AC','회피','막기','명중','개입'];
+    const recovery = ['회복'];
+    const damage = ['피해'];
+    if (base.includes(label.trim())) return '특성치';
+    if (social.some(k => label.includes(k))) return '대인기능';
+    if (damage.some(k => label.includes(k))) return '피해';
+    if (recovery.some(k => label.includes(k))) return '회복';
+    if (combat.some(k => label.includes(k)) || /1d20/i.test(expr) && /공격|사격|방어/.test(label)) return '전투';
+    if (knowledge.some(k => label.includes(k))) return '지식';
+    if (skill.some(k => label.includes(k))) return '기술';
+    return '기술';
+  }
+
+  function parsePalette(text) {
+    const lines = sanitizeClipboardText(text).split(/\r?\n/).map(v => v.trim()).filter(Boolean);
+    const presets = [];
+    for (const line of lines) {
+      const m = line.match(/^[x×]\s*(\d+)\s+([^\s]+)\s+(.+)$/i);
+      if (!m) throw new Error(`형식을 읽지 못했습니다: ${line}`);
+      const count = Number(m[1]);
+      if (!Number.isInteger(count) || count < 1 || count > MAX_PRESET_REPEAT) throw new Error(`반복 횟수는 1~${MAX_PRESET_REPEAT}이어야 합니다: ${line}`);
+      const expr = normalizeExpressionAlias(m[2].trim());
+      const label = m[3].trim();
+      validateExpression(expr);
+      presets.push({ id:uid(), count, expr, label, category:inferCategory(label, expr), favorite:false });
+    }
+    return presets;
+  }
+
+  function sanitizeClipboardText(text) {
+    return String(text)
+      .replace(/[\u200B-\u200F\u202A-\u202E\u2060\u2066-\u2069\uFEFF]/g, '')
+      .replace(/\r\n?/g, '\n')
+      .replace(/[\u00A0\u3000]/g, ' ')
+      .replace(/&(?:amp;)?#x20;|&nbsp;/gi, ' ')
+      .replace(/^\s*```(?:json|text)?\s*\n?/i, '')
+      .replace(/\n?\s*```\s*$/i, '')
+      .trim();
+  }
+
+  function normalizeExpressionAlias(expr) {
+    return expr.replace(/^AT(?=$|[+\-])/i, '1d20');
+  }
+
+  function tokenizeExpression(expr) {
+    expr = normalizeExpressionAlias(expr);
+    const compact = expr.replace(/\s+/g, '');
+    if (!compact) throw new Error('주사위 식이 비어 있습니다.');
+    if (!/^[+\-]?((\d*d\d+)|\d+)([+\-]((\d*d\d+)|\d+))*$/i.test(compact)) {
+      throw new Error(`지원하지 않는 주사위 식입니다: ${expr}`);
+    }
+    const raw = compact.match(/[+\-]?[^+\-]+/g) || [];
+    return raw.map(token => {
+      let sign = 1;
+      if (token[0] === '+') token = token.slice(1);
+      else if (token[0] === '-') { sign = -1; token = token.slice(1); }
+      const dm = token.match(/^(\d*)d(\d+)$/i);
+      if (dm) {
+        const count = Number(dm[1] || 1), faces = Number(dm[2]);
+        if (!Number.isInteger(count) || count < 1 || count > 100) throw new Error('주사위 개수는 1~100개만 지원합니다.');
+        if (!Number.isInteger(faces) || faces < 2 || faces > 10000) throw new Error('주사위 면수는 2~10000만 지원합니다.');
+        return { type:'dice', sign, count, faces, source:token };
+      }
+      return { type:'number', sign, value:Number(token), source:token };
+    });
+  }
+
+  function validateExpression(expr) { tokenizeExpression(expr); return true; }
+
+  function randomInt(max) {
+    if (globalThis.crypto?.getRandomValues) {
+      const arr = new Uint32Array(1);
+      const limit = Math.floor(0x100000000 / max) * max;
+      let n;
+      do { crypto.getRandomValues(arr); n = arr[0]; } while (n >= limit);
+      return (n % max) + 1;
+    }
+    return Math.floor(Math.random() * max) + 1;
+  }
+
+  function drawD20(time=0, canvas, topValue=null, settled=false) {
+    const ctx=canvas.getContext('2d'), width=canvas.width, height=canvas.height;
+    const value=topValue ?? (Math.floor(time/72)%20)+1;
+    ctx.clearRect(0,0,width,height);
+    const s=width/140, point=(x,y)=>[x*s,y*s];
+    const top=point(70,3), upperRight=point(128,36.5), lowerRight=point(128,103.5), bottom=point(70,137), lowerLeft=point(12,103.5), upperLeft=point(12,36.5);
+    const leftJoint=point(40,54), rightJoint=point(100,54), centerBottom=point(70,108);
+    ctx.fillStyle='rgba(0,0,0,.24)'; ctx.beginPath(); ctx.ellipse(70*s,132*s,46*s,5*s,0,0,Math.PI*2); ctx.fill();
+    ctx.lineJoin='round'; ctx.lineCap='round';
+    const regions=[[top,leftJoint,rightJoint],[upperLeft,leftJoint,top],[top,rightJoint,upperRight],[upperLeft,lowerLeft,leftJoint],[leftJoint,lowerLeft,centerBottom],[leftJoint,centerBottom,rightJoint],[rightJoint,centerBottom,lowerRight],[rightJoint,lowerRight,upperRight],[lowerLeft,bottom,centerBottom],[centerBottom,bottom,lowerRight]];
+    const gold=['#b67b13','#d6a52d','#93600d','#c58a18','#7b4c0a','#d9a72c','#8b570a','#c98e1c','#a66d0d','#d2a02a'];
+    regions.forEach((region,index)=>{ctx.beginPath();region.forEach((p,i)=>i?ctx.lineTo(...p):ctx.moveTo(...p));ctx.closePath();ctx.fillStyle=gold[index];ctx.fill();});
+    ctx.strokeStyle='#171006'; ctx.lineWidth=5*s;
+    ctx.beginPath(); [top,upperRight,lowerRight,bottom,lowerLeft,upperLeft].forEach((p,index)=>index?ctx.lineTo(...p):ctx.moveTo(...p)); ctx.closePath(); ctx.stroke();
+    const line=(a,b)=>{ctx.beginPath();ctx.moveTo(...a);ctx.lineTo(...b);ctx.stroke();};
+    ctx.lineWidth=3.4*s;
+    [ [top,leftJoint],[top,rightJoint],[upperLeft,leftJoint],[upperLeft,lowerLeft],[leftJoint,rightJoint],[leftJoint,centerBottom],[leftJoint,lowerLeft],[rightJoint,upperRight],[upperRight,lowerRight],[rightJoint,centerBottom],[rightJoint,lowerRight],[centerBottom,lowerLeft],[centerBottom,lowerRight],[centerBottom,bottom] ].forEach(([a,b])=>line(a,b));
+    ctx.font=`900 ${(value>9?29:35)*s}px Georgia,serif`; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.lineWidth=5*s; ctx.strokeStyle='#171006'; ctx.strokeText(value,70*s,79*s); ctx.fillStyle='#ffe07a'; ctx.fillText(value,70*s,79*s);
+  }
+
+  function prepareRollingDice(values) {
+    els.rollingDiceTray.innerHTML='';
+    return values.map((value,index)=>{ const unit=document.createElement('div'); unit.className='rolling-die-unit'; unit.style.setProperty('--delay',`${Math.min(index*45,360)}ms`); unit.style.setProperty('--entry-x','105px'); unit.style.setProperty('--mid-x','66px'); unit.style.setProperty('--near-x','32px'); unit.style.setProperty('--last-x','13px'); const canvas=document.createElement('canvas'); canvas.className='d20-canvas'; canvas.width=140; canvas.height=140; canvas.dataset.rollValue=String(value); unit.appendChild(canvas); els.rollingDiceTray.appendChild(unit); return canvas; });
+  }
+
+  function startD20Animation(canvases) {
+    canvases.forEach(canvas=>drawD20(0,canvas,Number(canvas.dataset.rollValue)));
+    return ()=>{};
+  }
+
+  function rollExpression(expr) {
+    const terms = tokenizeExpression(expr);
+    let total = 0;
+    const details = [];
+    const d20Values = [];
+    for (const term of terms) {
+      if (term.type === 'number') {
+        total += term.sign * term.value;
+        details.push({ type:'number', sign:term.sign, value:term.value });
+      } else {
+        const rolls = Array.from({length:term.count}, () => randomInt(term.faces));
+        const sum = rolls.reduce((a,b)=>a+b,0);
+        total += term.sign * sum;
+        details.push({ type:'dice', sign:term.sign, faces:term.faces, rolls, sum });
+        if (term.faces === 20) d20Values.push(...rolls);
+      }
+    }
+    let crit = false, fumble = false;
+    if (d20Values.length === 1) {
+      crit = d20Values[0] === 20;
+      fumble = d20Values[0] === 1;
+    }
+    return { total, details, d20Values, crit, fumble };
+  }
+
+  function detailText(result) {
+    const parts = [];
+    result.details.forEach((d, i) => {
+      const sign = i === 0 ? (d.sign < 0 ? '-' : '') : (d.sign < 0 ? ' - ' : ' + ');
+      if (d.type === 'number') parts.push(`${sign}${d.value}`);
+      else if (d.rolls.length === 1) parts.push(`${sign}${d.rolls[0]}`);
+      else parts.push(`${sign}[${d.rolls.join(', ')}]`);
+    });
+    return parts.join('');
+  }
+
+  async function rollPreset(preset) {
+    const count = (preset.count || 1) * quickX;
+    if (!Number.isInteger(count) || count < 1 || count > MAX_PRESET_REPEAT * 4) {
+      alert(`시행 횟수는 1~${MAX_PRESET_REPEAT * 4}회만 지원합니다.`);
+      return;
+    }
+    let terms;
+    try { terms = tokenizeExpression(preset.expr); }
+    catch (error) { alert(error.message); return; }
+    const dicePerRoll = terms.reduce((sum, term) => sum + (term.type === 'dice' ? term.count : 0), 0);
+    const totalDice = dicePerRoll * count;
+    if (totalDice > MAX_TOTAL_DICE) {
+      alert(`한 번에 굴릴 수 있는 주사위는 최대 ${MAX_TOTAL_DICE}개입니다. 현재 설정은 ${totalDice}개입니다.`);
+      return;
+    }
+    const results = Array.from({length:count}, () => rollExpression(preset.expr));
+    let rollingValues = results.flatMap(result=>result.details.flatMap(detail=>detail.type==='dice' ? detail.rolls : []));
+    if (!rollingValues.length) rollingValues = results.map(result=>result.total);
+    const session = { phase:'rolling', cancelled:false, timer:null, finish:null };
+    activeRollSession = session;
+    els.resultView.classList.add('hidden');
+    els.rollingView.classList.remove('hidden');
+    els.copyResultBtn.classList.add('hidden');
+    els.copyResultBtn.textContent='결과 복사';
+    els.rollingLabel.textContent = `${preset.label} ×${count}`;
+    els.rollDialogHint.textContent = '화면을 터치하면 애니메이션을 건너뜁니다.';
+    if (!els.rollDialog.open) els.rollDialog.showModal();
+    const rollingDice=prepareRollingDice(rollingValues.slice(0, MAX_VISUAL_DICE));
+    const stopD20=startD20Animation(rollingDice);
+    await new Promise(resolve=>{
+      session.finish=()=>{ if(session.timer) clearTimeout(session.timer); session.timer=null; session.finish=null; resolve(); };
+      session.timer=setTimeout(session.finish, state.settings.animation ? 1100+Math.min((Math.min(rollingValues.length, MAX_VISUAL_DICE)-1)*45,360) : 60);
+    });
+    if (session.cancelled || activeRollSession !== session) return;
+    stopD20();
+    renderResults(preset, results, count);
+    recordRecentPreset(preset);
+    addHistory(preset, results, count);
+    if(!preset.transient) renderPalette();
+    els.rollingView.classList.add('hidden');
+    els.resultView.classList.remove('hidden');
+    session.phase='result';
+    session.copyText=buildCopiedResultText(preset,results);
+    els.copyResultBtn.classList.remove('hidden');
+    els.rollDialogHint.textContent = '화면을 터치하면 결과 창이 닫힙니다.';
+    const hasCrit = results.some(r=>r.crit), hasFumble = results.some(r=>r.fumble);
+    if (hasCrit) feedback('critical');
+    if (hasFumble) feedback('fumble');
+  }
+
+  function recordRecentPreset(preset) {
+    if(preset.transient || !preset.id) return;
+    const char=activeCharacter();
+    char.recentPresetIds=[preset.id,...char.recentPresetIds.filter(id=>id!==preset.id)].slice(0,5);
+  }
+
+  function buildCopiedResultText(preset, results) {
+    const values=results.map(result=>`${result.total}${result.crit?' (크리티컬)':result.fumble?' (펌블)':''}`);
+    const label=/판정\s*$/.test(preset.label) ? preset.label : `${preset.label} 판정`;
+    return `${label}: ${values.join(', ')}`;
+  }
+
+  function renderResults(preset, results, count) {
+    els.resultView.innerHTML = '';
+    const naturalDice = results.flatMap(result=>result.d20Values.map(value=>({value,critical:result.crit,fumble:result.fumble})));
+    if (naturalDice.length) {
+      const visibleDice=naturalDice.slice(0,MAX_VISUAL_DICE);
+      const grid=document.createElement('div'); grid.className='result-dice-grid';
+      visibleDice.forEach((item,index)=>{ const die=document.createElement('canvas'); die.className=`result-die${item.critical?' critical-die':''}${item.fumble?' fumble-die':''}`; die.width=140; die.height=140; grid.appendChild(die); drawD20(index*170,die,item.value,true); });
+      els.resultView.appendChild(grid);
+      if(naturalDice.length>visibleDice.length){ const note=document.createElement('div'); note.className='visual-limit-note'; note.textContent=`주사위 그림은 처음 ${MAX_VISUAL_DICE}개만 표시합니다. 전체 결과는 아래 목록에 모두 표시됩니다.`; els.resultView.appendChild(note); }
+    }
+    const title = document.createElement('div');
+    title.className = 'result-title';
+    title.innerHTML = `<span>${escapeHtml(preset.label)}</span><span class="muted">×${count} · ${escapeHtml(preset.expr)}</span>`;
+    els.resultView.appendChild(title);
+    results.forEach((r, i) => {
+      const line = document.createElement('div');
+      line.className = `result-line${r.crit?' critical':''}${r.fumble?' fumble':''}`;
+      const rawD20 = r.d20Values.length === 1 ? `🎲 ${r.d20Values[0]}` : '🎲';
+      const badge = r.crit ? '<span class="badge critical">★ CRITICAL</span>' : r.fumble ? '<span class="badge fumble">☠ FUMBLE</span>' : '';
+      line.innerHTML = `<div class="result-main"><strong>#${i+1}</strong><span>${rawD20}</span><span class="result-total">= ${r.total}</span>${badge}</div><div class="result-breakdown">${escapeHtml(detailText(r))} = ${r.total}</div>`;
+      els.resultView.appendChild(line);
+    });
+  }
+
+  function feedback(type) {
+    if (state.settings.animation) {
+      document.body.classList.add(type === 'critical' ? 'flash-critical' : 'flash-fumble');
+      setTimeout(()=>document.body.classList.remove('flash-critical','flash-fumble'), 500);
+    }
+    if (state.settings.sound) playTone(type);
+    if (state.settings.haptic && navigator.vibrate) navigator.vibrate(type === 'critical' ? [30,40,80] : [90,40,90]);
+  }
+
+  function playTone(type) {
+    try {
+      const Ctx = window.AudioContext || window.webkitAudioContext;
+      const ctx = new Ctx();
+      const osc = ctx.createOscillator(), gain = ctx.createGain();
+      osc.connect(gain); gain.connect(ctx.destination);
+      osc.type = type === 'critical' ? 'triangle' : 'sawtooth';
+      osc.frequency.setValueAtTime(type === 'critical' ? 660 : 180, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(type === 'critical' ? 990 : 90, ctx.currentTime + .18);
+      gain.gain.setValueAtTime(.0001, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(.14, ctx.currentTime + .02);
+      gain.gain.exponentialRampToValueAtTime(.0001, ctx.currentTime + .22);
+      osc.start(); osc.stop(ctx.currentTime + .24);
+      osc.onended = () => ctx.close();
+    } catch {}
+  }
+
+  function addHistory(preset, results, count) {
+    const text = results.map((r,i)=>`#${i+1} ${detailText(r)} = ${r.total}${r.crit?' CRITICAL':''}${r.fumble?' FUMBLE':''}`).join('\n');
+    const copyText=buildCopiedResultText(preset,results);
+    state.history.unshift({ id:uid(), at:Date.now(), character:activeCharacter().name, label:preset.label, expr:preset.expr, count, text, copyText });
+    state.history = state.history.slice(0, 100);
+    state.lastResult={ text:copyText, at:Date.now() };
+    saveState();
+    renderLastResult();
+  }
+
+  function renderAll() {
+    renderCharacters();
+    renderPalette();
+    renderLastResult();
+    els.animationToggle.checked = !!state.settings.animation;
+    els.soundToggle.checked = !!state.settings.sound;
+    els.hapticToggle.checked = !!state.settings.haptic;
+  }
+
+  function renderCharacters() {
+    els.characterSelect.innerHTML = '';
+    state.characters.forEach(c => {
+      const opt = document.createElement('option'); opt.value = c.id; opt.textContent = c.name; opt.selected = c.id === state.activeCharacterId; els.characterSelect.appendChild(opt);
+    });
+  }
+
+  function renderLastResult() {
+    const text=state.lastResult?.text;
+    els.lastResultToast.classList.toggle('hidden',!text);
+    els.lastResultText.textContent=text || '';
+    els.lastResultText.title=text || '';
+  }
+
+  function renderPalette() {
+    const q = els.searchInput.value.trim().toLowerCase();
+    const char = activeCharacter();
+    els.paletteModeBtn.textContent=state.settings.paletteEditMode ? '편집 모드' : '플레이 모드';
+    els.paletteModeBtn.classList.toggle('editing',state.settings.paletteEditMode);
+    els.paletteModeBtn.setAttribute('aria-pressed',String(state.settings.paletteEditMode));
+    els.paletteSection.innerHTML = '';
+    const filtered = char.presets.filter(p => !q || `${p.label} ${p.expr}`.toLowerCase().includes(q));
+    if (!filtered.length) {
+      els.paletteSection.innerHTML = `<div class="empty-state">${char.presets.length ? '검색 결과가 없습니다.' : '팔레트가 비어 있습니다.<br>“팔레트 붙여넣기”로 한 번에 등록해보세요.'}</div>`;
+      updateCategoryToggleButton();
+      return;
+    }
+    const filteredById=new Map(filtered.map(p=>[p.id,p]));
+    const favorites=filtered.filter(p=>p.favorite);
+    const recent=char.recentPresetIds.map(id=>filteredById.get(id)).filter(Boolean);
+    appendCategoryBlock('즐겨찾기', favorites, { key:'special:favorites', special:true, defaultOpen:false, emptyText:'별을 눌러 자주 쓰는 판정을 추가하세요.' });
+    appendCategoryBlock('최근 사용', recent, { key:'special:recent', special:true, defaultOpen:false, emptyText:'아직 사용한 판정이 없습니다.' });
+    const grouped = new Map();
+    let categoryChanged = false;
+    DEFAULT_CATEGORY_ORDER.forEach(c=>grouped.set(c, []));
+    filtered.forEach(p => {
+      const category = p.label.includes('개입') ? '전투' : (DEFAULT_CATEGORY_ORDER.includes(p.category) ? p.category : inferCategory(p.label, p.expr));
+      if (p.category !== category) { p.category = category; categoryChanged = true; }
+      grouped.get(category).push(p);
+    });
+    if (categoryChanged) saveState();
+    for (const [category, presets] of grouped) {
+      if (!presets.length) continue;
+      appendCategoryBlock(category, presets, { key:`category:${category}`, defaultOpen:true });
+    }
+    updateCategoryToggleButton();
+  }
+
+  function appendCategoryBlock(title, presets, {key, special=false, defaultOpen=true, emptyText='항목이 없습니다.'}={}) {
+    const char=activeCharacter();
+    const block=document.createElement('details');
+    block.className=`category-block${special?' special-category':''}`;
+    block.dataset.categoryKey=key;
+    block.open=char.categoryOpen[key] ?? defaultOpen;
+    block.addEventListener('toggle',()=>{
+      char.categoryOpen[key]=block.open;
+      saveState();
+      updateCategoryToggleButton();
+    });
+    const h=document.createElement('summary'); h.className='category-title'; h.textContent=`${title} (${presets.length})`; block.appendChild(h);
+    const content=document.createElement('div'); content.className='category-content';
+    if(presets.length) presets.forEach(p=>content.appendChild(makePresetCard(p, {duplicate:special})));
+    else { const empty=document.createElement('div'); empty.className='category-empty'; empty.textContent=emptyText; content.appendChild(empty); }
+    block.appendChild(content);
+    els.paletteSection.appendChild(block);
+  }
+
+  function updateCategoryToggleButton() {
+    const blocks=$$('.category-block');
+    const anyOpen=blocks.some(block=>block.open);
+    els.toggleCategoriesBtn.disabled=blocks.length===0;
+    els.toggleCategoriesBtn.textContent=anyOpen ? '모두 접기' : '모두 펼치기';
+  }
+
+  function toggleAllCategories() {
+    const blocks=$$('.category-block');
+    if(!blocks.length) return;
+    const shouldOpen=!blocks.some(block=>block.open);
+    const char=activeCharacter();
+    blocks.forEach(block=>{ block.open=shouldOpen; char.categoryOpen[block.dataset.categoryKey]=shouldOpen; });
+    saveState();
+    updateCategoryToggleButton();
+  }
+
+  function makePresetCard(preset, {duplicate=false}={}) {
+    const node = $('#presetTemplate').content.firstElementChild.cloneNode(true);
+    node.dataset.id = preset.id;
+    const editMode=!!state.settings.paletteEditMode;
+    node.classList.toggle('edit-mode',editMode);
+    node.draggable=editMode && !duplicate;
+    node.querySelector('.preset-label').textContent = preset.label;
+    node.querySelector('.preset-expr').textContent = `x${preset.count} ${preset.expr}`;
+    node.querySelector('.preset-main').addEventListener('click', () => rollPreset(preset));
+    const favoriteBtn=node.querySelector('.favorite-btn');
+    updateFavoriteButton(favoriteBtn,preset);
+    favoriteBtn.addEventListener('click',()=>toggleFavorite(preset.id));
+    node.querySelector('.edit-btn').addEventListener('click', () => openPresetDialog(preset));
+    node.querySelector('.delete-btn').addEventListener('click', () => deletePreset(preset.id));
+    node.addEventListener('dragstart', e => { if(!state.settings.paletteEditMode || duplicate){e.preventDefault();return;} dragPresetId = preset.id; node.classList.add('dragging'); });
+    node.addEventListener('dragend', () => { dragPresetId = null; node.classList.remove('dragging'); });
+    node.addEventListener('dragover', e => e.preventDefault());
+    node.addEventListener('drop', e => { e.preventDefault(); if (dragPresetId && dragPresetId !== preset.id) reorderPresets(dragPresetId, preset.id); });
+    return node;
+  }
+
+  function favoriteRemovalIsPending(id) {
+    return pendingFavoriteRemoval?.id===id && Date.now()<pendingFavoriteRemoval.expiresAt;
+  }
+
+  function updateFavoriteButton(button,preset) {
+    const confirming=preset.favorite && favoriteRemovalIsPending(preset.id);
+    button.classList.toggle('active',!!preset.favorite && !confirming);
+    button.classList.toggle('confirm-remove',confirming);
+    button.setAttribute('aria-pressed',String(!!preset.favorite));
+    button.setAttribute('aria-label',confirming?'2초 안에 다시 누르면 즐겨찾기 해제':preset.favorite?'즐겨찾기 해제 확인':'즐겨찾기 추가');
+    button.title=confirming?'한 번 더 누르면 즐겨찾기에서 해제됩니다.':preset.favorite?'해제하려면 두 번 누르세요.':'즐겨찾기 추가';
+  }
+
+  function refreshFavoriteButtons(id) {
+    const preset=activeCharacter().presets.find(p=>p.id===id);
+    if(!preset) return;
+    $$('.preset-card').filter(card=>card.dataset.id===id).forEach(card=>updateFavoriteButton(card.querySelector('.favorite-btn'),preset));
+  }
+
+  function cancelPendingFavoriteRemoval() {
+    if(!pendingFavoriteRemoval) return;
+    const {id,timer}=pendingFavoriteRemoval;
+    clearTimeout(timer);
+    pendingFavoriteRemoval=null;
+    refreshFavoriteButtons(id);
+  }
+
+  function toggleFavorite(id) {
+    const preset=activeCharacter().presets.find(p=>p.id===id);
+    if(!preset) return;
+    if(!preset.favorite) {
+      cancelPendingFavoriteRemoval();
+      preset.favorite=true;
+      saveState();
+      renderPalette();
+      return;
+    }
+    if(favoriteRemovalIsPending(id)) {
+      clearTimeout(pendingFavoriteRemoval.timer);
+      pendingFavoriteRemoval=null;
+      preset.favorite=false;
+      saveState();
+      renderPalette();
+      return;
+    }
+    cancelPendingFavoriteRemoval();
+    const pending={id,expiresAt:Date.now()+2000,timer:null};
+    pending.timer=setTimeout(()=>{
+      if(pendingFavoriteRemoval!==pending) return;
+      pendingFavoriteRemoval=null;
+      refreshFavoriteButtons(id);
+    },2000);
+    pendingFavoriteRemoval=pending;
+    refreshFavoriteButtons(id);
+  }
+
+  function reorderPresets(fromId, toId) {
+    const arr = activeCharacter().presets;
+    const from = arr.findIndex(p=>p.id===fromId), to = arr.findIndex(p=>p.id===toId);
+    if (from < 0 || to < 0) return;
+    const [item] = arr.splice(from,1); arr.splice(to,0,item); saveState(); renderPalette();
+  }
+
+  function openPresetDialog(preset=null) {
+    editingPresetId = preset?.id || null;
+    els.presetDialogTitle.textContent = preset ? '판정 수정' : '판정 추가';
+    els.presetLabelInput.value = preset?.label || '';
+    els.presetExprInput.value = preset?.expr || '1d20+0';
+    els.presetCountInput.value = preset?.count || 1;
+    els.presetCategoryInput.value = DEFAULT_CATEGORY_ORDER.includes(preset?.category) ? preset.category : '기술';
+    els.presetError.textContent=''; els.presetDialog.showModal();
+  }
+
+  function deletePreset(id) {
+    if (!confirm('이 판정을 삭제할까요?')) return;
+    const char=activeCharacter();
+    char.presets=char.presets.filter(p=>p.id!==id);
+    char.recentPresetIds=char.recentPresetIds.filter(presetId=>presetId!==id);
+    saveState(); renderPalette();
+  }
+
+  function renderHistory() {
+    els.historyList.innerHTML = '';
+    if (!state.history.length) { els.historyList.innerHTML='<div class="empty-state">아직 판정 기록이 없습니다.</div>'; return; }
+    state.history.forEach(h => {
+      const el = document.createElement('div'); el.className='history-item';
+      el.innerHTML=`<div class="history-head"><div class="history-meta"><strong>${escapeHtml(h.character)} · ${escapeHtml(h.label)}</strong><div class="history-time">${new Date(h.at).toLocaleString()}</div></div><div class="history-tools"><button class="secondary-btn history-copy-btn">복사</button></div></div><div class="history-body">${escapeHtml(h.text)}</div>`;
+      const copyBtn=el.querySelector('.history-copy-btn');
+      copyBtn.addEventListener('click',()=>copyWithButton(historyCopyText(h),copyBtn));
+      els.historyList.appendChild(el);
+    });
+  }
+
+  function historyCopyText(historyItem) {
+    if(historyItem.copyText) return historyItem.copyText;
+    const label=/판정\s*$/.test(historyItem.label) ? historyItem.label : `${historyItem.label} 판정`;
+    const values=[...String(historyItem.text||'').matchAll(/=\s*(-?\d+)(?:\s+(CRITICAL|FUMBLE))?/g)].map(match=>`${match[1]}${match[2]==='CRITICAL'?' (크리티컬)':match[2]==='FUMBLE'?' (펌블)':''}`);
+    return values.length ? `${label}: ${values.join(', ')}` : `${label}\n${historyItem.text||''}`;
+  }
+
+  function exportData() {
+    const blob = new Blob([JSON.stringify(state,null,2)], {type:'application/json'});
+    const a = document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=`uw-dice-backup-${new Date().toISOString().slice(0,10)}.json`; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+  }
+
+  function escapeHtml(s) { return String(s).replace(/[&<>'"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c])); }
+  function sleep(ms) { return new Promise(r=>setTimeout(r,ms)); }
+
+  $('#paletteImportBtn').addEventListener('click',()=>{ els.importTextarea.value=''; els.importError.textContent=''; els.replacePaletteCheckbox.checked=false; els.importDialog.showModal(); });
+  $('#doImportBtn').addEventListener('click',()=>{
+    try {
+      const raw = sanitizeClipboardText(els.importTextarea.value);
+      if (!raw) throw new Error('등록할 내용을 붙여넣어 주세요.');
+      const jsonStart = raw.indexOf('{'), jsonEnd = raw.lastIndexOf('}');
+      const jsonCandidate = jsonStart >= 0 && jsonEnd > jsonStart ? raw.slice(jsonStart, jsonEnd + 1) : '';
+      if (jsonCandidate && /"kind"\s*:\s*"character"/.test(jsonCandidate)) {
+        const obj = JSON.parse(jsonCandidate);
+        if (obj?.kind !== 'character' || !obj?.data?.commands) throw new Error('코코포리아 Character JSON 형식이 아닙니다.');
+        const presets = parsePalette(obj.data.commands);
+        const c = { id:uid(), name:obj.data.name || '가져온 캐릭터', presets, recentPresetIds:[], categoryOpen:{} };
+        state.characters.push(c); state.activeCharacterId=c.id;
+      } else {
+        const presets=parsePalette(raw);
+        if (!presets.length) throw new Error('등록할 명령이 없습니다.');
+        if (els.replacePaletteCheckbox.checked) { activeCharacter().presets=presets; activeCharacter().recentPresetIds=[]; }
+        else activeCharacter().presets.push(...presets);
+      }
+      saveState(); renderAll(); els.importDialog.close();
+    } catch(e) { els.importError.textContent=e.message; }
+  });
+  $('#addPresetBtn').addEventListener('click',()=>openPresetDialog());
+  els.toggleCategoriesBtn.addEventListener('click',toggleAllCategories);
+  els.paletteModeBtn.addEventListener('click',()=>{
+    state.settings.paletteEditMode=!state.settings.paletteEditMode;
+    saveState();
+    renderPalette();
+  });
+  $('#savePresetBtn').addEventListener('click',()=>{
+    try {
+      const label=els.presetLabelInput.value.trim(), expr=els.presetExprInput.value.trim(), count=Number(els.presetCountInput.value), category=els.presetCategoryInput.value;
+      if(!label) throw new Error('이름을 입력하세요.'); validateExpression(expr); if(!Number.isInteger(count)||count<1||count>20) throw new Error('반복 횟수는 1~20으로 입력하세요.');
+      if(editingPresetId){ const p=activeCharacter().presets.find(p=>p.id===editingPresetId); Object.assign(p,{label,expr,count,category}); }
+      else activeCharacter().presets.push({id:uid(),label,expr,count,category,favorite:false});
+      saveState(); renderPalette(); els.presetDialog.close();
+    } catch(e){ els.presetError.textContent=e.message; }
+  });
+
+  $('#addCharacterBtn').addEventListener('click',()=>{ els.characterNameInput.value=''; els.characterDialog.showModal(); setTimeout(()=>els.characterNameInput.focus(),50); });
+  $('#createCharacterBtn').addEventListener('click',()=>{
+    const name=els.characterNameInput.value.trim(); if(!name) return;
+    const c={id:uid(),name,presets:[],recentPresetIds:[],categoryOpen:{}}; state.characters.push(c); state.activeCharacterId=c.id; saveState(); renderAll(); els.characterDialog.close();
+  });
+  els.characterSelect.addEventListener('change',()=>{ state.activeCharacterId=els.characterSelect.value; saveState(); renderAll(); });
+  els.searchInput.addEventListener('input',renderPalette);
+  function rollInstantExpression() {
+    try {
+      const expr=normalizeExpressionAlias(els.instantExprInput.value.trim());
+      if(!expr) throw new Error('주사위 식을 입력하세요.');
+      validateExpression(expr);
+      els.instantRollError.textContent='';
+      return rollPreset({ label:'즉석 굴림', expr, count:1, transient:true });
+    } catch(error) { els.instantRollError.textContent=error.message; }
+  }
+  $('#instantRollBtn').addEventListener('click',rollInstantExpression);
+  els.instantExprInput.addEventListener('keydown',e=>{ if(e.key==='Enter'){e.preventDefault();rollInstantExpression();} });
+  $$('#xButtons .x-btn').forEach(btn=>btn.addEventListener('click',()=>{ quickX=Number(btn.dataset.x); $$('#xButtons .x-btn').forEach(b=>b.classList.toggle('active',b===btn)); }));
+
+  async function copyText(text) {
+    if(!text) return false;
+    try {
+      if(navigator.clipboard?.writeText) await navigator.clipboard.writeText(text);
+      else if(!legacyCopyText(text)) throw new Error('copy failed');
+      return true;
+    } catch {
+      return legacyCopyText(text);
+    }
+  }
+
+  async function copyWithButton(text,button,{idleText='복사'}={}) {
+    const copied=await copyText(text);
+    button.textContent=copied?'복사됨 ✓':'복사 실패';
+    setTimeout(()=>{ if(button?.isConnected) button.textContent=idleText; },1200);
+    return copied;
+  }
+
+  function copyRollResult() {
+    return copyWithButton(activeRollSession?.copyText,els.copyResultBtn,{idleText:'결과 복사'});
+  }
+
+  function legacyCopyText(text) {
+    try {
+      const area=document.createElement('textarea');
+      area.value=text; area.setAttribute('readonly',''); area.style.position='fixed'; area.style.opacity='0';
+      document.body.appendChild(area); area.select(); area.setSelectionRange(0,text.length);
+      const copied=document.execCommand('copy'); area.remove(); return copied;
+    } catch { return false; }
+  }
+
+  els.copyResultBtn.addEventListener('click',e=>{ e.stopPropagation(); copyRollResult(); });
+  els.copyLastResultBtn.addEventListener('click',()=>copyWithButton(state.lastResult?.text,els.copyLastResultBtn));
+  els.dismissLastResultBtn.addEventListener('click',()=>{state.lastResult=null;saveState();renderLastResult();});
+
+  function handleRollSurfaceTap() {
+    const session=activeRollSession;
+    if(!session) return;
+    if(session.phase==='rolling') { session.finish?.(); return; }
+    if(session.phase==='result') els.rollDialog.close();
+  }
+  els.rollDialog.addEventListener('pointerdown',e=>{
+    if(e.isPrimary===false) return;
+    if(e.target.closest?.('[data-roll-control]')) { rollPointerGesture=null; return; }
+    rollPointerGesture={ id:e.pointerId, x:e.clientX, y:e.clientY, moved:false };
+  });
+  els.rollDialog.addEventListener('pointermove',e=>{
+    const gesture=rollPointerGesture;
+    if(!gesture || gesture.id!==e.pointerId) return;
+    if(Math.hypot(e.clientX-gesture.x,e.clientY-gesture.y)>10) gesture.moved=true;
+  });
+  els.rollDialog.addEventListener('pointerup',e=>{
+    const gesture=rollPointerGesture;
+    if(!gesture || gesture.id!==e.pointerId || gesture.moved) { rollPointerGesture=null; return; }
+    gesture.released=true;
+  });
+  els.rollDialog.addEventListener('pointercancel',()=>{ rollPointerGesture=null; });
+  els.rollDialog.addEventListener('click',e=>{
+    if(e.target.closest?.('[data-roll-control]')) return;
+    const gesture=rollPointerGesture;
+    rollPointerGesture=null;
+    if(!gesture?.released && e.detail!==0) return;
+    e.preventDefault();
+    e.stopPropagation();
+    handleRollSurfaceTap();
+  });
+  els.rollDialog.addEventListener('cancel',e=>{
+    const session=activeRollSession;
+    if(session?.phase==='rolling') { e.preventDefault(); session.finish?.(); }
+  });
+  els.rollDialog.addEventListener('close',()=>{
+    const session=activeRollSession;
+    if(session?.phase==='rolling') { session.cancelled=true; session.finish?.(); }
+    activeRollSession=null;
+    rollPointerGesture=null;
+  });
+
+  $('#historyBtn').addEventListener('click',()=>{renderHistory();els.historyDialog.showModal();});
+  $('#closeHistoryBtn').addEventListener('click',()=>els.historyDialog.close());
+  $('#closeHistoryBtn2').addEventListener('click',()=>els.historyDialog.close());
+  $('#clearHistoryBtn').addEventListener('click',()=>{if(confirm('판정 기록을 모두 삭제할까요?')){state.history=[];state.lastResult=null;saveState();renderHistory();renderLastResult();}});
+
+  $('#settingsBtn').addEventListener('click',()=>els.settingsDialog.showModal());
+  $('#closeSettingsBtn').addEventListener('click',()=>els.settingsDialog.close());
+  ['animation','sound','haptic'].forEach(k=>{ const el=els[`${k}Toggle`]; el.addEventListener('change',()=>{state.settings[k]=el.checked;saveState();}); });
+  $('#exportBtn').addEventListener('click',exportData);
+  els.importJsonInput.addEventListener('change', async e=>{
+    const file=e.target.files?.[0]; if(!file) return;
+    try { const data=JSON.parse(await file.text()); const candidate=prepareImportedState(data); Object.keys(state).forEach(k=>delete state[k]); Object.assign(state,candidate); saveState(); renderAll(); alert('가져오기가 완료되었습니다.'); }
+    catch(err){ alert(`가져오기 실패: ${err.message}`); }
+    e.target.value='';
+  });
+  $('#renameCharacterBtn').addEventListener('click',()=>{ const c=activeCharacter(); const name=prompt('새 캐릭터 이름',c.name)?.trim(); if(name){c.name=name;saveState();renderAll();} });
+  $('#deleteCharacterBtn').addEventListener('click',()=>{
+    if(state.characters.length<=1){alert('캐릭터는 최소 1명 필요합니다.');return;}
+    const c=activeCharacter(); if(!confirm(`${c.name} 캐릭터를 삭제할까요?`))return;
+    state.characters=state.characters.filter(x=>x.id!==c.id); state.activeCharacterId=state.characters[0].id; saveState();renderAll();els.settingsDialog.close();
+  });
+
+  document.addEventListener('keydown', e=>{
+    if(e.key==='Escape') return;
+    if((e.ctrlKey||e.metaKey) && e.key.toLowerCase()==='k'){e.preventDefault();els.searchInput.focus();}
+  });
+
+  // 서비스 워커(sw.js)는 서고판에 아직 없어서 등록하지 않음
+
+  // 프레이피스 서고에서 넘어온 캐릭터 (pa-dice-import)
+  // 서고 판정은 src:'archive'로 표시. 같은 캐릭터를 다시 가져오면 합치기·바꾸기·취소를 고른다.
+  // 합치기: 서고 판정만 새것으로 맞추고(같은 이름이면 즐겨찾기 유지), 직접 추가한 판정·최근 사용은 그대로.
+  let paImport=null;
+  try {
+    const raw = localStorage.getItem('pa-dice-import');
+    if (raw) { localStorage.removeItem('pa-dice-import'); paImport = JSON.parse(raw); }
+  } catch {}
+  if (paImport && paImport.id) {
+    const back=document.querySelector('.pa-back'); if(back) { back.href='index.html#'+encodeURIComponent(paImport.id); back.textContent='← '+paImport.name+' (서고로)'; }
+    const ok=[], bad=[];
+    for (const [label, expr] of paImport.checks || []) {
+      try { const e = normalizeExpressionAlias(String(expr).trim()); validateExpression(e); ok.push({ id:uid(), count:1, expr:e, label:String(label), category:inferCategory(String(label), e), favorite:false, src:'archive' }); }
+      catch (err) { bad.push([label, expr, err.message||'식을 읽지 못함']); }
+    }
+    for (const [label, expr, why] of paImport.skipped || []) bad.push([label, expr, why]);
+    const existing = state.characters.find(x => x.paId === paImport.id);
+    const apply = mode => {
+      let c = existing;
+      if (!c) { c = { id:uid(), paId:paImport.id, name:paImport.name, presets:[], recentPresetIds:[], categoryOpen:{} }; state.characters.push(c); }
+      c.name = paImport.name;
+      if (mode === 'replace') { c.presets = ok; c.recentPresetIds = []; }
+      else if (mode === 'merge') {
+        const oldArchive = new Map(c.presets.filter(p=>p.src==='archive').map(p=>[p.label,p]));
+        const merged = ok.map(n => { const o=oldArchive.get(n.label); return o ? {...n, id:o.id, favorite:o.favorite} : n; });
+        const mine = c.presets.filter(p => p.src !== 'archive');
+        c.presets = [...merged, ...mine];
+        const ids = new Set(c.presets.map(p=>p.id)); c.recentPresetIds = c.recentPresetIds.filter(id=>ids.has(id));
+      }
+      state.activeCharacterId = c.id; saveState(); renderAll();
+    };
+    const dlg = document.createElement('dialog'); dlg.className='modal'; dlg.setAttribute('aria-label','서고에서 판정 가져오기'); dlg.style.cssText='background:#232120;border:1px solid #9a7633;border-radius:14px;color:#f2e7c9;padding:0;max-width:calc(100% - 24px)';
+    const esc2 = t => String(t).replace(/[&<>"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
+    const mine = existing ? existing.presets.filter(p=>p.src!=='archive').length : 0;
+    const favs = existing ? existing.presets.filter(p=>p.favorite).length : 0;
+    dlg.innerHTML = `<div style="padding:18px;max-width:440px">
+      <h2 style="margin:0 0 8px;font-size:1.05rem">${esc2(paImport.name)} 판정 가져오기</h2>
+      <p style="margin:0 0 8px;font-size:.9rem">서고에서 ${ok.length}개를 읽었어요.${bad.length?` ${bad.length}개는 가져오지 못했어요.`:''}</p>
+      ${existing?`<p style="margin:0 0 8px;font-size:.9rem;color:#e8b45a">이미 있는 캐릭터예요. 직접 추가한 판정 ${mine}개, 즐겨찾기 ${favs}개가 있어요.</p>`:''}
+      ${bad.length?`<details style="margin:0 0 10px;font-size:.85rem"><summary>가져오지 못한 판정 보기</summary><ul style="margin:6px 0 0;padding-left:18px">${bad.map(([l,e,w])=>`<li>${esc2(l)} · <code>${esc2(e)}</code> — ${esc2(w)}</li>`).join('')}</ul></details>`:''}
+      <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end">
+        <button class="secondary-btn" data-m="cancel">취소</button>
+        ${existing?`<button class="secondary-btn" data-m="replace">통째로 바꾸기</button><button class="primary-btn" data-m="merge">합치기 (권장)</button>`:`<button class="primary-btn" data-m="add">가져오기</button>`}
+      </div></div>`;
+    document.body.appendChild(dlg);
+    dlg.addEventListener('click', e => { const m=e.target.closest('[data-m]')?.dataset.m; if(!m) return; if(m==='add') apply('replace'); else if(m!=='cancel') apply(m); dlg.close(); dlg.remove(); });
+    if (ok.length || bad.length) dlg.showModal();
+  }
+  renderAll();
+})();
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>THE PRAYPEACE ARCHIVES · 프레이피스 서고</title>
+<meta name="description" content="EX LIBRIS · EST. 2021 — 수많은 세계, 수많은 삶, 그리고 우리가 만든 이야기. 프레이피스의 TRPG 세션·캐릭터·시나리오 서고.">
+<meta name="theme-color" content="#1a1918">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@600&display=swap">
+<link rel="stylesheet" href="css/archives.css">
+</head>
+<body>
+<div class="wrap">
+<div class="lib-bg" aria-hidden="true"></div><div class="lib-motes" aria-hidden="true"><i class="" style="left:0%;--dx:-60px;--r:-150deg;animation-duration:22s;animation-delay:-0s"></i><i class="e" style="left:37%;--dx:-7px;--r:-79deg;animation-duration:29s;animation-delay:-5s"></i><i class="e" style="left:74%;--dx:46px;--r:-8deg;animation-duration:36s;animation-delay:-10s"></i><i class="" style="left:11%;--dx:-21px;--r:63deg;animation-duration:25s;animation-delay:-15s"></i><i class="e" style="left:48%;--dx:32px;--r:134deg;animation-duration:32s;animation-delay:-20s"></i><i class="e" style="left:85%;--dx:-35px;--r:-95deg;animation-duration:39s;animation-delay:-25s"></i><i class="" style="left:22%;--dx:18px;--r:-24deg;animation-duration:28s;animation-delay:-0s"></i><i class="e" style="left:59%;--dx:-49px;--r:47deg;animation-duration:35s;animation-delay:-5s"></i><i class="e" style="left:96%;--dx:4px;--r:118deg;animation-duration:24s;animation-delay:-10s"></i><i class="" style="left:33%;--dx:57px;--r:-111deg;animation-duration:31s;animation-delay:-15s"></i><i class="e" style="left:70%;--dx:-10px;--r:-40deg;animation-duration:38s;animation-delay:-20s"></i><i class="e" style="left:7%;--dx:43px;--r:31deg;animation-duration:27s;animation-delay:-25s"></i><i class="" style="left:44%;--dx:-24px;--r:102deg;animation-duration:34s;animation-delay:-0s"></i><i class="e" style="left:81%;--dx:29px;--r:-127deg;animation-duration:23s;animation-delay:-5s"></i><i class="e" style="left:18%;--dx:-38px;--r:-56deg;animation-duration:30s;animation-delay:-10s"></i><i class="" style="left:55%;--dx:15px;--r:15deg;animation-duration:37s;animation-delay:-15s"></i><i class="e" style="left:92%;--dx:-52px;--r:86deg;animation-duration:26s;animation-delay:-20s"></i><i class="e" style="left:29%;--dx:1px;--r:-143deg;animation-duration:33s;animation-delay:-25s"></i></div>
+
+  <header class="top">
+    <a class="mark" href="#">P · A</a>
+    <nav class="menu" aria-label="서고 메뉴">
+      <a href="#">처음</a><a href="#sessions">SESSION</a><a href="#characters">CHARACTER</a><a href="#scenarios">SCENARIO</a><a href="#memory">MEMORY</a><a href="#journey">발자취</a><a href="#inbox" data-admin>작업함</a><a href="#check" data-admin>점검</a>
+    </nav>
+    <div class="tools">
+      <button class="btn" id="searchBtn" aria-label="통합 검색 열기">⌕ 검색 <span class="kbd">Ctrl K</span></button>
+    </div>
+  </header>
+  <p class="notice" id="notice" hidden><span id="noticeText"></span><button aria-label="안내 닫기" data-hide-notice>✕</button></p>
+  <main id="view" aria-live="polite"></main>
+  <footer>PRAYPEACE · PERSONAL TRPG COLLECTION<br><button class="btn sm" id="motionBtn"></button></footer>
+</div>
+
+<dialog class="search" id="searchDlg" aria-label="통합 검색">
+  <input id="q" type="search" placeholder="이름 · 번호 · 날짜 · 시나리오 · 태그" autocomplete="off">
+  <div class="sres" id="sres"></div>
+</dialog>
+<dialog class="lb" id="lb" aria-label="그림 크게 보기">
+  <img id="lbImg" alt="">
+  <div class="bar"><button class="btn sm" data-lb="-1" aria-label="이전 그림">‹</button><span id="lbCap"></span><button class="btn sm" data-lb="1" aria-label="다음 그림">›</button><button class="btn sm" data-lb="x">닫기</button></div>
+</dialog>
+<script src="js/archives.js"></script>
+</body>
+</html>

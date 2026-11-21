@@ -1,0 +1,111 @@
+[
+ {
+  "id": "sc-angel",
+  "title": "천사의 갈망",
+  "rule": "CoC",
+  "era": "1920년대",
+  "source": "출판"
+ },
+ {
+  "id": "sc-dream",
+  "title": "꿈의 댓가",
+  "rule": "CoC",
+  "era": "현대",
+  "source": "출판"
+ },
+ {
+  "id": "sc-yeolgae",
+  "title": "열개",
+  "rule": "CoC",
+  "era": "현대",
+  "source": "출판"
+ },
+ {
+  "id": "sc-peace",
+  "title": "평화로운 마을",
+  "rule": "CoC",
+  "era": "현대",
+  "source": "출판"
+ },
+ {
+  "id": "sc-gimyo",
+  "title": "기묘담",
+  "rule": "CoC",
+  "era": "현대",
+  "source": "출판"
+ },
+ {
+  "id": "sc-masks",
+  "title": "니알라토텝의 가면들",
+  "rule": "CoC",
+  "era": "1920년대",
+  "source": "출판",
+  "campaignId": "cp-masks"
+ },
+ {
+  "id": "sc-miri",
+  "title": "유랑야담 미리성",
+  "rule": "조선아곤",
+  "era": "가상 조선",
+  "source": "출판",
+  "campaignId": "cp-yurang"
+ },
+ {
+  "id": "sc-dowon",
+  "title": "유랑야담 도원향",
+  "rule": "조선아곤",
+  "era": "가상 조선",
+  "source": "출판",
+  "campaignId": "cp-yurang"
+ },
+ {
+  "id": "sc-gento",
+  "title": "저편으로부터의 환등",
+  "rule": "에모크로아",
+  "era": "현대",
+  "source": "출판"
+ },
+ {
+  "id": "sc-ampel",
+  "title": "암펠스크 제7 의용소방대",
+  "rule": "UW",
+  "era": "판타지",
+  "source": "자작",
+  "sourceSure": false
+ },
+ {
+  "id": "sc-small",
+  "title": "작은 기적들",
+  "rule": "CoC",
+  "era": "1920년대",
+  "source": "출판"
+ },
+ {
+  "id": "sc-dnd",
+  "title": "추리물 1판",
+  "rule": "기타",
+  "source": "출판"
+ },
+ {
+  "id": "sc-gyeong",
+  "title": "경성 크툴루 1: 뜯어먹힌 여인",
+  "rule": "CoC",
+  "era": "1920년대 경성",
+  "source": "출판"
+ },
+ {
+  "id": "sc-ta",
+  "title": "트라이앵글 에이전시 온보딩",
+  "rule": "트라이앵글 에이전시",
+  "era": "현대",
+  "source": "출판",
+  "campaignId": "cp-ta"
+ },
+ {
+  "id": "sc-blood",
+  "title": "피와 규칙",
+  "rule": "UW",
+  "era": "판타지",
+  "source": "출판"
+ }
+]

@@ -1,0 +1,544 @@
+[
+ {
+  "id": "s-130",
+  "no": 130,
+  "title": "CoC 천사의 갈망",
+  "scenarioId": "sc-angel",
+  "playthroughId": "pt-angel-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-017"
+  ],
+  "date": {
+   "v": "2022-10-10",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-003",
+  "no": 3,
+  "title": "CoC 꿈의 댓가",
+  "scenarioId": "sc-dream",
+  "playthroughId": "pt-dream-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-044"
+  ],
+  "date": {
+   "v": "2021-05-31",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-043",
+  "no": 43,
+  "title": "CoC 열개",
+  "scenarioId": "sc-yeolgae",
+  "playthroughId": "pt-yeolgae-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-044"
+  ],
+  "date": {
+   "v": "2021-09-11",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-070",
+  "no": 70,
+  "part": 1,
+  "title": "CoC 평화로운 마을",
+  "scenarioId": "sc-peace",
+  "playthroughId": "pt-peace-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-044"
+  ],
+  "date": {
+   "v": "2021-12-02",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-077",
+  "no": 77,
+  "part": 2,
+  "title": "CoC 평화로운 마을 2",
+  "scenarioId": "sc-peace",
+  "playthroughId": "pt-peace-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-044"
+  ],
+  "date": {
+   "v": null,
+   "prec": "unknown",
+   "sure": false
+  },
+  "hasSource": false
+ },
+ {
+  "id": "s-112",
+  "no": 112,
+  "part": 1,
+  "title": "CoC 기묘담 1부",
+  "scenarioId": "sc-gimyo",
+  "playthroughId": "pt-gimyo-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-092"
+  ],
+  "date": {
+   "v": "2022-04-30",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-114",
+  "no": 114,
+  "part": 2,
+  "title": "CoC 기묘담 2부 (하드모드)",
+  "scenarioId": "sc-gimyo",
+  "playthroughId": "pt-gimyo-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-092"
+  ],
+  "date": {
+   "v": "2022-05-14",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-124",
+  "no": 124,
+  "part": 1,
+  "title": "CoC 니알라토텝의 가면들 - 페루",
+  "scenarioId": "sc-masks",
+  "playthroughId": "pt-masks-1",
+  "campaignId": "cp-masks",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-038"
+  ],
+  "date": {
+   "v": "2022-08",
+   "prec": "month",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-128",
+  "no": 128,
+  "part": 3,
+  "title": "CoC 니알라토텝의 가면들 - 영국",
+  "scenarioId": "sc-masks",
+  "playthroughId": "pt-masks-1",
+  "campaignId": "cp-masks",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-038"
+  ],
+  "date": {
+   "v": "2022-11-30",
+   "prec": "day",
+   "sure": true
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-148",
+  "no": 148,
+  "part": 1,
+  "title": "CoC 펄프 니알라토텝의 가면들 - 페루",
+  "scenarioId": "sc-masks",
+  "playthroughId": "pt-masks-2",
+  "campaignId": "cp-masks",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-038"
+  ],
+  "date": {
+   "v": "2024-01",
+   "prec": "month",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-090",
+  "no": 90,
+  "title": "조선아곤 유랑야담 - 미리성",
+  "scenarioId": "sc-miri",
+  "playthroughId": "pt-miri-1",
+  "campaignId": "cp-yurang",
+  "rule": "조선아곤",
+  "role": "PL",
+  "pcs": [
+   "etc-007"
+  ],
+  "date": {
+   "v": "2022-01-15",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-098",
+  "no": 98,
+  "title": "조선아곤 유랑야담 - 도원향",
+  "scenarioId": "sc-dowon",
+  "playthroughId": "pt-dowon-1",
+  "campaignId": "cp-yurang",
+  "rule": "조선아곤",
+  "role": "PL",
+  "pcs": [
+   "etc-007"
+  ],
+  "date": {
+   "v": "2022-02-11",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-177",
+  "no": 177,
+  "title": "에모크로아 저편으로부터의 환등",
+  "scenarioId": "sc-gento",
+  "playthroughId": "pt-gento-1",
+  "rule": "에모크로아",
+  "role": "PL",
+  "pcs": [
+   "etc-018"
+  ],
+  "date": {
+   "v": "2025-12-14",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-199",
+  "no": 199,
+  "title": "UW 암펠스크 제7 의용소방대",
+  "scenarioId": "sc-ampel",
+  "playthroughId": "pt-ampel-1",
+  "rule": "UW",
+  "role": "KP",
+  "pcs": [
+   {
+    "name": "루트만"
+   }
+  ],
+  "date": {
+   "v": "2026-06-14",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-212",
+  "no": 212,
+  "title": "CoC 작은 기적들",
+  "scenarioId": "sc-small",
+  "playthroughId": "pt-small-1",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-036"
+  ],
+  "date": {
+   "v": "2026-11-15",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-001",
+  "no": 1,
+  "title": "DnD 추리물 1판",
+  "scenarioId": "sc-dnd",
+  "playthroughId": "pt-dnd-1",
+  "rule": "기타",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": null,
+   "prec": "unknown",
+   "sure": false
+  },
+  "hasSource": false
+ },
+ {
+  "id": "s-197",
+  "no": 197,
+  "title": "펄프CoC 경성 크툴루 (뜯어먹힌 여인)",
+  "scenarioId": "sc-gyeong",
+  "playthroughId": "pt-gyeong-2",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [],
+  "date": {
+   "v": null,
+   "prec": "unknown",
+   "sure": false
+  },
+  "hasSource": false
+ },
+ {
+  "id": "s-000",
+  "title": "CoC 경성크툴루1 뜯어먹힌 여인",
+  "scenarioId": "sc-gyeong",
+  "playthroughId": "pt-gyeong-1",
+  "rule": "CoC",
+  "role": "PL",
+  "aborted": true,
+  "pcs": [],
+  "date": {
+   "v": "2021-09-24",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-202",
+  "no": 202,
+  "title": "UW 피와 규칙",
+  "scenarioId": "sc-blood",
+  "playthroughId": "pt-blood-1",
+  "rule": "UW",
+  "role": "PL",
+  "pcs": [
+   "uw-030"
+  ],
+  "date": {
+   "v": "2026-06-27",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": false
+ },
+ {
+  "id": "s-195-1",
+  "no": 195,
+  "part": 1,
+  "title": "트라이앵글 에이전시 1번째 임무",
+  "scenarioId": "sc-ta",
+  "playthroughId": "pt-ta-1",
+  "campaignId": "cp-ta",
+  "rule": "트라이앵글 에이전시",
+  "role": "PL",
+  "pcs": [
+   {
+    "name": "피에르 더 클라운"
+   }
+  ],
+  "date": {
+   "v": "2026",
+   "prec": "year",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-195-2",
+  "no": 195,
+  "part": 2,
+  "title": "트라이앵글 에이전시 2번째 임무",
+  "scenarioId": "sc-ta",
+  "playthroughId": "pt-ta-1",
+  "campaignId": "cp-ta",
+  "rule": "트라이앵글 에이전시",
+  "role": "PL",
+  "pcs": [
+   {
+    "name": "피에르 더 클라운"
+   }
+  ],
+  "date": {
+   "v": "2026",
+   "prec": "year",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-195-3",
+  "no": 195,
+  "part": 3,
+  "title": "트라이앵글 에이전시 3번째 임무",
+  "scenarioId": "sc-ta",
+  "playthroughId": "pt-ta-1",
+  "campaignId": "cp-ta",
+  "rule": "트라이앵글 에이전시",
+  "role": "PL",
+  "pcs": [
+   {
+    "name": "피에르 더 클라운"
+   }
+  ],
+  "date": {
+   "v": "2026",
+   "prec": "year",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-195-4",
+  "no": 195,
+  "part": 4,
+  "title": "트라이앵글 에이전시 4번째 임무",
+  "scenarioId": "sc-ta",
+  "playthroughId": "pt-ta-1",
+  "campaignId": "cp-ta",
+  "rule": "트라이앵글 에이전시",
+  "role": "PL",
+  "pcs": [
+   {
+    "name": "피에르 더 클라운"
+   }
+  ],
+  "date": {
+   "v": "2026",
+   "prec": "year",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-195-5",
+  "no": 195,
+  "part": 5,
+  "title": "트라이앵글 에이전시 5번째 임무",
+  "scenarioId": "sc-ta",
+  "playthroughId": "pt-ta-1",
+  "campaignId": "cp-ta",
+  "rule": "트라이앵글 에이전시",
+  "role": "PL",
+  "pcs": [
+   {
+    "name": "피에르 더 클라운"
+   }
+  ],
+  "date": {
+   "v": "2026",
+   "prec": "year",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-195-6",
+  "no": 195,
+  "part": 6,
+  "title": "트라이앵글 에이전시 6번째 임무",
+  "scenarioId": "sc-ta",
+  "playthroughId": "pt-ta-1",
+  "campaignId": "cp-ta",
+  "rule": "트라이앵글 에이전시",
+  "role": "PL",
+  "pcs": [
+   {
+    "name": "피에르 더 클라운"
+   }
+  ],
+  "date": {
+   "v": "2026",
+   "prec": "year",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-195-7",
+  "no": 195,
+  "part": 7,
+  "title": "트라이앵글 에이전시 7번째 임무",
+  "scenarioId": "sc-ta",
+  "playthroughId": "pt-ta-1",
+  "campaignId": "cp-ta",
+  "rule": "트라이앵글 에이전시",
+  "role": "PL",
+  "pcs": [
+   "etc-022"
+  ],
+  "date": {
+   "v": "2026",
+   "prec": "year",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-195-8",
+  "no": 195,
+  "part": 8,
+  "title": "트라이앵글 에이전시 8번째 임무",
+  "scenarioId": "sc-ta",
+  "playthroughId": "pt-ta-1",
+  "campaignId": "cp-ta",
+  "rule": "트라이앵글 에이전시",
+  "role": "PL",
+  "pcs": [
+   "etc-022"
+  ],
+  "date": {
+   "v": "2026",
+   "prec": "year",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-195-9",
+  "no": 195,
+  "part": 9,
+  "title": "트라이앵글 에이전시 9번째 임무",
+  "scenarioId": "sc-ta",
+  "playthroughId": "pt-ta-1",
+  "campaignId": "cp-ta",
+  "rule": "트라이앵글 에이전시",
+  "role": "PL",
+  "pcs": [
+   "etc-022"
+  ],
+  "date": {
+   "v": "2026",
+   "prec": "year",
+   "sure": false
+  },
+  "hasSource": true
+ }
+]

@@ -1,0 +1,13 @@
+name: 공개 데이터 검사
+on:
+  push:
+  pull_request:
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 캐릭터 서고 데이터 받기
+        run: curl -sSfL https://praypeace.github.io/Character_Archive/characters.json -o /tmp/characters.json
+      - name: 공개 데이터 검사 (허용 칸·모양·참조·날짜)
+        run: python3 tools/check_public.py data --characters /tmp/characters.json

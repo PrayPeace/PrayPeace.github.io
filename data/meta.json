@@ -1,0 +1,1 @@
+{"schema":2,"charactersUrl":"/Character_Archive/characters.json","charImgBase":"/Character_Archive/","note":"공개 데이터. tools/build_public.py가 비공개 원본에서 허용한 칸만 골라 만든다."}

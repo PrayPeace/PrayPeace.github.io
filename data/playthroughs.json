@@ -1,0 +1,87 @@
+[
+ {
+  "id": "pt-angel-1",
+  "scenarioId": "sc-angel",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-dream-1",
+  "scenarioId": "sc-dream",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-yeolgae-1",
+  "scenarioId": "sc-yeolgae",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-peace-1",
+  "scenarioId": "sc-peace",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-gimyo-1",
+  "scenarioId": "sc-gimyo",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-masks-1",
+  "scenarioId": "sc-masks",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-masks-2",
+  "scenarioId": "sc-masks",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-miri-1",
+  "scenarioId": "sc-miri",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-dowon-1",
+  "scenarioId": "sc-dowon",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-gento-1",
+  "scenarioId": "sc-gento",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-ampel-1",
+  "scenarioId": "sc-ampel",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-small-1",
+  "scenarioId": "sc-small",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-dnd-1",
+  "scenarioId": "sc-dnd",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-gyeong-1",
+  "scenarioId": "sc-gyeong",
+  "status": "중단"
+ },
+ {
+  "id": "pt-gyeong-2",
+  "scenarioId": "sc-gyeong",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-blood-1",
+  "scenarioId": "sc-blood",
+  "status": "미확인"
+ },
+ {
+  "id": "pt-ta-1",
+  "scenarioId": "sc-ta",
+  "status": "미확인"
+ }
+]
