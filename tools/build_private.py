@@ -23,5 +23,10 @@ for p in load('playthroughs'):
     if x.get('by') == 'AI 추정' and x.get('note') == '세션 목록 표에서 자동으로 만든 회차':
         continue  # 자동으로 만든 빈 회차는 공개 데이터의 '미확인'과 같음
     o['playthroughs'][p['id']] = x
+# 추억 후보(명대사·주사위·웃긴 장면·감동 장면): 대장이 작업함에서 승인한 것만 추억관에 걸린다
+mp = os.path.join(SRC, 'memories.json')
+if os.path.exists(mp):
+    o['memories'] = {m['id']: {k: m[k] for k in ('sessionId', 'kind', 'who', 'text', 'friends') if k in m}
+                     for m in json.load(open(mp, encoding='utf-8'))}
 json.dump(o, open(OUT, 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
-print(f"비공개 묶음: 세션 {len(o['sessions'])} · 회차 {len(o['playthroughs'])} · {os.path.getsize(OUT)} 바이트")
+print(f"비공개 묶음: 세션 {len(o['sessions'])} · 회차 {len(o['playthroughs'])} · 추억 후보 {len(o.get('memories', {}))} · {os.path.getsize(OUT)} 바이트")

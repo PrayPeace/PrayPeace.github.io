@@ -23,7 +23,7 @@ function webapp(route){
   const u=new URL(route.request().url()), j=o=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(o)});
   if(route.request().method()==='GET'){const op=u.searchParams.get('op');
     if(op==='covers')return j({ok:true,cover:WA.cover,picks:WA.picks});
-    if(op==='pa_pub')return j({ok:true,sum:{'s-130':'승인된 요약 시험'},end:{},pt:{'pt-angel-1':{status:'완주',endedAt:'2022-10-10'}},rev:{},sc:{'sc-angel':{owned:true,wish:false,prep:false}},rate:{'pt-angel-1':{work:4,play:5}}});
+    if(op==='pa_pub')return j({ok:true,sum:{'s-130':'승인된 요약 시험'},end:{},pt:{'pt-angel-1':{status:'완주',endedAt:'2022-10-10'}},rev:{},sc:{'sc-angel':{owned:true,wish:false,prep:false}},rate:{'pt-angel-1':{work:4,play:5}},mem:{'m-001':{sessionId:'s-130',kind:'dice',who:'세켈 콜트레인',text:'공개 추억 시험'}}});
     return j({ok:false})}
   const q=JSON.parse(route.request().postData()||'{}');WA.calls.push(q.op);
   if(q.op==='login')return j(q.pw==='admin'?{ok:true,token:'T',exp:Date.now()+1e9,role:'admin'}:q.pw==='friend'?{ok:true,token:'F',exp:Date.now()+1e9,role:'friend'}:{ok:false});
@@ -31,9 +31,9 @@ function webapp(route){
   if(q.op==='whoami')return j({ok:true,role});
   if(q.op==='sessions')return j({ok:true,sessions:[{'번호':'130','KP':'시험키퍼','PL':'시험플레이어','대장PC':'세켈','녹화':'있음','영상':'1부 https://youtu.be/x','링크':'https://drive.google.com/x'}]});
   if(q.op==='fav')return j({ok:true,fav:['coc-017']});
-  if(q.op==='pa_view')return j({ok:true,sum:{'s-130':'승인된 요약 시험'},end:{'s-130':'친구 결말 시험'},pt:{},rev:{}});
+  if(q.op==='pa_view')return j({ok:true,sum:{'s-130':'승인된 요약 시험'},end:{'s-130':'친구 결말 시험'},pt:{},rev:{},mem:{'m-001':{sessionId:'s-130',kind:'dice',who:'',text:'공개 추억 시험'},'m-002':{sessionId:'s-130',kind:'laugh',who:'',text:'친구 추억 시험'}}});
   if(role!=='admin')return j({ok:false,error:'role'});
-  if(q.op==='pa_get')return j({ok:true,rv:WA.rv,priv:{sessions:{'s-130':{summary:{text:'초안 요약 시험',status:'draft',by:'AI'},ending:{text:'비공개 결말 시험',status:'draft',vis:'비공개'},notes:'관리 메모 시험'}},playthroughs:{}}});
+  if(q.op==='pa_get')return j({ok:true,rv:WA.rv,priv:{sessions:{'s-130':{summary:{text:'초안 요약 시험',status:'draft',by:'AI'},ending:{text:'비공개 결말 시험',status:'draft',vis:'비공개'},notes:'관리 메모 시험'}},playthroughs:{},memories:{'m-002':{sessionId:'s-130',kind:'laugh',who:'',text:'친구 추억 시험',friends:true},'m-003':{sessionId:'s-130',kind:'quote',who:'세켈 콜트레인',text:'대사 후보 시험',friends:false}}}});
   if(q.op==='pa_set'){WA.rv=q.rv;return j({ok:true})}
   if(q.op==='pickset'){WA.picks=q.ids;return j({ok:true,picks:q.ids})}
   if(q.op==='coverset'){WA.cover[q.id]=q.src;return j({ok:true,cover:WA.cover})}
@@ -93,6 +93,7 @@ function webapp(route){
   ok('추모관에 로스트 캐릭터',(await p.$$eval('.memoriam .pc',e=>e.length))>0);
   await go('journey'); ok('발자취',(await text()).includes('년의 모험'));
   await go('journey/2022'); ok('연도 주소',(await text()).includes('2022년의 모험'));
+  await go('memory'); {const t=await text(); ok('방문객: 승인한 추억만 추억관에',t.includes('공개 추억 시험')&&!t.includes('친구 추억 시험'))}
   await go('inbox'); ok('작업함은 방문객에게 닫힘',(await text()).includes('관리자 화면이에요'));
   await p.keyboard.press('Control+k'); await p.fill('#q','195'); await p.waitForTimeout(100); ok('통합 검색 번호',(await p.textContent('#sres')).includes('트라이앵글')); await p.keyboard.press('Escape');
   // Oracle Dice: 서고 → 주사위 → 다시 가져오기(합치기) → 서고로 돌아가기
@@ -112,6 +113,7 @@ function webapp(route){
   await p.click('#loginBtn'); await p.fill('#pw','friend'); await Promise.all([p.waitForNavigation(),p.click('#loginForm [type=submit]')]); await p.waitForSelector('main#view > *'); await p.waitForTimeout(400);
   ok('친구 로그인 표시',(await p.textContent('#loginBtn')).includes('친구'));
   await go('s-130'); await p.waitForTimeout(200); const f130=await text(); ok('친구: 함께한 사람·녹화 보임',f130.includes('시험키퍼')&&f130.includes('한글 파일 열기')); ok('친구: 친구 범위 결말 보임',f130.includes('친구 결말 시험')); ok('친구: 초안·메모 안 보임',!f130.includes('초안 요약')&&!f130.includes('관리 메모'));
+  await go('memory'); ok('친구: 친구 범위 추억도 보임',(await text()).includes('친구 추억 시험'));
   await go('inbox'); ok('친구: 작업함 닫힘',(await text()).includes('관리자 화면이에요'));
   await p.click('#loginBtn'); await p.waitForNavigation(); await p.waitForSelector('main#view > *');
   ok('로그아웃',(await p.textContent('#loginBtn')).includes('로그인')&&!(await p.evaluate(()=>localStorage.getItem('tok'))));
@@ -122,6 +124,11 @@ function webapp(route){
   await go('inbox'); await p.waitForTimeout(300); ok('관리자: 작업함 열림',(await p.$$('[data-inbtab]')).length>0);
   await p.click('[data-inbtab="end"]'); await p.waitForTimeout(100); await p.click('[data-inbsel="end:s-130"]'); await p.selectOption('#inbVis','친구'); await p.click('[data-inbact="approve"]'); await p.waitForTimeout(1000);
   ok('관리자: 승인이 서버에 저장됨',WA.rv['end:s-130']&&WA.rv['end:s-130'].vis==='친구'&&WA.rv['sum:s-130']);
+  await p.click('[data-inbtab="scene"]'); await p.waitForTimeout(100); await p.click('[data-inbsel="mem:m-002"]');
+  ok('관리자: 친구 장면은 친구 범위만',(await p.$$eval('#inbVis option',o=>o.map(x=>x.value))).join()==='친구');
+  await p.fill('#inbText','고친 추억 시험'); await p.click('[data-inbact="approve"]'); await p.waitForTimeout(900);
+  ok('관리자: 추억 승인 저장',WA.rv['mem:m-002']&&WA.rv['mem:m-002'].st==='ok'&&WA.rv['mem:m-002'].vis==='친구'&&WA.rv['mem:m-002'].text==='고친 추억 시험');
+  await go('memory'); await p.waitForTimeout(400); {const t=await text(); ok('관리자: 승인한 것만 추억관에',t.includes('고친 추억 시험')&&!t.includes('대사 후보 시험'))}
   await go('sc-yeolgae'); await p.check('[data-scmark="wish"]'); await p.waitForTimeout(900); ok('관리자: 하고 싶음 저장',WA.rv['sc:sc-yeolgae']&&WA.rv['sc:sc-yeolgae'].wish===true);
   await p.fill('#scmemo','개변 시험'); await p.click('[data-scmemo]'); await p.selectOption('[data-rate="pt-yeolgae-1"][data-k="work"]','3'); await p.waitForTimeout(900);
   ok('관리자: 개변 메모·평점 저장',WA.rv['sc:sc-yeolgae'].memo==='개변 시험'&&WA.rv['rate:pt-yeolgae-1'].work===3);

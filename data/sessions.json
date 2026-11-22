@@ -323,7 +323,9 @@
   "rule": "CoC",
   "role": "PL",
   "aborted": true,
-  "pcs": [],
+  "pcs": [
+   "coc-008"
+  ],
   "date": {
    "v": "2021-09-24",
    "prec": "day",
@@ -347,7 +349,7 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": false
+  "hasSource": true
  },
  {
   "id": "s-195-1",
@@ -583,7 +585,9 @@
   "playthroughId": "pt-005-1",
   "rule": "CoC",
   "role": "PL",
-  "pcs": [],
+  "pcs": [
+   "coc-044"
+  ],
   "date": {
    "v": null,
    "prec": "unknown",
@@ -833,7 +837,11 @@
   "playthroughId": "pt-019-1",
   "rule": "카미가카리",
   "role": "PL",
-  "pcs": [],
+  "pcs": [
+   {
+    "name": "레이날드 피렌체"
+   }
+  ],
   "date": {
    "v": "2021-07-02",
    "prec": "day",
@@ -973,7 +981,9 @@
   "playthroughId": "pt-027-1",
   "rule": "저녁노을어스름",
   "role": "PL",
-  "pcs": [],
+  "pcs": [
+   "etc-001"
+  ],
   "date": {
    "v": "2021-07-25",
    "prec": "day",
@@ -1189,7 +1199,9 @@
   "playthroughId": "pt-039-1",
   "rule": "피아스코",
   "role": "PL",
-  "pcs": [],
+  "pcs": [
+   "etc-024"
+  ],
   "date": {
    "v": null,
    "prec": "unknown",
@@ -1311,7 +1323,9 @@
   "playthroughId": "pt-047-1",
   "rule": "CoC",
   "role": "PL",
-  "pcs": [],
+  "pcs": [
+   "coc-064"
+  ],
   "date": {
    "v": "2021-09-27",
    "prec": "day",
@@ -1415,7 +1429,9 @@
   "playthroughId": "pt-053-1",
   "rule": "CoC",
   "role": "PL",
-  "pcs": [],
+  "pcs": [
+   "coc-009"
+  ],
   "date": {
    "v": "2021-10-17",
    "prec": "day",
@@ -1463,7 +1479,9 @@
   "playthroughId": "pt-056-1",
   "rule": "CoC",
   "role": "PL",
-  "pcs": [],
+  "pcs": [
+   "coc-001"
+  ],
   "date": {
    "v": null,
    "prec": "unknown",
@@ -1479,7 +1497,9 @@
   "playthroughId": "pt-057-1",
   "rule": "저녁노을어스름",
   "role": "PL",
-  "pcs": [],
+  "pcs": [
+   "etc-003"
+  ],
   "date": {
    "v": "2021-10-24",
    "prec": "day",
@@ -1567,7 +1587,9 @@
   "playthroughId": "pt-062-1",
   "rule": "CoC",
   "role": "PL",
-  "pcs": [],
+  "pcs": [
+   "coc-070"
+  ],
   "date": {
    "v": "2021-11-17",
    "prec": "day",
@@ -1620,7 +1642,9 @@
   "playthroughId": "pt-061-1",
   "rule": "던전월드",
   "role": "PL",
-  "pcs": [],
+  "pcs": [
+   "etc-010"
+  ],
   "date": {
    "v": "2021-11-23",
    "prec": "day",
@@ -1843,7 +1867,9 @@
   "playthroughId": "pt-080-1",
   "rule": "인세인",
   "role": "PL",
-  "pcs": [],
+  "pcs": [
+   "etc-014"
+  ],
   "date": {
    "v": "2021-12-22",
    "prec": "day",
@@ -1897,7 +1923,9 @@
   "playthroughId": "pt-083-1",
   "rule": "CoC",
   "role": "PL",
-  "pcs": [],
+  "pcs": [
+   "coc-081"
+  ],
   "date": {
    "v": "2021-12-25",
    "prec": "day",
@@ -2019,7 +2047,9 @@
   "playthroughId": "pt-091-1",
   "rule": "CoC",
   "role": "PL",
-  "pcs": [],
+  "pcs": [
+   "coc-011"
+  ],
   "date": {
    "v": "2022-01-16",
    "prec": "day",
@@ -2053,7 +2083,9 @@
   "playthroughId": "pt-093-1",
   "rule": "CoC",
   "role": "PL",
-  "pcs": [],
+  "pcs": [
+   "coc-085"
+  ],
   "date": {
    "v": "2022-01-22",
    "prec": "day",
@@ -2087,7 +2119,9 @@
   "playthroughId": "pt-095-1",
   "rule": "CoC",
   "role": "PL",
-  "pcs": [],
+  "pcs": [
+   "coc-087"
+  ],
   "date": {
    "v": "2022-01-29",
    "prec": "day",
@@ -2155,7 +2189,9 @@
   "playthroughId": "pt-100-1",
   "rule": "저녁노을어스름",
   "role": "PL",
-  "pcs": [],
+  "pcs": [
+   "etc-004"
+  ],
   "date": {
    "v": "2022-02-22",
    "prec": "day",
@@ -2171,7 +2207,9 @@
   "playthroughId": "pt-101-1",
   "rule": "CoC",
   "role": "PL",
-  "pcs": [],
+  "pcs": [
+   "coc-044"
+  ],
   "date": {
    "v": "2022-02-24",
    "prec": "day",
@@ -2187,7 +2225,9 @@
   "playthroughId": "pt-102-1",
   "rule": "CoC",
   "role": "PL",
-  "pcs": [],
+  "pcs": [
+   "coc-089"
+  ],
   "date": {
    "v": "2022-03-04",
    "prec": "day",
@@ -2224,7 +2264,9 @@
   "playthroughId": "pt-104-1",
   "rule": "CoC",
   "role": "PL",
-  "pcs": [],
+  "pcs": [
+   "coc-090"
+  ],
   "date": {
    "v": "2022-03-13",
    "prec": "day",
@@ -2421,7 +2463,9 @@
   "playthroughId": "pt-117-1",
   "rule": "기타",
   "role": "PL",
-  "pcs": [],
+  "pcs": [
+   "coc-103"
+  ],
   "date": {
    "v": "2022-05-21",
    "prec": "day",
@@ -2473,7 +2517,9 @@
   "playthroughId": "pt-120-1",
   "rule": "CoC",
   "role": "PL",
-  "pcs": [],
+  "pcs": [
+   "coc-014"
+  ],
   "date": {
    "v": "2022-06-06",
    "prec": "day",
@@ -2545,7 +2591,9 @@
   "campaignId": "cp-masks",
   "rule": "CoC",
   "role": "PL",
-  "pcs": [],
+  "pcs": [
+   "coc-038"
+  ],
   "date": {
    "v": "2022-08-08",
    "prec": "day",
@@ -2613,7 +2661,9 @@
   "playthroughId": "pt-131-1",
   "rule": "CoC",
   "role": "PL",
-  "pcs": [],
+  "pcs": [
+   "coc-095"
+  ],
   "date": {
    "v": null,
    "prec": "unknown",
@@ -2629,7 +2679,9 @@
   "playthroughId": "pt-132-1",
   "rule": "CoC",
   "role": "PL",
-  "pcs": [],
+  "pcs": [
+   "coc-042"
+  ],
   "date": {
    "v": "2022-10-31",
    "prec": "day",
@@ -2681,7 +2733,9 @@
   "playthroughId": "pt-135-1",
   "rule": "둘이서 수사",
   "role": "PL",
-  "pcs": [],
+  "pcs": [
+   "etc-009"
+  ],
   "date": {
    "v": "2022-11-27",
    "prec": "day",
@@ -2729,7 +2783,9 @@
   "playthroughId": "pt-138-1",
   "rule": "CoC",
   "role": "PL",
-  "pcs": [],
+  "pcs": [
+   "coc-097"
+  ],
   "date": {
    "v": "2023-01-03",
    "prec": "day",
@@ -2745,7 +2801,9 @@
   "playthroughId": "pt-139-1",
   "rule": "CoC",
   "role": "PL",
-  "pcs": [],
+  "pcs": [
+   "coc-097"
+  ],
   "date": {
    "v": "2023-01-12",
    "prec": "day",
@@ -2921,7 +2979,9 @@
   "playthroughId": "pt-150-1",
   "rule": "UW",
   "role": "PL",
-  "pcs": [],
+  "pcs": [
+   "uw-004"
+  ],
   "date": {
    "v": "2024-03-19",
    "prec": "day",
@@ -2973,7 +3033,9 @@
   "playthroughId": "pt-153-1",
   "rule": "CoC",
   "role": "PL",
-  "pcs": [],
+  "pcs": [
+   "coc-039"
+  ],
   "date": {
    "v": null,
    "prec": "unknown",
@@ -2989,7 +3051,9 @@
   "playthroughId": "pt-154-1",
   "rule": "UW",
   "role": "PL",
-  "pcs": [],
+  "pcs": [
+   "uw-005"
+  ],
   "date": {
    "v": null,
    "prec": "unknown",
@@ -3059,7 +3123,9 @@
   "playthroughId": "pt-158-1",
   "rule": "CoC",
   "role": "PL",
-  "pcs": [],
+  "pcs": [
+   "coc-021"
+  ],
   "date": {
    "v": "2024-12-02",
    "prec": "day",
@@ -3109,7 +3175,9 @@
   "playthroughId": "pt-161-1",
   "rule": "UW",
   "role": "PL",
-  "pcs": [],
+  "pcs": [
+   "uw-006"
+  ],
   "date": {
    "v": "2025-01-25",
    "prec": "day",
@@ -3213,7 +3281,9 @@
   "playthroughId": "pt-167-1",
   "rule": "CoC",
   "role": "PL",
-  "pcs": [],
+  "pcs": [
+   "coc-025"
+  ],
   "date": {
    "v": "2025-08-02",
    "prec": "day",
@@ -3229,7 +3299,9 @@
   "playthroughId": "pt-168-1",
   "rule": "CoC",
   "role": "PL",
-  "pcs": [],
+  "pcs": [
+   "coc-026"
+  ],
   "date": {
    "v": null,
    "prec": "unknown",
@@ -3369,7 +3441,9 @@
   "playthroughId": "pt-176-1",
   "rule": "에모크로아",
   "role": "PL",
-  "pcs": [],
+  "pcs": [
+   "etc-019"
+  ],
   "date": {
    "v": "2025-12-07",
    "prec": "day",
@@ -3683,7 +3757,9 @@
   "playthroughId": "pt-196-1",
   "rule": "CoC",
   "role": "PL",
-  "pcs": [],
+  "pcs": [
+   "coc-099"
+  ],
   "date": {
    "v": "2026-05-29",
    "prec": "day",
@@ -3771,7 +3847,9 @@
   "playthroughId": "pt-204-1",
   "rule": "UW",
   "role": "PL",
-  "pcs": [],
+  "pcs": [
+   "uw-021"
+  ],
   "date": {
    "v": "2026-07-10",
    "prec": "day",
@@ -3910,7 +3988,9 @@
   "playthroughId": "pt-x01-1",
   "rule": "CoC",
   "role": "PL",
-  "pcs": [],
+  "pcs": [
+   "coc-048"
+  ],
   "date": {
    "v": "2021-06-11",
    "prec": "day",
@@ -3955,7 +4035,9 @@
   "playthroughId": "pt-x04-1",
   "rule": "UW",
   "role": "PL",
-  "pcs": [],
+  "pcs": [
+   "uw-024"
+  ],
   "date": {
    "v": "2026-04-08",
    "prec": "day",
@@ -3985,7 +4067,9 @@
   "playthroughId": "pt-x06-1",
   "rule": "UW",
   "role": "PL",
-  "pcs": [],
+  "pcs": [
+   "uw-016"
+  ],
   "date": {
    "v": "2026-01-11",
    "prec": "day",
@@ -4015,7 +4099,9 @@
   "playthroughId": "pt-x08-1",
   "rule": "UW",
   "role": "PL",
-  "pcs": [],
+  "pcs": [
+   "uw-028"
+  ],
   "date": {
    "v": "2026-05-12",
    "prec": "day",
