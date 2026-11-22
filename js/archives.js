@@ -6,6 +6,12 @@ const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.
 let D=null, role='visitor';
 // 검토 기록: 정식판에서는 서버에 저장한다. 공개 데이터에는 이미 승인된 것만 들어 있어 방문객 화면은 이것을 쓰지 않는다.
 let RV={};
+// 추억 후보(세션 기록에서 뽑은 명대사·주사위·웃긴 장면·감동 장면). 관리자는 비공개 묶음 전체, 그 밖은 서버가 승인·범위로 거른 것만 받는다
+let MEM={};
+const MEM_KIND={quote:'명대사',dice:'전설적인 주사위',laugh:'웃겼던 순간',moment:'감동적인 장면'};
+const memRV=m=>RV['mem:'+m.id]||{};
+const memState=m=>memRV(m).st||'draft', memText=m=>memRV(m).text||m.text, memVis=m=>memRV(m).vis||(m.friends?'친구':'공개');
+const shownMems=kind=>Object.values(MEM).filter(m=>m.kind===kind&&(!isAdmin()||memState(m)==='ok')).sort((a,b)=>String(a.sessionId).localeCompare(String(b.sessionId))||String(a.id).localeCompare(String(b.id)));
 let saveRV=()=>{};
 // 즐겨찾기: 지금 캐릭터 서고(/Character_Archive/)와 같은 주소라 같은 'fav' 칸을 함께 쓴다
 let FAV=new Set(store.get('fav',[]));
@@ -426,13 +432,15 @@ function charDetail(c){
 function memoryView(){
   const lost=D.characters.filter(isLost);
   const albums=D.characters.filter(c=>(c['앨범']||[]).length).sort((a,b)=>b['앨범'].length-a['앨범'].length);
-  const halls=[['명대사','캐릭터 대표 대사 · 세션 속 대사는 승인 후 따로 모아요'],['전설적인 주사위','믿기 힘든 판정의 순간'],['웃겼던 순간','다시 읽어도 웃긴 장면'],['감동적인 장면','오래 남은 장면']];
+  const halls=[['명대사','세션 속 대사와 캐릭터 대표 대사','quote'],['전설적인 주사위','믿기 힘든 판정의 순간','dice'],['웃겼던 순간','다시 읽어도 웃긴 장면','laugh'],['감동적인 장면','오래 남은 장면','moment']];
+  const memLine=m=>{const s=byId[m.sessionId];return `<p style="margin-top:12px;color:var(--ivory)">${m.kind==='quote'?`<span style="font-family:var(--f-head);font-size:16px">“${esc(memText(m))}”</span>`:esc(memText(m))}${isAdmin()&&memVis(m)!=='공개'?' <span class="tag warn">친구에게만</span>':''}<br><small class="locked">${m.who?esc(m.who)+' · ':''}${s?`<a href="#${s.id}" style="color:var(--gilt)">${esc(s.title)}</a>`:''}</small></p>`};
   const quotes=D.characters.filter(c=>c['한마디']);
   const day=Math.floor(Date.now()/864e5), qs=quotes.length?Array.from({length:Math.min(4,quotes.length)},(_,i)=>quotes[(day*7+i*13)%quotes.length]).filter((c,i,a)=>a.indexOf(c)===i):[];
   return `<section class="mhead"><div class="eyebrow">THE PRAYPEACE ARCHIVES</div><h2>MEMORY</h2><p>모험은 끝났지만, 이야기는 남아 있다.</p></section>
   <div class="sect-t">HALL OF MEMORIES</div>
   <section class="halls">${halls.map(([h,p],i)=>`<div class="hall"><div class="k">${['QUOTES','LEGENDARY DICE','LAUGHTER','MOMENTS'][i]}</div><h3>${h}</h3><p>${p}</p>
-    ${i===0&&qs.length?qs.map(c=>`<p style="margin-top:12px;color:var(--ivory);font-family:var(--f-head);font-size:16px">“${esc(c['한마디'])}” <a href="#${c.id}" style="font-size:13px;color:var(--gilt);font-family:var(--f-kr)">— ${esc(c['이름'])}</a></p>`).join('')+`<p class="locked" style="margin-top:8px">대표 대사 ${quotes.length}개 중 오늘의 ${qs.length}개</p>`:`<p style="margin-top:12px" class="locked">아직 승인된 기록이 없어요. 세션 기록에서 후보를 뽑아 대장이 승인한 것만 여기에 걸려요.</p>`}</div>`).join('')}</section>
+    ${shownMems(halls[i][2]).map(memLine).join('')}
+    ${i===0&&qs.length?qs.map(c=>`<p style="margin-top:12px;color:var(--ivory);font-family:var(--f-head);font-size:16px">“${esc(c['한마디'])}” <a href="#${c.id}" style="font-size:13px;color:var(--gilt);font-family:var(--f-kr)">— ${esc(c['이름'])}</a></p>`).join('')+`<p class="locked" style="margin-top:8px">대표 대사 ${quotes.length}개 중 오늘의 ${qs.length}개</p>`:shownMems(halls[i][2]).length?'':`<p style="margin-top:12px" class="locked">아직 승인된 기록이 없어요. 세션 기록에서 후보를 뽑아 대장이 승인한 것만 여기에 걸려요.${role==='visitor'?' 친구가 나오는 장면은 로그인하면 보여요.':''}</p>`}</div>`).join('')}</section>
   <div class="sect-t">GALLERY</div>
   <p class="locked" style="text-align:center;margin:-4px 0 14px">캐릭터마다 대표 그림 하나만 보여요. 누르면 그 캐릭터의 앨범 ${albums.reduce((n,c)=>n+c['앨범'].length,0)}장을 넘겨 볼 수 있어요.</p>
   ${albums.length?`<div class="gallery">${albums.map(c=>`<button class="ccard" style="padding:0;text-align:left;font:inherit;color:inherit;cursor:zoom-in" data-lbopen="${c.id}" data-i="0"><div class="pic"><img src="${esc(c['앨범'][0][0])}" alt="" loading="lazy"><span class="fav">${c['앨범'].length}장</span></div><div class="cap"><b>${esc(c['이름'])}</b><small>${esc(RULES[shelfOf(c)]||shelfOf(c))}</small></div></button>`).join('')}</div>`:'<p class="empty">앨범 그림이 아직 없어요.</p>'}
@@ -481,6 +489,7 @@ function inbItems(tab){
   if(tab==='end') return D.sessions.filter(s=>s.ending).map(s=>({key:'end:'+s.id,s,title:s.title,sub:`${s.no??''} · ${s.rule} · ${endVis(s)}`,st:endState(s)}));
   if(tab==='pt') return D.playthroughs.map(p=>{const i=ptInfo(p.id);return {key:'pt:'+p.id,p,title:scen[p.scenarioId]?.title||p.id,sub:`${p.id} · 세션 ${ptSessions(p.id).length}회 · ${i.sure?'확정 '+i.status:'AI 추정 '+i.status}`,st:i.sure?'ok':'draft'}});
   if(tab==='rev') return D.playthroughs.filter(p=>RV['rev:'+p.id]?.text).map(p=>({key:'rev:'+p.id,p,title:scen[p.scenarioId]?.title||p.id,sub:RV['rev:'+p.id].vis,st:'ok'}));
+  if(tab==='scene') return Object.values(MEM).map(m=>{const s=byId[m.sessionId];return {key:'mem:'+m.id,m,s,title:`${MEM_KIND[m.kind]||m.kind} · ${s?s.title:m.sessionId}`,sub:`${s?.no??'번호 없음'} · ${m.who||'여럿'} · ${m.friends?'친구 PC 나옴':'대장 PC만'} · ${memVis(m)}`,st:memState(m)}});
   return [];
 }
 const inbWait=x=>['draft','fix','hold'].includes(x.st);
@@ -504,7 +513,7 @@ function renderInbox(){
   const all=inbItems(INB.tab), list=inbFiltered(), done=all.filter(x=>!inbWait(x)).length;
   if(!INB.sel||!all.some(x=>x.key===INB.sel)) INB.sel=list[0]?.key||null;
   $('#inbProg').innerHTML=all.length?`<div class="prog" title="검토 끝난 비율"><i style="width:${Math.round(done/all.length*100)}%"></i></div><small class="locked">${done} / ${all.length} 검토 끝</small>`:'';
-  $('#inbList').innerHTML=list.length?list.map(x=>`<button class="inb-row" data-inbsel="${esc(x.key)}" aria-current="${x.key===INB.sel}"><b>${esc(x.title)}</b><small>${esc(x.sub)}</small><span>${DR[x.key]!=null?'<i class="tag gold">임시 저장</i>':''}<i class="tag ${x.st==='ok'?'ok':x.st==='no'?'bad':'warn'}">${ST_LABEL[x.st]||x.st}</i></span></button>`).join(''):`<p class="locked">${INB.tab==='scene'?'아직 후보가 없어요. 정식판에서 AI가 세션 기록에서 명대사·주사위·웃긴 장면 후보를 뽑아 넣어요.':INB.tab==='rev'?'아직 쓴 후기가 없어요. 시나리오 상세의 각 회차에서 써요.':'이 조건에 맞는 항목이 없어요.'}</p>`;
+  $('#inbList').innerHTML=list.length?list.map(x=>`<button class="inb-row" data-inbsel="${esc(x.key)}" aria-current="${x.key===INB.sel}"><b>${esc(x.title)}</b><small>${esc(x.sub)}</small><span>${DR[x.key]!=null?'<i class="tag gold">임시 저장</i>':''}<i class="tag ${x.st==='ok'?'ok':x.st==='no'?'bad':'warn'}">${ST_LABEL[x.st]||x.st}</i></span></button>`).join(''):`<p class="locked">${INB.tab==='scene'?'아직 후보가 없어요. AI가 세션 기록에서 명대사·주사위·웃긴 장면 후보를 뽑아 비공개 묶음에 넣으면 여기에 떠요.':INB.tab==='rev'?'아직 쓴 후기가 없어요. 시나리오 상세의 각 회차에서 써요.':'이 조건에 맞는 항목이 없어요.'}</p>`;
   renderInbEditor();
 }
 function renderInbEditor(){
@@ -537,6 +546,14 @@ function renderInbEditor(){
   } else if(INB.tab==='rev'){
     const rv=RV[x.key];
     el.innerHTML=`${head}<p style="white-space:pre-line">${esc(rv.text)}</p><p class="locked">후기는 <a href="#${x.p.scenarioId}">시나리오 상세</a>의 회차에서 고쳐요.</p>${nav}`;
+  } else if(INB.tab==='scene'){
+    const m=x.m, cur=DR[x.key]??memText(m), vis=memVis(m);
+    el.innerHTML=`${head}<div class="cmp"><div><h4>AI가 뽑은 원래 후보 · ${esc(MEM_KIND[m.kind]||m.kind)}</h4><p>${esc(m.text)}</p></div><div><h4>누가 나오나</h4><p>${m.friends?'친구 PC가 나오는 장면이라 <b>로그인한 사람에게만</b> 걸 수 있어요.':'대장 PC나 NPC만 나와요. 공개로 걸어도 돼요.'}</p></div></div>
+    <label for="inbText" class="k" style="display:block;margin:12px 0 4px">걸릴 글 <span id="inbDirty"></span></label>
+    <textarea class="inp" id="inbText" data-draft="${esc(x.key)}" rows="3">${esc(cur)}</textarea>
+    <small class="locked" id="inbSaved">닉네임은 쓰지 말고 캐릭터 이름만 써요. 고치기 시작하면 바로 임시 저장돼요</small>
+    <div class="row-actions"><label class="locked" for="inbVis">공개 범위</label><select class="inp" id="inbVis">${(m.friends?['친구']:['공개','친구']).map(v=>`<option${vis===v?' selected':''}>${v}</option>`).join('')}</select>
+    <button class="btn gilt" data-inbact="approve">추억관에 걸고 다음 ›</button><button class="btn" data-inbact="hold">보류</button><button class="btn" data-inbact="reject">거절</button>${RV[x.key]||DR[x.key]!=null?'<button class="btn" data-inbact="restore">처음 상태로</button>':''}</div>${nav}`;
   }
 }
 function inbAct(a){
@@ -559,6 +576,13 @@ function inbAct(a){
   } else if(type==='end'){
     if(a==='restore')delete RV[k]; else RV[k]={st:a==='approve'?'ok':a==='hold'?'hold':'no',vis:$('#inbVis').value};
     toast(a==='approve'?`결말을 "${RV[k].vis}" 범위로 승인했어요`:'처리했어요');
+  } else if(type==='mem'){
+    const m=MEM[id], cur=(DR[k]??memText(m)).trim();
+    if(a==='approve'&&!cur){toast('빈 글은 걸 수 없어요');return}
+    if(a==='restore')delete RV[k];
+    else{const r={st:a==='approve'?'ok':a==='hold'?'hold':'no',vis:m.friends?'친구':($('#inbVis')?.value||'공개')};if(cur&&cur!==m.text)r.text=cur;RV[k]=r}
+    delete DR[k]; saveDR();
+    toast(a==='approve'?`추억관에 "${RV[k].vis}" 범위로 걸었어요`:a==='restore'?'처음 상태로 되돌렸어요':'처리했어요');
   } else if(type==='pt'){
     if(a==='restore')delete RV[k]; else RV[k]={status:$('#inbPt').value,endedAt:$('#inbEndAt').value||null};
     toast(a==='restore'?'AI 추정으로 되돌렸어요':'회차 상태를 확정했어요');
@@ -701,12 +725,14 @@ function overlayPub(o){if(!o)return;
   Object.entries(o.rev||{}).forEach(([id,r])=>{if(!isAdmin())RV['rev:'+id]=r});
   Object.entries(o.sc||{}).forEach(([id,m])=>{if(!isAdmin())RV['sc:'+id]={owned:!!m.owned,wish:!!m.wish,prep:!!m.prep}});
   Object.entries(o.rate||{}).forEach(([id,r])=>{if(!isAdmin())RV['rate:'+id]=r});
+  if(!isAdmin()){MEM={};Object.entries(o.mem||{}).forEach(([id,m])=>{MEM[id]={id,...m}})}
 }
 // 관리자: 비공개 원본(초안·메모)을 공개 데이터 위에 겹친다
 function overlayPriv(pv){if(!pv)return;
   Object.entries(pv.sessions||{}).forEach(([id,x])=>{const s=byId[id];if(!s)return;if(x.summary)s.summary=x.summary;if(x.ending)s.ending=x.ending;if(x.notes)s.notes=x.notes;
     if(x.pcNotes)s.pcs=s.pcs.map(p=>typeof p==='object'?(x.pcNotes.find(n=>n.name===p.name)||p):p)});
   Object.entries(pv.playthroughs||{}).forEach(([id,p])=>{if(PT[id])Object.assign(PT[id],p)});
+  MEM={};Object.entries(pv.memories||{}).forEach(([id,m])=>{MEM[id]={id,...m}});
 }
 async function syncServer(){
   try{const j=await(await fetch(LOG_URL+'?op=covers')).json();if(j.ok){applyCovers(j.cover);PICKS=j.picks||[]}}catch{}
@@ -826,7 +852,7 @@ function render(){
 const saveSQ=()=>store.set('pa-sq',SQ);
 document.addEventListener('input',e=>{
   const t=e.target;
-  if(t.dataset.draft){const k=t.dataset.draft,s0=byId[k.slice(4)];if(t.value===sumText(s0))delete DR[k];else DR[k]=t.value;saveDR();const dd=$('#inbDirty');if(dd)dd.innerHTML=DR[k]!=null?'<span class="tag gold">저장 안 한 변경</span>':'';const sv=$('#inbSaved');if(sv)sv.textContent=DR[k]!=null?'임시 저장됨 · 다른 항목을 승인하거나 페이지를 옮겨도 남아요':'바뀐 것 없음';const row=document.querySelector(`[data-inbsel="${k}"] span`);if(row&&DR[k]!=null&&!row.querySelector('.gold'))row.insertAdjacentHTML('afterbegin','<i class="tag gold">임시 저장</i>')}
+  if(t.dataset.draft){const k=t.dataset.draft,base=k.startsWith('mem:')?memText(MEM[k.slice(4)]):sumText(byId[k.slice(4)]);if(t.value===base)delete DR[k];else DR[k]=t.value;saveDR();const dd=$('#inbDirty');if(dd)dd.innerHTML=DR[k]!=null?'<span class="tag gold">저장 안 한 변경</span>':'';const sv=$('#inbSaved');if(sv)sv.textContent=DR[k]!=null?'임시 저장됨 · 다른 항목을 승인하거나 페이지를 옮겨도 남아요':'바뀐 것 없음';const row=document.querySelector(`[data-inbsel="${k}"] span`);if(row&&DR[k]!=null&&!row.querySelector('.gold'))row.insertAdjacentHTML('afterbegin','<i class="tag gold">임시 저장</i>')}
   else if(t.dataset.inbq!==undefined){INB.q=t.value;saveINB();renderInbox()}
   else if(t.dataset.sq){SQ[t.dataset.sq]=t.value;SQ.page=1;saveSQ();renderSessionList()}
   else if(t.dataset.scs){SCS[t.dataset.scs]=t.value;saveSCS();renderScenList()}
