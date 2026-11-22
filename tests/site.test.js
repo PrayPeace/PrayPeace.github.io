@@ -23,7 +23,7 @@ function webapp(route){
   const u=new URL(route.request().url()), j=o=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(o)});
   if(route.request().method()==='GET'){const op=u.searchParams.get('op');
     if(op==='covers')return j({ok:true,cover:WA.cover,picks:WA.picks});
-    if(op==='pa_pub')return j({ok:true,sum:{'s-130':'승인된 요약 시험'},end:{},pt:{'pt-angel-1':{status:'완주',endedAt:'2022-10-10'}},rev:{}});
+    if(op==='pa_pub')return j({ok:true,sum:{'s-130':'승인된 요약 시험'},end:{},pt:{'pt-angel-1':{status:'완주',endedAt:'2022-10-10'}},rev:{},sc:{'sc-angel':{owned:true,wish:false,prep:false}},rate:{'pt-angel-1':{work:4,play:5}}});
     return j({ok:false})}
   const q=JSON.parse(route.request().postData()||'{}');WA.calls.push(q.op);
   if(q.op==='login')return j(q.pw==='admin'?{ok:true,token:'T',exp:Date.now()+1e9,role:'admin'}:q.pw==='friend'?{ok:true,token:'F',exp:Date.now()+1e9,role:'friend'}:{ok:false});
@@ -75,7 +75,10 @@ function webapp(route){
   await p.click('[data-sqreset]'); await p.waitForTimeout(100);
   await go('s-130'); await p.waitForTimeout(300); const s130=await text(); ok('세션 상세: 서버가 승인한 요약은 보임',s130.includes('승인된 요약 시험')); ok('세션 상세: 초안·결말·메모 없음',!s130.includes('초안 요약')&&!s130.includes('결말 시험')&&!s130.includes('관리 메모')); ok('세션 상세: 날짜 추정 표시',s130.includes('추정'));
   ok('방문객: 함께한 사람 숨김',!s130.includes('시험키퍼')&&s130.includes('로그인하면'));
-  await go('sc-angel'); ok('서버가 확정한 회차 완주',(await text()).includes('완주'));
+  await go('sc-angel'); const ang=await text(); ok('서버가 확정한 회차 완주',ang.includes('완주'));
+  ok('방문객: 보유 표시·평점 보임',ang.includes('보유')&&ang.includes('★★★★☆')&&ang.includes('★★★★★')); ok('방문객: 관리자 입력 칸 없음',!(await p.$('[data-scmark]')));
+  await go(''); ok('처음 화면 한 줄들(최근 추가)',(await p.textContent('ul.today')).includes('최근 추가'));
+  await go('journey/2021'); const yb=await text(); ok('연감: 새로 만난 캐릭터',yb.includes('새로 만난 캐릭터')&&yb.includes('작별한 인물'));
   await go('sc-masks'); ok('시나리오 상세 회차',(await text()).includes('1회차')&&(await text()).includes('2회차'));
   await go('scenarios'); const nsc=await p.$$eval('#sclist .scard',e=>e.length); ok('시나리오 서고 전체 '+nsc+'곳',nsc>=200);
   await p.click('[data-scrule="UW"]'); await p.waitForTimeout(100); const nuw=await p.$$eval('#sclist .scard',e=>e.length); ok('시나리오 룰 고르기 UW '+nuw,nuw>10&&nuw<nsc);
@@ -119,6 +122,9 @@ function webapp(route){
   await go('inbox'); await p.waitForTimeout(300); ok('관리자: 작업함 열림',(await p.$$('[data-inbtab]')).length>0);
   await p.click('[data-inbtab="end"]'); await p.waitForTimeout(100); await p.click('[data-inbsel="end:s-130"]'); await p.selectOption('#inbVis','친구'); await p.click('[data-inbact="approve"]'); await p.waitForTimeout(1000);
   ok('관리자: 승인이 서버에 저장됨',WA.rv['end:s-130']&&WA.rv['end:s-130'].vis==='친구'&&WA.rv['sum:s-130']);
+  await go('sc-yeolgae'); await p.check('[data-scmark="wish"]'); await p.waitForTimeout(900); ok('관리자: 하고 싶음 저장',WA.rv['sc:sc-yeolgae']&&WA.rv['sc:sc-yeolgae'].wish===true);
+  await p.fill('#scmemo','개변 시험'); await p.click('[data-scmemo]'); await p.selectOption('[data-rate="pt-yeolgae-1"][data-k="work"]','3'); await p.waitForTimeout(900);
+  ok('관리자: 개변 메모·평점 저장',WA.rv['sc:sc-yeolgae'].memo==='개변 시험'&&WA.rv['rate:pt-yeolgae-1'].work===3);
   await go('coc-044'); await p.click('[data-pick="coc-044"]'); await p.waitForTimeout(300); ok('관리자: 첫 화면 추천 저장',WA.picks.includes('coc-044'));
   await p.click('.cd img.portrait'); await p.waitForTimeout(150); await p.click('[data-lb="1"]'); await p.click('#lbCover'); await p.waitForTimeout(300); ok('관리자: 대표 그림 저장',!!WA.cover['coc-044']); await p.keyboard.press('Escape');
   await go(''); ok('추천이 처음 화면에',(await p.textContent('.picks')).includes('서고지기의 추천'));

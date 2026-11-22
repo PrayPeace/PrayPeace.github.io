@@ -344,3 +344,17 @@ ol.hist .up{color:#9bc27f}ol.hist .down{color:#d98c7a}
 dialog.login{border:1px solid var(--gilt-dim);border-radius:12px;background:var(--shelf);color:inherit;padding:20px;max-width:min(420px,calc(100vw - 32px))}
 dialog.login::backdrop{background:rgba(0,0,0,.6)}
 dialog.login h3{margin:0 0 6px;font-family:var(--f-head)}
+
+/* 처음 화면 한 줄들 */
+ul.today{list-style:none;margin:0 0 18px;padding:10px 14px;border:1px solid var(--rule);border-radius:10px;background:var(--shelf);display:grid;gap:6px;font-size:13.5px}
+ul.today li{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+ul.today b{flex:0 0 7.5em;color:var(--gilt);font-weight:500;font-size:12.5px}
+ul.today span{flex:1;min-width:0}
+ul.today small{color:var(--dust)}
+/* 시나리오 관리자 입력 · 평점 */
+.stars{color:var(--gilt);letter-spacing:1px}
+.adminbox{border-style:dashed}
+label.chk{display:inline-flex;gap:6px;align-items:center;font-size:13.5px;margin-right:12px}
+/* 연감 */
+h4.ybh{margin:14px 0 6px;font-size:14px;color:var(--gilt)}
+.pcs{display:flex;flex-wrap:wrap;gap:6px;align-items:center}

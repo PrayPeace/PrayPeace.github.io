@@ -59,11 +59,15 @@ const cmpAsc=(a,b)=>sortKey(a)<sortKey(b)?-1:sortKey(a)>sortKey(b)?1:0;
 const sessionsOfChar=id=>D.sessions.filter(s=>(s.pcs||[]).includes(id)).sort(cmpAsc);
 const ptSessions=id=>D.sessions.filter(s=>s.playthroughId===id).sort((a,b)=>(a.part||0)-(b.part||0)||cmpAsc(a,b));
 const pcName=p=>typeof p==='string'?(chars[p]?.['이름']||p):p.name;
+// 대장이 사이트에서 넣는 시나리오 표시·평점: 서버 검토 기록(RV)의 sc:<시나리오id>, rate:<회차id>. 개변 메모는 관리자만
+const scMark=sc=>({owned:!!sc.owned,wish:!!sc.wish,prep:!!sc.prep,...(RV['sc:'+sc.id]||{})});
+const rateOf=ptid=>RV['rate:'+ptid]||null;
+const stars=n=>n?'★'.repeat(n)+'☆'.repeat(5-n):'';
 function scenStatus(sc){
   const ss=D.sessions.filter(s=>s.scenarioId===sc.id), st=[];
   if(ss.some(s=>s.role==='PL')) st.push('해 봄');
   if(ss.some(s=>s.role==='KP')) st.push('키퍼링');
-  if(sc.owned) st.push('보유'); if(sc.wish) st.push('하고 싶음');
+  const m=scMark(sc); if(m.owned) st.push('보유'); if(m.wish) st.push('하고 싶음'); if(m.prep) st.push('준비 중');
   if(sc.source==='자작'&&sc.sourceSure!==false) st.push('자작');
   return st;
 }
@@ -92,6 +96,17 @@ function yearsAll(){
   const ys=D.sessions.map(yearOf).filter(Boolean);
   const lo=Math.min(...ys), hi=Math.max(new Date().getFullYear(),...ys);
   return Array.from({length:hi-lo+1},(_,i)=>lo+i);
+}
+function todayLines(){
+  const dated=D.sessions.filter(s=>s.date&&s.date.v).sort(cmpAsc), recent=dated.slice(-3).reverse();
+  const going=D.playthroughs.map(p=>({p,i:ptInfo(p.id)})).filter(x=>x.i.shown==='진행 중').map(x=>scen[x.p.scenarioId]).filter(Boolean);
+  const d=new Date(), md=String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'), y=d.getFullYear();
+  const ago=D.sessions.filter(s=>s.date&&s.date.prec==='day'&&s.date.v.slice(5)===md&&+s.date.v.slice(0,4)<y);
+  const row=(k,html)=>html?`<li><b>${k}</b><span>${html}</span></li>`:'';
+  const L=[row('최근 추가',recent.map(s=>`<a href="#${s.id}">${esc(s.title)}</a> <small>${dateText(s.date,true)}</small>`).join(' · ')),
+    row('진행 중인 모험',going.slice(0,3).map(sc=>`<a href="#${sc.id}">${esc(sc.title)}</a>`).join(' · ')),
+    row('몇 년 전 오늘',ago.slice(0,3).map(s=>`<a href="#${s.id}">${y-(+s.date.v.slice(0,4))}년 전 · ${esc(s.title)}</a>${dateSure(s.date)?'':' <small>추정</small>'}`).join(' · '))].join('');
+  return L?`<ul class="today">${L}</ul>`:'';
 }
 function exhibit(){
   const C=D.characters, rich=c=>sessionsOfChar(c.id).length*3+(c['연대기']||[]).length*2+(c['앨범']||[]).length+(c['이야기']?2:0);
@@ -125,6 +140,7 @@ function home(){
     ${[['sessions','session','01','SESSION','세션 기록','함께 만들어 온 이야기'],['characters','character','02','CHARACTER','캐릭터 서고','우리가 살아 보았던 삶'],['scenarios','scenario','03','SCENARIO','시나리오 서고','모험이 기다리는 세계'],['memory','memory','04','MEMORY','추억관','잊고 싶지 않은 순간들'],['player','player','05','PLAYER','플레이어 서고','이 서고의 주인은 어떤 플레이어일까']].map(([h,i,n,t,k,p])=>`
     <a class="coll" href="#${h}"><div class="ph"><img src="img/coll-${i}.svg" alt="" loading="lazy"></div><div class="meta"><div class="no">${n}</div><h3>${t}</h3><p><b>${k}</b>${p}</p></div></a>`).join('')}
   </section>
+  ${todayLines()}
   ${exhibit()}
   <section class="duo">
     <div class="panel"><div class="k">FROM THE ARCHIVES</div><h2>서고에서 꺼낸 오래된 기억</h2>
@@ -253,7 +269,7 @@ function scenInfo(sc){
   const pcs=[...new Set(ss.flatMap(s=>(s.pcs||[]).filter(p=>typeof p==='string'&&chars[p])))];
   return {ss,n:ss.length,pts:new Set(ss.map(s=>s.playthroughId)).size,first:dated[0]?.date,last:dated[dated.length-1]?.date,pcs};
 }
-const SC_TAGS=['해 봄','키퍼링','여러 번 한 판','여러 세션','캠페인','자작','보유','하고 싶음'];
+const SC_TAGS=['해 봄','키퍼링','여러 번 한 판','여러 세션','캠페인','자작','보유','하고 싶음','준비 중'];
 function scenTags(sc,I){const t=scenStatus(sc);if(I.pts>1)t.push('여러 번 한 판');if(I.n>1)t.push('여러 세션');if(sc.campaignId)t.push('캠페인');return t}
 function scenList(){
   const q=SCS.q.trim().toLowerCase();
@@ -295,9 +311,13 @@ function scenarioDetail(sc){
   <div>${scenStatus(sc).map(t=>`<span class="tag gold">${t}</span>`).join('')}<span class="tag">${esc(sc.source)}</span>${sc.sourceSure===false?'<span class="tag warn">자작인지 확인 필요</span>':''}</div>
   <dl class="kv"><dt>룰</dt><dd>${esc(ruleLabel(sc.rule))}</dd>${(()=>{const I=scenInfo(sc);return (I.first?`<dt>플레이한 때</dt><dd>${dateText(I.first)}${I.last&&I.last.v!==I.first.v?' ~ '+dateText(I.last):''}</dd>`:'')+(I.pcs.length?`<dt>대장 캐릭터</dt><dd>${I.pcs.map(p=>pcChip(p)).join(' ')}</dd>`:'')})()}<dt>시대·배경</dt><dd>${esc(sc.era||'미기록')}</dd>${sc.campaignId?`<dt>캠페인</dt><dd>${esc(camp[sc.campaignId].title)}</dd>`:''}${sc.note?`<dt>메모</dt><dd>${esc(sc.note)}</dd>`:''}
   ${field('author','작가')}${field('players','권장 인원')}${field('time','예상 시간')}${field('genre','장르')}
-  ${isAdmin()?'<dt>평점</dt><dd class="locked">작품 평점과 플레이 경험 평점을 따로 매겨요 · 아직 없음</dd>':''}</dl>
+  ${(()=>{const R=pts.map(p=>rateOf(p.id)).filter(Boolean),avg=k=>{const v=R.map(r=>+r[k]).filter(Boolean);return v.length?Math.round(v.reduce((a,b)=>a+b,0)/v.length):0};return R.length?`<dt>대장 평점</dt><dd>작품 <span class="stars">${stars(avg('work'))}</span> · 플레이 경험 <span class="stars">${stars(avg('play'))}</span>${R.length>1?` <small class="locked">${R.length}회차 평균</small>`:''}</dd>`:''})()}</dl>
+  ${isAdmin()?(()=>{const m=scMark(sc);return `<div class="box adminbox"><h4>관리자 · 이 시나리오 표시</h4><div class="row-actions">${[['owned','보유'],['wish','하고 싶음'],['prep','준비 중']].map(([k,l])=>`<label class="chk"><input type="checkbox" data-scmark="${k}" data-sc="${esc(sc.id)}"${m[k]?' checked':''}> ${l}</label>`).join('')}</div>
+    <label class="locked" for="scmemo">개변 메모 · 키퍼링 준비 (관리자만 보여요)</label><textarea class="inp" id="scmemo" placeholder="바꾼 점, 준비할 것">${esc(m.memo||'')}</textarea><div class="row-actions"><button class="btn sm gilt" data-scmemo="${esc(sc.id)}">메모 저장</button></div></div>`})():''}
   ${pts.map((p,i)=>{const rv=RV['rev:'+p.id];return `<div class="pt"><h5>${pts.length>1?`${i+1}회차`:'플레이 기록'} · 세션 ${p.ss.length}회 ${ptLabel(p.info)}</h5>${isAdmin()&&p.info.note?`<div class="locked">${esc(p.info.note)}</div>`:''}${p.ss.map(s=>`<div><a href="#${s.id}">${p.ss.length>1&&s.part?s.part+'번째 · ':''}${esc(s.title)}</a> <small style="color:var(--dust)">${dateText(s.date)}</small> ${(s.pcs||[]).map(x=>`<span class="tag">${esc(pcName(x))}</span>`).join('')}</div>`).join('')}
     ${rv&&rv.text&&(isAdmin()||rv.vis==='공개'||(rv.vis==='친구'&&role==='friend'))?`<div class="box" style="margin-top:8px"><h4>대장 후기${isAdmin()?` · ${esc(rv.vis)}`:''}</h4><p style="margin:0;white-space:pre-line">${esc(rv.text)}</p></div>`:''}
+    ${rateOf(p.id)?`<div class="locked" style="margin-top:4px">평점 · 작품 <span class="stars">${stars(+rateOf(p.id).work)}</span> · 플레이 경험 <span class="stars">${stars(+rateOf(p.id).play)}</span></div>`:''}
+    ${isAdmin()?`<div class="row-actions" style="margin-top:6px"><label class="locked">작품 <select class="inp" data-rate="${esc(p.id)}" data-k="work" style="width:auto">${[0,1,2,3,4,5].map(n=>`<option value="${n}"${+(rateOf(p.id)?.work||0)===n?' selected':''}>${n?stars(n):'없음'}</option>`).join('')}</select></label><label class="locked">플레이 경험 <select class="inp" data-rate="${esc(p.id)}" data-k="play" style="width:auto">${[0,1,2,3,4,5].map(n=>`<option value="${n}"${+(rateOf(p.id)?.play||0)===n?' selected':''}>${n?stars(n):'없음'}</option>`).join('')}</select></label></div>`:''}
     ${isAdmin()?`<details style="margin-top:6px"><summary class="locked" style="cursor:pointer">이 회차 후기 쓰기</summary><textarea class="inp" id="rev-${esc(p.id)}" placeholder="스포일러가 있으면 공개 범위를 비공개나 친구로">${esc(rv?.text||'')}</textarea><div class="row-actions"><select class="inp" id="revv-${esc(p.id)}">${['비공개','친구','공개'].map(v=>`<option${(rv?.vis||'비공개')===v?' selected':''}>${v}</option>`).join('')}</select><button class="btn sm gilt" data-rev="${esc(p.id)}">후기 저장</button></div></details>`:''}
   </div>`}).join('')}
   </div>`;
@@ -428,7 +448,10 @@ function journeyView(y){
   const pts=[...new Set(ss.map(s=>s.playthroughId))].map(id=>ptInfo(id));
   const doneY=D.playthroughs.map(p=>ptInfo(p.id)).filter(i=>i.shown==='완주'&&i.endedAt&&+i.endedAt.slice(0,4)===y).length, doneNoDate=D.playthroughs.map(p=>ptInfo(p.id)).filter(i=>i.shown==='완주'&&!i.endedAt).length;
   const unknown=D.sessions.filter(s=>!yearOf(s)).length;
-  const lost=D.characters.filter(c=>/로스트|사망/.test(c['상태']||'')).length;
+  const firstY=c=>{const s=sessionsOfChar(c.id).find(x=>yearOf(x));return s?yearOf(s):null}, lastS=c=>{const L=sessionsOfChar(c.id).filter(x=>yearOf(x));return L[L.length-1]};
+  const newChars=D.characters.filter(c=>firstY(c)===y), bye=D.characters.filter(c=>isLost(c)&&lastS(c)&&yearOf(lastS(c))===y);
+  const lostNoDate=D.characters.filter(c=>isLost(c)&&!lastS(c)).length;
+  const face=c=>`<a class="pc" href="#${c.id}">${c.img?`<img src="${esc(c.img)}" alt="">`:''}${esc(c['이름'])}</a>`;
   return `<div class="pagehead"><h2>THE JOURNEY<span>나의 TRPG 발자취</span></h2><p>연도를 누르면 그해의 연감이 열려요. 세션 수·회차 수·완주 수는 따로 세요. 날짜를 모르는 세션 ${unknown}회는 어느 해에도 들어가지 않아요.</p></div>
   <div class="journey">${ys.map(v=>`<a class="yr" href="#journey/${v}" aria-current="${v===y}"><i></i><span>${v}</span><small>${D.sessions.filter(s=>yearOf(s)===v).length}회</small></a>`).join('')}</div>
   <div class="yearbook"><div class="k">YEARBOOK</div><h3 style="font-family:var(--f-head);margin:4px 0 6px;font-size:20px">${y}년의 모험</h3>
@@ -437,9 +460,12 @@ function journeyView(y){
     <div><b>${pts.length}</b><small>시나리오 회차</small></div>
     <div><b>${doneY}</b><small>이 해에 완주 (대장 확인, 끝난 날 기준)${doneNoDate?` · 끝난 날 모름 ${doneNoDate}`:''}</small></div>
     <div><b>${ss.filter(s=>s.role==='KP').length}</b><small>키퍼링</small></div>
-    <div><b>—</b><small>로스트 · 로스트한 날이 기록되면 그해에 세요 (현재 ${lost}명, 날짜 없음)</small></div>
+    <div><b>${newChars.length}</b><small>처음 세션에 나온 캐릭터</small></div>
+    <div><b>${bye.length}</b><small>작별한 인물 · 마지막 세션이 이 해인 로스트·사망${lostNoDate?` · 세션 기록 없는 ${lostNoDate}명은 빠짐`:''}</small></div>
   </div>
   ${top.length?`<p style="margin:6px 0">가장 많이 함께한 캐릭터: ${top.map(([id,n])=>`<a href="#${id}">${esc(chars[id]['이름'])}</a> ${n}회`).join(' · ')}</p>`:''}
+  ${newChars.length?`<h4 class="ybh">새로 만난 캐릭터</h4><div class="pcs">${newChars.map(face).join('')}</div>`:''}
+  ${bye.length?`<h4 class="ybh">🕯 작별한 인물</h4><div class="pcs">${bye.map(c=>`<span>${face(c)}<small class="locked"> 마지막 세션 ${esc(lastS(c).title)}</small></span>`).join('')}</div>`:''}
   <ol class="chron" style="margin-top:8px">${ss.map(s=>`<li><span class="n">${s.no??'—'}</span><a href="#${s.id}">${esc(s.title)}</a><span class="d">${dateText(s.date)}</span></li>`).join('')||'<li class="locked">이 해의 세션이 없어요.</li>'}</ol>
   ${ss.length&&sure<ss.length?`<p class="locked" style="margin:8px 0 0">이 해의 세션 ${ss.length-sure}회는 파일 날짜로 짐작한 것이라 실제 해와 다를 수 있어요.</p>`:''}</div>`;
 }
@@ -673,6 +699,8 @@ function overlayPub(o){if(!o)return;
   Object.entries(o.end||{}).forEach(([id,t])=>{const s=byId[id];if(s&&!isAdmin())s.ending={text:t,status:'approved',vis:role==='friend'?'친구':'공개'}});
   Object.entries(o.pt||{}).forEach(([id,p])=>{if(PT[id]){PT[id].status=p.status;PT[id].by='대장 확인';if(p.endedAt)PT[id].endedAt=p.endedAt}});
   Object.entries(o.rev||{}).forEach(([id,r])=>{if(!isAdmin())RV['rev:'+id]=r});
+  Object.entries(o.sc||{}).forEach(([id,m])=>{if(!isAdmin())RV['sc:'+id]={owned:!!m.owned,wish:!!m.wish,prep:!!m.prep}});
+  Object.entries(o.rate||{}).forEach(([id,r])=>{if(!isAdmin())RV['rate:'+id]=r});
 }
 // 관리자: 비공개 원본(초안·메모)을 공개 데이터 위에 겹친다
 function overlayPriv(pv){if(!pv)return;
@@ -804,7 +832,11 @@ document.addEventListener('input',e=>{
   else if(t.dataset.scs){SCS[t.dataset.scs]=t.value;saveSCS();renderScenList()}
   else if(t.dataset.cs){CS[t.dataset.cs]=t.value;store.set('pa-cs',CS);renderCharList()}
 });
-document.addEventListener('change',e=>{if(e.target.dataset.inbf!==undefined){INB.f=e.target.value;INB.sel=null;saveINB();renderInbox()}});
+document.addEventListener('change',e=>{
+  const d=e.target.dataset;
+  if(d.scmark&&isAdmin()){const k='sc:'+d.sc,r={...(RV[k]||{})};r[d.scmark]=e.target.checked;RV[k]=r;saveRV();toast('저장했어요');return}
+  if(d.rate&&isAdmin()){const k='rate:'+d.rate,r={...(RV[k]||{})};r[d.k]=+e.target.value;if(!r.work&&!r.play)delete RV[k];else RV[k]=r;saveRV();render();toast('평점을 저장했어요');return}
+if(e.target.dataset.inbf!==undefined){INB.f=e.target.value;INB.sel=null;saveINB();renderInbox()}});
 document.addEventListener('toggle',e=>{const g=e.target.dataset?.g;if(!g)return;const s=new Set(store.get('pa-open',[]));e.target.open?s.add(g):s.delete(g);store.set('pa-open',[...s])},true);
 document.addEventListener('click',e=>{
   const t=e.target.closest('button,[data-lbopen]'); if(!t) return;
@@ -821,6 +853,7 @@ document.addEventListener('click',e=>{
   else if(d.ctab){store.set('pa-ctab',d.ctab);render()}
   else if(d.spoil){store.set('pa-spoil-'+d.spoil,true);render()}
   else if(d.fav){FAV.has(d.fav)?FAV.delete(d.fav):FAV.add(d.fav);saveFav();render()}
+  else if(d.scmemo){const k='sc:'+d.scmemo;RV[k]={...(RV[k]||{}),memo:$('#scmemo').value.trim()};saveRV();toast('메모를 저장했어요')}
   else if(d.card){shareCard(chars[d.card]).catch(()=>toast('카드를 만들지 못했어요'))}
   else if(d.pick){const id=d.pick;const L=PICKS.includes(id)?PICKS.filter(x=>x!==id):[...PICKS,id].slice(-6);t.disabled=true;api('pickset',{ids:L}).then(j=>{if(!j.ok)throw 0;PICKS=j.picks;toast(PICKS.includes(id)?'첫 화면 추천에 넣었어요':'추천에서 뺐어요');render()}).catch(()=>{t.disabled=false;toast('저장하지 못했어요')})}
   else if(d.cover!==undefined){const L=lbList(LB.c),src=L[LB.i+1][0];t.disabled=true;setCover(LB.c,src).then(()=>{toast('대표 그림으로 정했어요');lbShow();render()}).catch(()=>{t.disabled=false;toast('저장하지 못했어요. 관리자로 다시 로그인해 주세요')})}

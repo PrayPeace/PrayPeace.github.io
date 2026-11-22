@@ -7,7 +7,7 @@
 2. 화면 코드가 기대하는 모양인가 (summary·ending은 문자열, date는 {v,prec,sure})
 3. 참조가 맞는가 (시나리오·회차·캠페인·캐릭터 id, 회차와 시나리오가 같은지, id 중복)
 4. 날짜가 실제로 있는 날인가
-6. --nicknames <세션목록.csv>를 주면 KP·PL 칸의 친구 닉네임이 공개 파일에 낱말로 들어 있지 않은가
+6. --nicknames <세션목록.csv>나 환경 변수 NICKNAMES(GitHub 비밀값)가 있으면 KP·PL 칸의 친구 닉네임이 공개 파일에 낱말로 들어 있지 않은가
 5. --private를 주면 원본의 비공개 글(관리 메모·파일 경로·승인 안 된 요약/결말)이 공개 파일 어디에도 없는가
 """
 import datetime, json, os, re, sys
@@ -111,10 +111,16 @@ if opt('--private'):
             bad(f'{p["id"]}: 회차 메모가 공개 파일에 들어 있음')
     notes.append('비공개 원본과 대조함')
 
+# 닉네임 목록: --nicknames <세션목록.csv> 또는 환경 변수 NICKNAMES(쉼표로 나눔, GitHub 비밀값). 목록은 저장소에 두지 않는다.
+nick = set()
 if opt('--nicknames'):
     import csv
     rows = list(csv.DictReader(open(opt('--nicknames'), encoding='utf-8-sig')))
-    nick = {n.strip() for r in rows for n in [r.get('KP', '')] + r.get('PL(대장 외)', '').split(',') if len(n.strip()) >= 2} - {'PP', '프레이피스', 'PrayPeace'}
+    nick |= {n.strip() for r in rows for n in [r.get('KP', '')] + r.get('PL(대장 외)', '').split(',') if len(n.strip()) >= 2}
+if os.environ.get('NICKNAMES'):
+    nick |= {n.strip() for n in os.environ['NICKNAMES'].split(',') if len(n.strip()) >= 2}
+nick -= {'PP', '프레이피스', 'PrayPeace'}
+if nick:
     blob = ''.join(open(os.path.join(DATA, f), encoding='utf-8').read() for f in os.listdir(DATA) if f.endswith('.json'))
     words = set(re.split(r'[\s_,"\[\]:{}\-.()·/]+', blob))
     for n in sorted(nick & words):
