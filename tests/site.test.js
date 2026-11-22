@@ -89,6 +89,8 @@ function webapp(route){
   await go('player'); const pt=await text(); ok('플레이어 서고',pt.includes('플레이어 서고')&&pt.includes('숫자로 본 특징')&&(await p.$$('ul.bars li')).length>20);
   ok('플레이어 서고에 키퍼 세션',pt.includes('암펠스크'));
   await go('memory'); const mg=await p.$$eval('.gallery .ccard',e=>e.length); ok('추억관 앨범은 캐릭터별 '+mg+'명',mg>10);
+  {const g=await p.$$eval('.gallery .ccard',e=>e.map(x=>[x.dataset.lbopen,x.querySelector('img').getAttribute('src')])); await go('characters'); const cs=Object.fromEntries(await p.$$eval('#clist .ccard',e=>e.map(x=>[(x.getAttribute('href')||'').slice(1),x.querySelector('img')?.getAttribute('src')])));
+   const bad=g.filter(([id,src])=>cs[id]&&cs[id]!==src); ok('추억관 갤러리 = 캐릭터 서고 대표 그림 '+(g.length-bad.length)+'/'+g.length+(bad.length?' '+JSON.stringify(bad.slice(0,2)):''),bad.length===0); await go('memory')}
   await p.click('.gallery [data-lbopen]'); await p.waitForTimeout(100); ok('앨범 넘겨 보기',await p.evaluate(()=>document.querySelector('#lb').open)); await p.keyboard.press('Escape');
   ok('추모관에 로스트 캐릭터',(await p.$$eval('.memoriam .pc',e=>e.length))>0);
   await go('journey'); ok('발자취',(await text()).includes('년의 모험'));
