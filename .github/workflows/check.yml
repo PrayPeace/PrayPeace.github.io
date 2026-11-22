@@ -9,5 +9,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: 캐릭터 서고 데이터 받기
         run: curl -sSfL https://praypeace.github.io/Character_Archive/characters.json -o /tmp/characters.json
-      - name: 공개 데이터 검사 (허용 칸·모양·참조·날짜)
+      - name: 공개 데이터 검사 (허용 칸·모양·참조·날짜·친구 닉네임)
+        env:
+          NICKNAMES: ${{ secrets.NICKNAMES }}   # 저장소 비밀값. 없으면 닉네임 검사만 건너뜀
         run: python3 tools/check_public.py data --characters /tmp/characters.json
