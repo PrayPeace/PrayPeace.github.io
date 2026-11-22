@@ -152,7 +152,7 @@
  {
   "id": "s-128",
   "no": 128,
-  "part": 3,
+  "part": 4,
   "title": "CoC 니알라토텝의 가면들 - 영국",
   "scenarioId": "sc-masks",
   "playthroughId": "pt-masks-1",
@@ -307,7 +307,9 @@
   "playthroughId": "pt-gyeong-2",
   "rule": "CoC",
   "role": "PL",
-  "pcs": [],
+  "pcs": [
+   "coc-028"
+  ],
   "date": {
    "v": null,
    "prec": "unknown",
@@ -2645,7 +2647,9 @@
   "playthroughId": "pt-129-1",
   "rule": "CoC",
   "role": "PL",
-  "pcs": [],
+  "pcs": [
+   "coc-038"
+  ],
   "date": {
    "v": "2022-09-04",
    "prec": "day",
@@ -4136,6 +4140,63 @@
    "v": "2025-08-31",
    "prec": "day",
    "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-x11",
+  "part": 3,
+  "title": "CoC 니알라토텝의 가면들 - 영국행 여객선",
+  "scenarioId": "sc-masks",
+  "playthroughId": "pt-masks-1",
+  "campaignId": "cp-masks",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-038"
+  ],
+  "date": {
+   "v": "2022-08-14",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-x12",
+  "part": 5,
+  "title": "CoC 니알라토텝의 가면들 - 이집트",
+  "scenarioId": "sc-masks",
+  "playthroughId": "pt-masks-1",
+  "campaignId": "cp-masks",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "etc-020"
+  ],
+  "date": {
+   "v": "2023-02-11",
+   "prec": "day",
+   "sure": false
+  },
+  "hasSource": true
+ },
+ {
+  "id": "s-x13",
+  "part": 2,
+  "title": "CoC 니알라토텝의 가면들 - 3지구",
+  "scenarioId": "sc-masks",
+  "playthroughId": "pt-masks-2",
+  "campaignId": "cp-masks",
+  "rule": "CoC",
+  "role": "PL",
+  "pcs": [
+   "coc-038"
+  ],
+  "date": {
+   "v": "2026-02-21",
+   "prec": "day",
+   "sure": true
   },
   "hasSource": true
  }
