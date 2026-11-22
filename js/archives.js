@@ -10,7 +10,7 @@ let RV={};
 let MEM={};
 const MEM_KIND={quote:'명대사',dice:'전설적인 주사위',laugh:'웃겼던 순간',moment:'감동적인 장면'};
 const memRV=m=>RV['mem:'+m.id]||{};
-const memState=m=>memRV(m).st||'draft', memText=m=>memRV(m).text||m.text, memVis=m=>memRV(m).vis||(m.friends?'친구':'공개');
+const memState=m=>memRV(m).st||(m.status==='approved'?'ok':'draft'), memText=m=>memRV(m).text||m.text, memVis=m=>memRV(m).vis||m.vis||(m.friends?'친구':'공개');
 const shownMems=kind=>Object.values(MEM).filter(m=>m.kind===kind&&(!isAdmin()||memState(m)==='ok')).sort((a,b)=>String(a.sessionId).localeCompare(String(b.sessionId))||String(a.id).localeCompare(String(b.id)));
 let saveRV=()=>{};
 // 즐겨찾기: 지금 캐릭터 서고(/Character_Archive/)와 같은 주소라 같은 'fav' 칸을 함께 쓴다

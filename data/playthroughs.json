@@ -2,12 +2,12 @@
  {
   "id": "pt-angel-1",
   "scenarioId": "sc-angel",
-  "status": "미확인"
+  "status": "완주"
  },
  {
   "id": "pt-dream-1",
   "scenarioId": "sc-dream",
-  "status": "미확인"
+  "status": "완주"
  },
  {
   "id": "pt-yeolgae-1",
@@ -17,7 +17,7 @@
  {
   "id": "pt-peace-1",
   "scenarioId": "sc-peace",
-  "status": "미확인"
+  "status": "완주"
  },
  {
   "id": "pt-gimyo-1",
@@ -37,17 +37,17 @@
  {
   "id": "pt-miri-1",
   "scenarioId": "sc-miri",
-  "status": "미확인"
+  "status": "완주"
  },
  {
   "id": "pt-dowon-1",
   "scenarioId": "sc-dowon",
-  "status": "미확인"
+  "status": "완주"
  },
  {
   "id": "pt-gento-1",
   "scenarioId": "sc-gento",
-  "status": "미확인"
+  "status": "완주"
  },
  {
   "id": "pt-ampel-1",
@@ -82,7 +82,7 @@
  {
   "id": "pt-ta-1",
   "scenarioId": "sc-ta",
-  "status": "미확인"
+  "status": "진행 중"
  },
  {
   "id": "pt-002-1",

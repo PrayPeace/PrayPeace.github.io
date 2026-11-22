@@ -15,7 +15,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "1922년 로스앤젤레스. 실종된 택시기사 아버지를 찾아 달라는 소녀의 의뢰로 현상금 사냥꾼 세켈과 동료들이 '천사회'의 비밀을 파헤친다."
  },
  {
   "id": "s-003",
@@ -33,7 +34,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "거액의 상금이 걸린 게임에 참가한 네 사람이 돌로 된 방에서 깨어나, 보물과 괴물 사이를 지나 출구를 찾는다."
  },
  {
   "id": "s-043",
@@ -51,7 +53,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "자판기 하나만 빛나는 검은 방. 몸의 일부를 대가로 열쇠를 사야 하는 1인 탐사."
  },
  {
   "id": "s-070",
@@ -70,7 +73,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "1인당 5천만 원짜리 물건 찾기 의뢰로 낯선 농촌 마을에 들어간 네 사람. 되돌아가는 시간 속에서 마을의 비밀을 쫓는다."
  },
  {
   "id": "s-077",
@@ -108,7 +112,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "이벤트 당첨으로 떠난 일본 온천 마을의 축제. 연이은 실종 사건 뒤에서 여우와 신을 마주한다."
  },
  {
   "id": "s-114",
@@ -127,7 +132,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "1부 뒤, 이어지는 악몽과 동료의 실종. 다시 미카미야마로 이끌린다."
  },
  {
   "id": "s-124",
@@ -147,7 +153,8 @@
    "prec": "month",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "1921년 리마. 고대 피라미드를 찾았다는 탐험대의 흔적을 따라 페루 고원으로 향한다."
  },
  {
   "id": "s-128",
@@ -167,7 +174,8 @@
    "prec": "day",
    "sure": true
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "런던편. 블루 피라미드 집단과 이집트 살인사건의 연결을 쫓는다."
  },
  {
   "id": "s-148",
@@ -187,7 +195,8 @@
    "prec": "month",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "이전 기록을 지우고 펄프 규칙으로 같은 일행이 페루편을 다시 시작했다."
  },
  {
   "id": "s-090",
@@ -206,7 +215,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "금성으로 가는 길, 귀신 소문이 도는 미리성에 갇힌 나그네들."
  },
  {
   "id": "s-098",
@@ -225,7 +235,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "복숭아꽃 핀 산속 마을 도원향과 봉래궁에 얽힌 옛 왕국의 비밀."
  },
  {
   "id": "s-177",
@@ -243,7 +254,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "새 학기 고등학교의 7대 불가사의를 쫓는 2인 탐사."
  },
  {
   "id": "s-199",
@@ -263,7 +275,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "제국력 36년 광산 도시 암펠스크. 제7 의용소방대가 석탄 창고 화재와 광산 사고에 나선다."
  },
  {
   "id": "s-212",
@@ -281,7 +294,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "숲으로 사라진 젊은 교수를 찾아 아컴 서쪽 숲으로. 해가 지자 숲이 모습을 바꾼다."
  },
  {
   "id": "s-001",
@@ -333,7 +347,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "1920년대 경성. 태아가 사라진 임부 살인 사건을 쫓는 고등계 형사."
  },
  {
   "id": "s-202",
@@ -351,7 +366,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "2024년 3월 영등포, 기괴한 일을 해결하는 사무소에 자정이면 이상한 곳으로 이어진다는 논현동 빌딩 소문이 들어온다."
  },
  {
   "id": "s-195-1",
@@ -373,7 +389,8 @@
    "prec": "year",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "변칙 개체를 다루는 기관의 신입 TF 1팀, 온보딩 첫 임무."
  },
  {
   "id": "s-195-2",
@@ -395,7 +412,8 @@
    "prec": "year",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "대전 구도심의 폐빌라에서 '이용료'를 청구하는 변칙 개체를 찾아 포획하라는, 정규 TF 3팀의 첫 현장 임무."
  },
  {
   "id": "s-195-3",
@@ -417,7 +435,8 @@
    "prec": "year",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "멈추지 않는 지하철 칸 속 변칙 현상에 투입된 TF 3팀이 정부 쪽 요원들과 맞닥뜨린다."
  },
  {
   "id": "s-195-4",
@@ -439,7 +458,8 @@
    "prec": "year",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "SNS에 찍힌 동네 헬스장, 근손실을 두려워하는 무언가가 사람들을 붙잡는다."
  },
  {
   "id": "s-195-5",
@@ -461,7 +481,8 @@
    "prec": "year",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "주색 경보가 내려진 날, 휴대폰이 금지된 기묘한 파티장으로 급강하한 요원들."
  },
  {
   "id": "s-195-6",
@@ -483,7 +504,8 @@
    "prec": "year",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "대전 시립 미술관이 '세전 시립 미술관'으로 바뀌었다. 같은 장면만 반복되는 SNS 영상을 따라 들어간 요원들."
  },
  {
   "id": "s-195-7",
@@ -503,7 +525,8 @@
    "prec": "year",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "언론을 쥐라는 새 지시와 함께, 딸과 커리어 중 하나를 고르라 강요하는 존재를 만난 요원들."
  },
  {
   "id": "s-195-8",
@@ -523,7 +546,8 @@
    "prec": "year",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "에이전시 계열사를 노린 대형 테러와 수장고 개방, 혼란 속에서 요원들은 '브이전시'와 마주한다."
  },
  {
   "id": "s-195-9",
@@ -543,7 +567,8 @@
    "prec": "year",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "미해결 요소 66, 무너져 가는 세계에서 맞는 트라이앵글 에이전시의 마지막 임무."
  },
  {
   "id": "s-002",
@@ -561,7 +586,8 @@
    "prec": "unknown",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "1912년 '불침'을 자랑하는 호화여객선의 처녀항해, 안개 속에서 인류를 위협하는 사건에 휘말린다."
  },
  {
   "id": "s-004",
@@ -613,7 +639,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "이유 모를 초대를 받고 고급 식당 같은 저택에 모인 네 사람. 공짜 식사의 마지막 재료는 무엇일까."
  },
  {
   "id": "s-007",
@@ -631,7 +658,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "인기 토크쇼 방청권에 당첨된 친구들, 녹화 스튜디오에서 낯선 세트장으로 끌려간다."
  },
  {
   "id": "s-008",
@@ -649,7 +677,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "여름방학 마지막 날 밤, 학교 안 스탬프 다섯 개를 찾는 담력체험에 나선 고등학생들."
  },
  {
   "id": "s-009",
@@ -667,7 +696,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "축제 전날 찢어진 장식 하나로 시작된, 밴드부 네 명의 시간을 건 연주."
  },
  {
   "id": "s-010",
@@ -685,7 +715,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "10년 만의 고등학교 동창회 날, 기억에서 지워진 한 친구의 흔적을 좇는다."
  },
  {
   "id": "s-011",
@@ -703,7 +734,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "조선 후기, 귀곡성이 들리는 배나무골 대나무밭의 괴이를 풀어 달라는 서신을 받은 도사들."
  },
  {
   "id": "s-012",
@@ -723,7 +755,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "시험이 끝난 밤 온라인 세션에 접속한 순간, 구름 위 신전으로 소환된 네 사람."
  },
  {
   "id": "s-013",
@@ -757,7 +790,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "1920년대 재즈 시대의 아캄, 헝가리 백작부인의 화려한 사교 파티를 둘러싼 의문의 죽음."
  },
  {
   "id": "s-015",
@@ -775,7 +809,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "눈을 뜨니 인형들의 회랑. 거짓말쟁이가 섞인 인형들 사이에서 네 시간 안에 열쇠 네 개를 모아야 한다."
  },
  {
   "id": "s-016",
@@ -795,7 +830,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "배나무골 일 뒤, 한양 가는 지름길 호환굴을 넘는 도사들에게 세 가지 위험이 닥친다."
  },
  {
   "id": "s-017",
@@ -813,7 +849,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "큰 폭발음과 함께 낯선 콘크리트 방에서 깨어난 네 사람의 방탈출."
  },
  {
   "id": "s-018",
@@ -849,7 +886,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "악신 아라미타마를 쫓아 일본 히사시로시에 온 성당기사단 전열기사, '붉은 유령'을 사냥하라."
  },
  {
   "id": "s-020",
@@ -867,7 +905,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "눈을 뜨니 낯선 집의 거실, 소중한 소지품 하나씩을 지닌 채 수집가의 별장에 갇힌 사람들."
  },
  {
   "id": "s-021",
@@ -885,7 +924,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "2020년 1월 경기도 가상의 도시 연정시, 잃어버린 물건을 찾아 달라는 부자의 의뢰를 받은 해결사와 정부요원."
  },
  {
   "id": "s-022",
@@ -919,7 +959,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "벼락을 맞고 자신에 대한 기억만 잃은 채 병원에서 깨어났다. 사흘의 입원, 이상해지는 둘째 날."
  },
  {
   "id": "s-024",
@@ -937,7 +978,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "킹스포트 종합병원에서 잠든 밤, 눈을 뜨니 총성이 빗발치는 전쟁터 한가운데였다."
  },
  {
   "id": "s-025",
@@ -955,7 +997,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "겨울의 외진 미국 마을 리버필드, 맑던 날씨에 갑자기 안개가 끼기 시작한다."
  },
  {
   "id": "s-026",
@@ -973,7 +1016,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "카레를 만들다 모두 쏟아 버린 밤, 깨어나 보니 낯선 오두막과 보라색 꽃밭이었다."
  },
  {
   "id": "s-027",
@@ -991,7 +1035,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "홀로 신사를 지켜 온 둔갑 여우에게 다른 둔갑 동물들이 찾아온다."
  },
  {
   "id": "s-028",
@@ -1009,7 +1054,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "'소금쟁이 빨갛구나' 노래가 들리는 공원, 둔갑 동물들이 연극배우를 돕게 된다."
  },
  {
   "id": "s-029",
@@ -1027,7 +1073,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "그리스 대전쟁을 마치고 귀향하는 뱃길, 짙은 안개 너머 폭풍에 싸인 외딴 섬이 나타난다."
  },
  {
   "id": "s-030",
@@ -1045,7 +1092,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "2012년 8월, '노르웨이의 아키하바라' 티아메고를 찾은 여행자들. 그런데 도시가 어딘가 이상하다."
  },
  {
   "id": "s-031",
@@ -1063,7 +1111,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "1920년대 아캄, 죽음을 앞둔 노신사가 젊은 날의 과오가 담긴 농장 이야기를 털어놓는다."
  },
  {
   "id": "s-032",
@@ -1081,7 +1130,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "오랜만에 다 같이 놀러 간 테마파크, 멋진 무대 위에서 춤추듯 즐기자는데."
  },
  {
   "id": "s-033",
@@ -1099,7 +1149,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "실종된 '누군가'를 생각하던 당신, 고개를 드니 안개 낀 낯선 섬에 그 사람의 그림자가 보인다. (1인 시나리오)"
  },
  {
   "id": "s-034",
@@ -1119,7 +1170,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "신나게 놀던 파자마 파티, 정신을 차리니 낯선 저택 안이었다."
  },
  {
   "id": "s-035",
@@ -1137,7 +1189,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "오랜 친구 임준이 금요일 밤 집으로 불렀다. 그리고 따라간 마을에는 '미륵'이 있었다."
  },
  {
   "id": "s-036",
@@ -1155,7 +1208,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "서커스가 메이저 스포츠인 세계, 뉴욕에 처음 온 시라토리 서커스의 스타 엘리가 4회전에 도전한다."
  },
  {
   "id": "s-037",
@@ -1173,7 +1227,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "각자 받은 노란 인형, 그리고 잠든 밤 시작된 땅끝으로 가는 열차 여행."
  },
  {
   "id": "s-038",
@@ -1191,7 +1246,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "백화점 카페에 우연히 모인 고등학생, 청부업자, 카르텔 간부. 그리고 시작된 감염."
  },
  {
   "id": "s-039",
@@ -1227,7 +1283,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "식전주와 전채를 공짜로 준다는 초대장, 계절에 맞지 않는 꽃이 핀 저택에서 저녁을."
  },
  {
   "id": "s-041",
@@ -1245,7 +1302,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "무급 휴가 중 하루 40만 원짜리 신약 알바 공고를 보고 찾아간 세기제약회사, 고양이 문이 달린 이상한 건물."
  },
  {
   "id": "s-042",
@@ -1279,7 +1337,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "'하트 여왕의 생일 성찬에 초대합니다. 여왕을 죽이고 소원을 이루어라.' 편지를 읽자 푸른 문이 나타난다."
  },
  {
   "id": "s-045",
@@ -1297,7 +1356,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "죽었던 탐사자들이 눈을 뜬 곳은 청록색 계단 앞, 낡은 신전의 사제가 선택지를 내민다. (힐링 생환 시나리오)"
  },
  {
   "id": "s-046",
@@ -1315,7 +1375,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "제약회사 시제품 테스트 다음 날, 숙소에서 회사로 가던 길에 검은 밴이 앞을 막는다."
  },
  {
   "id": "s-047",
@@ -1333,7 +1394,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "연수를 마치고 돌아가던 길에 차가 고장 나 들른 작은 시골 마을의 여관, 해 뜰 때까지 커튼을 열지 말라는데."
  },
  {
   "id": "s-048",
@@ -1351,7 +1413,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "휴가로 간 민속촌에서 역모죄로 붙잡혔다 깨어나 보니 진짜 조선, 암행어사가 되어 암흑의 고을로."
  },
  {
   "id": "s-049",
@@ -1367,7 +1430,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "SNS에서 화제인 방탈출 카페 '코드 미솔로지', 어렵게 잡은 예약 날."
  },
  {
   "id": "s-050",
@@ -1385,7 +1449,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "장마가 이어지는 여름, 지하철이 크게 흔들리더니 그 자리에 멈춰 선다."
  },
  {
   "id": "s-051",
@@ -1403,7 +1468,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "반투명한 유리 수조 속에서 환자복 차림으로 깨어난 당신, 떠오르지 않는 자신을 찾아 나간다."
  },
  {
   "id": "s-052",
@@ -1421,7 +1487,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "새로 이사한 자취방에서 누군가의 시선이 느껴진다는 친구의 고민을 들으러 간 고등학생들."
  },
  {
   "id": "s-053",
@@ -1439,7 +1506,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "기록이 거의 남지 않은 세션."
  },
  {
   "id": "s-054",
@@ -1455,7 +1523,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "16세 앨리스 브라이어우드가 실종되었다. 저마다 비밀을 품은 주변 사람들의 추리극."
  },
  {
   "id": "s-055",
@@ -1471,7 +1540,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "무료 개방 행사 중인 국립 생물 자원관 견학, 멸종위기 생물관에서 한 소녀가 말을 건다."
  },
  {
   "id": "s-056",
@@ -1507,7 +1577,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "낡은 신사를 지키는 여우와 놀러 온 둔갑 동물들 (개변판)."
  },
  {
   "id": "s-058",
@@ -1525,7 +1596,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "실종된 오빠를 찾던 동생, 손거울을 들여다보니 또 다른 자신이 있는 섬으로 옮겨진다."
  },
  {
   "id": "s-059",
@@ -1543,7 +1615,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "서한지구대 경찰 넷, 눈앞에서 친구가 사라졌다는 신고를 받고 낡은 빌라로 출동한다."
  },
  {
   "id": "s-060",
@@ -1561,7 +1634,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "사람이 죽었다는 싼 집으로 이사한 친구의 집들이 날, 30년 전 밀실 사건의 편지가 도착한다. (1인 시나리오)"
  },
  {
   "id": "s-061",
@@ -1579,7 +1653,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "연맹력 531년 베타 왕국, 수탈을 일삼는 후작의 저택을 털기로 한 도둑들."
  },
  {
   "id": "s-062",
@@ -1597,7 +1672,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "개발을 거부하는 전라북도의 충암 마을, 건드리면 마을 전체에 화가 미친다는 '충암 바위'의 전설."
  },
  {
   "id": "s-063",
@@ -1615,7 +1691,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "골든위크 휴가로 찾은 페가수스 마을, 훌륭한 저택과 마을 사이에 묘한 기류가 흐른다."
  },
  {
   "id": "s-064",
@@ -1633,7 +1710,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "눈을 뜨니 기억에 없는 장소, 너덜너덜한 옷과 지친 몸의 선수들과 의료진."
  },
  {
   "id": "s-065",
@@ -1652,7 +1730,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "후작 저택을 턴 무지성 도둑들, 이번엔 뒷골목 카르텔과 정보 길드 사이의 영역 싸움에 끼어든다."
  },
  {
   "id": "s-066",
@@ -1670,7 +1749,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "바닷가에서 주말을 즐기던 밤, 바다에 비친 달이 푸른색이다."
  },
  {
   "id": "s-067",
@@ -1686,7 +1766,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "(주)성동아쿠아에서 벌어진 살인 사건, 조사와 토론을 세 번 오가는 크라임씬."
  },
  {
   "id": "s-068",
@@ -1702,7 +1783,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "장물을 팔고 다음 한탕을 준비하는 도둑들, 목표는 대상회의 마차 행렬."
  },
  {
   "id": "s-069",
@@ -1720,7 +1802,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "1920년대 미스카토닉 대학, 심장마비로 죽은 교수의 마녀재판 기록이 사라졌다."
  },
  {
   "id": "s-071",
@@ -1738,7 +1821,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "바에서 일하는 탐정과 조수에게 들어온 의뢰, 사라진 삼색 고양이 '아지'를 찾아라."
  },
  {
   "id": "s-072",
@@ -1754,7 +1838,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "마왕성을 코앞에 둔 여관, 최종 결전 전날 밤 용사가 죽었다. 누가 범인인가."
  },
  {
   "id": "s-073",
@@ -1772,7 +1857,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "불타는 시체와 거인이 나타난 마룬산, 세 영웅을 닮은 여섯 힘과의 결전."
  },
  {
   "id": "s-074",
@@ -1790,7 +1876,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "몇 시간째 같은 풍경이 반복되는 어두운 숲, 빛줄기를 따라가니 아무도 살지 않는 2층 저택이 있다."
  },
  {
   "id": "s-075",
@@ -1806,7 +1893,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "교외 로이즈 은행을 주말 안에 털기로 한 일당, '아무도 다치지 않을 거야.'"
  },
  {
   "id": "s-076",
@@ -1824,7 +1912,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "문예부 부실에 갇힌 부원들, 고백하고 싶어지는 충동을 이겨내라."
  },
  {
   "id": "s-078",
@@ -1859,7 +1948,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "정신을 잃었다 깨어난 한옥, 사회자 소녀가 말한다. 이 중에 괴물이 한 명 있다."
  },
  {
   "id": "s-080",
@@ -1877,7 +1967,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "이틀이 지나도 돌아오지 않는 주인을 기다리는 인형들의 저택."
  },
  {
   "id": "s-081",
@@ -1895,7 +1986,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "경시청 특수범죄 수사 제로과, 3년 전 죽은 동료 사가미하라 료를 둘러싼 진실."
  },
  {
   "id": "s-082",
@@ -1915,7 +2007,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "대전 별장으로 놀러 온 친구들, 눈보라가 거세지자 게스트하우스가 낡은 산장으로 바뀐다."
  },
  {
   "id": "s-083",
@@ -1933,7 +2026,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "크리스마스를 싫어하는 당신, 달도 별도 없는 눈밭에서 불 켜진 오두막을 발견한다."
  },
  {
   "id": "s-084",
@@ -1951,7 +2045,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "납치당해 깨어난 곳은 바다 위 배 안의 연구 시설, 손등에 새겨진 'Delta' 번호."
  },
  {
   "id": "s-085",
@@ -1969,7 +2064,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "여름 피서를 떠난 관광지 사치아리, 공동묘지에 유령이 오간다는 소문."
  },
  {
   "id": "s-086",
@@ -1985,7 +2081,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "둘이서 식사하러 간 레스토랑, 모든 벨이 울리더니 이형의 하객들이 기다리는 예배당으로."
  },
  {
   "id": "s-087",
@@ -2003,7 +2100,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "색이 빠진 흑백의 도서관, 카운터의 여성이 동화책 여덟 권을 읽고 기록해 달라고 한다."
  },
  {
   "id": "s-088",
@@ -2021,7 +2119,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "저마다의 이유로 목숨을 잃은 탐사자들이 무기질의 감옥 같은 공간에서 눈을 뜬다."
  },
  {
   "id": "s-089",
@@ -2039,7 +2138,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "15년 전 함께 눈싸움하던 친구가 실종되었다. 그의 방에 남은 1981년 한파 신문을 따라 강원도 설백마을로."
  },
  {
   "id": "s-091",
@@ -2057,7 +2157,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "1924년 아캄, 변호사 사무실에 묘지 주인의 의뢰와 수상한 결혼 소식이 함께 들어온다."
  },
  {
   "id": "s-092",
@@ -2075,7 +2176,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "2019년 오하이오주 클리블랜드, 대낮에 납치된 아이를 서둘러 구하라. FBI와 지역 경찰의 공조 수사."
  },
  {
   "id": "s-093",
@@ -2093,7 +2195,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "2129년 사이버펑크 도시, 클럽에 떠도는 '사람을 데려가는 유령' 소문을 쫓는 용병과 리퍼닥과 작가."
  },
  {
   "id": "s-094",
@@ -2111,7 +2214,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "결성 20주년 라이브를 앞둔 록 밴드, 세상을 떠난 이의 유품 '음향석'과 여름 페스티벌의 노이즈."
  },
  {
   "id": "s-095",
@@ -2129,7 +2233,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "모래 위에 눈이 내리는 멸망해 가는 세계, 지프차가 뒤집힌 뒤 깨어난 벙커에서. (1인 시나리오)"
  },
  {
   "id": "s-096",
@@ -2147,7 +2252,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "아침에 집을 나섰는데 정신을 차리니 모르는 집 현관, 기억이 없다."
  },
  {
   "id": "s-097",
@@ -2163,7 +2269,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "새로 생긴 놀이공원에 놀러 가는 지름길 골목, 정신병원에서 도망친 환자와 마주친다."
  },
  {
   "id": "s-099",
@@ -2181,7 +2288,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "미국 박물관장 로건의 초대로 보스턴 산속 유적지 탐사에 나선 세 사람."
  },
  {
   "id": "s-100",
@@ -2199,7 +2307,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "어느 산 벚꽃나무 아래, 도쿄에서 요양 온 소녀가 친구를 만나고 싶다고 중얼거린다."
  },
  {
   "id": "s-101",
@@ -2217,7 +2326,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "지치고 무너진 당신을 위한 잠깐의 휴식, 포션이 가득한 오두막 상점에 초대합니다."
  },
  {
   "id": "s-102",
@@ -2235,7 +2345,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "뒤통수를 맞고 납치되어 깨어난 무당의 제단, 바닥에는 십수 명의 시체가 있다."
  },
  {
   "id": "s-103",
@@ -2256,7 +2367,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "북방을 지키는 요새 도시 응천부, 굳게 닫힌 성문 너머로 반역의 기운이 흐른다."
  },
  {
   "id": "s-104",
@@ -2274,7 +2386,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "고대 전시 팸플릿을 받은 날 밤, 횃불이 타오르는 석실의 거대한 천칭 앞에서 깨어난다."
  },
  {
   "id": "s-105",
@@ -2295,7 +2408,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "비 내리는 수도 금성, 유언비어 한마디에 잡혀가는 도시에 쥐 요괴의 그림자가 드리운다."
  },
  {
   "id": "s-106",
@@ -2311,7 +2425,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "1900년대 미국, 이단이 모여든다는 사람 손 닿지 않는 옛 수도원에 수도사들이 들어선다."
  },
  {
   "id": "s-107",
@@ -2327,7 +2442,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "먼 별로 가는 우주 화물선, 냉동수면에서 강제로 깨어난 다섯 외계인은 서로 말이 통하지 않는다."
  },
  {
   "id": "s-108",
@@ -2345,7 +2461,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "연맹력 531년 자니파야 공화국, 재즈 가수가 꿈인 앵무새 수인을 돕다 상단 싸움에 휘말린다."
  },
  {
   "id": "s-109",
@@ -2363,7 +2480,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "철 지난 새벽 바다에서 쓰러진 소녀를 데려온 탐정사무소, 그녀의 노래가 점점 퍼져 간다."
  },
  {
   "id": "s-110",
@@ -2381,7 +2499,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "1920년 아캄, 오컬트 서적 수집가에게서 도난당한 책을 찾아 달라는 의뢰. (1인 시나리오)"
  },
  {
   "id": "s-111",
@@ -2399,7 +2518,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "1925년 아캄, 가족을 잃은 대부호가 전설의 술 '칠흑 같은 밤의 은빛 술'을 14일 안에 만들어 달라고 한다."
  },
  {
   "id": "s-113",
@@ -2419,7 +2539,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "원귀가 지배한다는 선익동 주택, 퇴마 의뢰를 받은 팀이 역할을 나눠 탐사한다."
  },
  {
   "id": "s-115",
@@ -2437,7 +2558,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "여름날 사라졌다 돌아온 이웃 소녀, 7번가인데 7번가가 아닌 곳에 다녀온 듯하다."
  },
  {
   "id": "s-116",
@@ -2455,7 +2577,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "폐관 수련 종료를 하루 앞둔 날, 장문인이 피를 흘리며 죽어 있다. 범인은 너냐?"
  },
  {
   "id": "s-117",
@@ -2473,7 +2596,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "종말까지 사흘, 명령 없이 대기하던 연구소의 닫힌 문이 모두 열렸다."
  },
  {
   "id": "s-118",
@@ -2491,7 +2615,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "\"우리들 중에 배신자가 있다.\" 특촬 마법소녀 다섯 명의 배신자 찾기."
  },
  {
   "id": "s-119",
@@ -2509,7 +2634,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "2010년 가을, 저명한 고고학자가 중국 뤄양에서 몰래 찾은 유적을 함께 탐사해 달라고 부탁한다."
  },
  {
   "id": "s-120",
@@ -2527,7 +2653,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "킹스포트에서 사람들이 하나둘 갑자기 시력을 잃는다. 병원의 조사 의뢰."
  },
  {
   "id": "s-121",
@@ -2545,7 +2672,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "갱단을 쫓아 작은 항구 마을로 온 현상금 사냥꾼, 탐정, 심리학자, 연방요원."
  },
  {
   "id": "s-122",
@@ -2563,7 +2691,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "대규모 할인 행사 중인 백화점에서 기절했다 깨어나니 감옥, 양손이 묶여 있다."
  },
  {
   "id": "s-123",
@@ -2581,7 +2710,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "1921년 보스턴으로 이사 온 부자, 이웃 코빗 씨는 매우 친절하지만 조금 지루하다."
  },
  {
   "id": "s-125",
@@ -2601,7 +2731,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "1925년 1월, 칼라일 탐사대의 정보가 있다는 전보를 받고 눈 덮인 뉴욕으로 모인 탐사자들."
  },
  {
   "id": "s-126",
@@ -2619,7 +2750,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "수학자가 남긴 위험한 숫자들, 연방요원으로 위장한 델타그린 요원들이 리지웨이 8명 살인 사건을 조사한다."
  },
  {
   "id": "s-127",
@@ -2637,7 +2769,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "고향으로 가는 뱃길에 폭풍우에 밀려 닿은 낯선 섬, 영웅들의 고난이 시작된다."
  },
  {
   "id": "s-129",
@@ -2655,7 +2788,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "런던, 오컬트 동아리로 위장한 사건을 쫓던 이들 앞에 낡은 트렁크 '스필즈베리 #9485'가 나타난다."
  },
  {
   "id": "s-131",
@@ -2691,7 +2825,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "할로윈 밤, 마을 근처 폐가 '바니커 하우스'에서 담력 시험을 하자는 로저의 명령."
  },
  {
   "id": "s-133",
@@ -2709,7 +2844,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "제3차 대전이 한창인 대륙, 네 나라의 지도자와 장군과 참모와 연구소장이 하나의 재앙 앞에 선다."
  },
  {
   "id": "s-134",
@@ -2727,7 +2863,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "폭풍이 다가오는 해상 시추 플랫폼 '데블스 홀', 정부가 모은 네 전문가의 네르갈 프로젝트 조사."
  },
  {
   "id": "s-135",
@@ -2745,7 +2882,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "아침에 사 둔 하나다 푸딩이 사라졌다. 탐정과 조수의 둘이서 수사."
  },
  {
   "id": "s-136",
@@ -2777,7 +2915,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "2019년 8월, 유령 사냥 유튜버 일행이 '정신병자의 섬'을 찍으러 이탈리아 서해안 마을에 도착한다."
  },
  {
   "id": "s-138",
@@ -2795,7 +2934,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "2017년 보스턴에서 리버풀로 가는 요트 여행, 사흘째 빙산 위에 걸터앉은 화물선이 보인다."
  },
  {
   "id": "s-139",
@@ -2813,7 +2953,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "유산으로 받은 오래 버려진 호텔을 다시 열러 간 세 사람, 안개 낀 산속 세븐 스타즈 호텔."
  },
  {
   "id": "s-140",
@@ -2831,7 +2972,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "1921년 아캄, 보름 동안 의뢰가 없던 신생 탐정사무소에 남편의 외도를 의심하는 첫 의뢰가 들어온다."
  },
  {
   "id": "s-141",
@@ -2849,7 +2991,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "홈커밍 파티를 앞둔 8월 말, 한 학생이 실종된 지 사흘째. 친구들은 수상한 것을 발견한다."
  },
  {
   "id": "s-142",
@@ -2867,7 +3010,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "무력감 속에 깨어나 보니 관 속, 내 몸은 명백한 시신의 모습이다. (1인 시나리오)"
  },
  {
   "id": "s-143",
@@ -2885,7 +3029,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "한밤중 찾아온 퇴역 군인, 딸이 실종되었다고 한다. 1940년대 워싱턴의 흑인 과학자이자 정보 요원. (1인 시나리오)"
  },
  {
   "id": "s-144",
@@ -2901,7 +3046,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "술집에서 걸려 온 이상한 전화, 그리고 거리의 모든 전화벨이 울리기 시작한다."
  },
  {
   "id": "s-145",
@@ -2919,7 +3065,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "1925년 런던, 노벨상 수상자 모에 교수가 미래를 보는 예지술을 공개 시연한다. (니알라토텝 1차 탐사자)"
  },
  {
   "id": "s-146",
@@ -2937,7 +3084,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "고블린 군락 토벌 의뢰로 시작된 일곱 대미궁 탐험, 그 뒤에 키메라 연구회가 있었다."
  },
  {
   "id": "s-147",
@@ -2955,7 +3103,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "핵미사일 네 기가 남은 섬, 모든 세력이 모인 회담 자리에 배신자가 있다."
  },
  {
   "id": "s-149",
@@ -2973,7 +3122,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "뒷골목 두목의 허락 없이 물건을 훔친 좀도둑 '끈끈이 잭'을 잡아 오라는 명령."
  },
  {
   "id": "s-150",
@@ -2991,7 +3141,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "같은 반 고등학생 셋, 장막 너머 도시의 어둠과 악마에게 휘말린다."
  },
  {
   "id": "s-151",
@@ -3009,7 +3160,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "폭풍우가 몰려오는 밤, 유령을 퇴치하러 입스위치 근방 저택으로 가던 차가 창백한 여성을 친다."
  },
  {
   "id": "s-152",
@@ -3027,7 +3179,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "죽고 나서 이세계 중세로 전생한 네 사람의 모험가 생활."
  },
  {
   "id": "s-153",
@@ -3081,7 +3234,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "금 유통량이 수상한 마을 인스머스, 공장 감독관으로 위장 잠입한 재무부 요원과 실종된 지점장."
  },
  {
   "id": "s-156",
@@ -3099,7 +3253,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "모종의 사건으로 히어로로 각성한 교사, 성운 아카데미 입학식 날 첫 출근."
  },
  {
   "id": "s-157",
@@ -3117,7 +3272,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "동부 해안을 순회하는 예술가와 일행, 불이 꺼진 비콘 섬의 등대."
  },
  {
   "id": "s-158",
@@ -3135,7 +3291,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "인스머스 탈출 3개월 뒤인 1928년 2월, 보스턴 연방 정부 빌딩에서 기다리는 요원."
  },
  {
   "id": "s-159",
@@ -3151,7 +3308,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "눈보라 치는 고산 캠프, 아침에 일어나니 등반대장이 죽어 있다. 정상과 진실 중 무엇을 먼저 쫓을까."
  },
  {
   "id": "s-160",
@@ -3169,7 +3327,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "2022년 12월, 아르헨티나의 병원에서 걸려 온 국제전화. 사립탐정 칼 데이가 당신을 찾는다."
  },
  {
   "id": "s-161",
@@ -3187,7 +3346,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "엘필딘력 117년, 수도 최대 도서관의 4년 차 계약직 사서. 금서 구역에 들어갔다 벌금을 문 사서의 일상과 모험."
  },
  {
   "id": "s-162",
@@ -3205,7 +3365,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "1924년, 유언장에 이름이 적힌 이들이 캐나다로 향하며 시범 운항 중인 비행선에 오른다."
  },
  {
   "id": "s-163",
@@ -3221,7 +3382,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "다리가 새로 돋았다는 신약 환자의 파티, 보안 컨설턴트와 변호사가 제약회사 ZMB에 잠입한다."
  },
  {
   "id": "s-164",
@@ -3239,7 +3401,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "사행성으로 유명한 어둠의 도시 벨란느흐, 카지노 '포르투나 녹티스'에 들어선 도박사 둘."
  },
  {
   "id": "s-165",
@@ -3257,7 +3420,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "2025년 7월, 고등학교가 통째로 검은 구멍에 빨려 들어갔다는 뉴스. 다음 날 아침 하늘이 검다."
  },
  {
   "id": "s-166",
@@ -3275,7 +3439,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "마석 수리공 겸 연금술사의 루넨베르크 일상, 흡혈귀 가문의 의뢰와 다가오는 '피의 제전'."
  },
  {
   "id": "s-167",
@@ -3293,7 +3458,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "폭풍우 치는 밤, 평판 좋은 초심리학자에게서 걸려 온 다급한 전화."
  },
  {
   "id": "s-168",
@@ -3329,7 +3495,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "1920년대 뉴올리언스, 한 기자의 기묘한 죽음과 동봉된 낯선 문양에 대한 의뢰."
  },
  {
   "id": "s-170",
@@ -3347,7 +3514,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "마도력 620년 라이트라, 갑자기 고장 나는 공장 기계들 뒤에 빛의 교단과 안개의 신이 있다."
  },
  {
   "id": "s-171",
@@ -3365,7 +3533,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "2075년 히어로 아카데미, 최다 징계자와 최다 벌점자와 최고 멍청이에게 빌런 협회 지명이 들어왔다."
  },
  {
   "id": "s-172",
@@ -3381,7 +3550,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "공허가 무너진 뒤의 뉴 프렉탈, 반값 월세 사무실을 얻은 해결사들의 의뢰."
  },
  {
   "id": "s-173",
@@ -3399,7 +3569,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "연금력 236년, 흉포해진 포미 소문을 쫓는 세 연금술사."
  },
  {
   "id": "s-174",
@@ -3417,7 +3588,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "버스를 타고 신이 나온다는 산속 신사를 찾은 두 사람, 피할 수 없는 재앙이 되풀이된다. (2인 시나리오)"
  },
  {
   "id": "s-175",
@@ -3435,7 +3607,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "비 내리는 장례식, 영정 속 얼굴은 낯익은 그 사람이다. 두 경찰의 이야기. (2인 시나리오)"
  },
  {
   "id": "s-176",
@@ -3453,7 +3626,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "우연인지 약속인지 한곳에 모인 공명자들, 누군가의 주머니에 든 주사위 하나."
  },
  {
   "id": "s-178",
@@ -3471,7 +3645,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "검성 이즈미가 죽었다. 그가 남긴 비급을 둘러싼 닌자들의 싸움."
  },
  {
   "id": "s-179",
@@ -3489,7 +3664,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "여름 오봉 휴가, 초등학교 동창회에서 재회한 친구들이 '황혼의 인형관'을 찾는다."
  },
  {
   "id": "s-180",
@@ -3505,7 +3681,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "2020년대 후반 겨울, 좀비가 가득한 아스타니카 시에서 소방서를 거점 삼은 생존자들."
  },
  {
   "id": "s-181",
@@ -3523,7 +3700,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "밤을 걷는 총잡이와 마법사, 광기의 주인을 기다리는 석상이 지키는 유적으로."
  },
  {
   "id": "s-182",
@@ -3541,7 +3719,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "2026년 2월, 등급 조정이 필요한 'ARC-039 환상의 섬'으로 요트를 타고 떠난 현장 4팀."
  },
  {
   "id": "s-183",
@@ -3559,7 +3738,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "1930년대 가을 아캄, 추리 작가와 괴짜 물리학 교수가 한 교수의 부름을 받는다."
  },
  {
   "id": "s-184",
@@ -3577,7 +3757,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "뉴욕 같은 환락가의 나이트클럽 '판도라의 궁전', 한정 전시된 판도라의 상자가 도난당했다."
  },
  {
   "id": "s-185",
@@ -3593,7 +3774,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "2026년 2월 서유럽의 한적한 시골, 최근 묻힌 관이 대여섯 개. '자살 관리록'의 흔적."
  },
  {
   "id": "s-186",
@@ -3611,7 +3793,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "악역 영애에 빙의한 히어로 덕후와 흑막일지 모를 2황자, 죽음 이벤트투성이인 아카데미 로맨스 판타지."
  },
  {
   "id": "s-187",
@@ -3629,7 +3812,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "부상당한 파트너가 오니 혈통 근거지에서 훔친 밀서, 그 밀서를 둘러싼 닌자들의 배신극."
  },
  {
   "id": "s-188",
@@ -3645,7 +3829,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "연금술 도시 루멘 알카디아, 모험가 조합의 마물 퇴치 의뢰가 말도 안 되게 꼬인다."
  },
  {
   "id": "s-189",
@@ -3661,7 +3846,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "요양원에서 회복한 뒤 받은 킬러비 퇴치 의뢰, 숲에 수도사 복장의 인형이 서 있다."
  },
  {
   "id": "s-190",
@@ -3679,7 +3865,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "빙의한 지 일주일, 운석이 떨어진 동쪽 마을을 구하라는 메인 퀘스트."
  },
  {
   "id": "s-191",
@@ -3697,7 +3884,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "매월 1일에 열리는 대미궁, 거인 혼혈과 사슴 수인과 성직자와 노움 마법사가 들어선다."
  },
  {
   "id": "s-192",
@@ -3715,7 +3903,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "환성 16년 천나라, 겉보기엔 태평성대인 황궁에 마교와 마물의 상소가 쏟아진다. (1인 시나리오)"
  },
  {
   "id": "s-193",
@@ -3733,7 +3922,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "이번 달 730골드 적자, 중앙 수도 2층 가게 '파파이스 편의점'을 살리기 위한 사냥."
  },
  {
   "id": "s-194",
@@ -3751,7 +3941,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "홍수가 났다! 오니 혈통은 수복을 서둘러라. 그리고 납치된 소녀 카가리비."
  },
  {
   "id": "s-196",
@@ -3769,7 +3960,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "어느 여름밤 아는 교사에게서 걸려 온 전화, '딸을, 미오를 구해 줘.' (1인 시나리오)"
  },
  {
   "id": "s-198",
@@ -3787,7 +3979,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "스트레스가 병이 된 현대 일본, 친구가 두 사람 반 몫을 먹어 치우고 테이블 밑에서 무언가를 씹는 소리가 난다."
  },
  {
   "id": "s-200",
@@ -3805,7 +3998,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "안개 낀 승강장, 키 3m의 하얀 가면이 녹색 연기로 사람들의 형상을 내뿜는다. 워싱턴행 급행열차."
  },
  {
   "id": "s-201",
@@ -3825,7 +4019,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "1920년대 그린란드, 빙하 사이로 드러난 고대 석판을 찾아 떠난 탐험대. (1인, 캐릭터 4명 파티)"
  },
  {
   "id": "s-203",
@@ -3841,7 +4036,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "부모를 호로에게 잃은 소녀와 상경한 시골 소녀와 사신의 검을 주운 배달 기사, 도쿄의 숨은 호로 사냥."
  },
  {
   "id": "s-204",
@@ -3859,7 +4055,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "현자가 건넨 아뮬렛, 수도원을 찾아가라는 말과 함께 시작된 중세 판타지 여행."
  },
  {
   "id": "s-205",
@@ -3877,7 +4074,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "평범한 퇴근길 지하철이 멈추고, 열차 안이 하나의 시나리오 무대로 바뀐다."
  },
  {
   "id": "s-206",
@@ -3895,7 +4093,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "1925년, 피츠제럴드 저택에 초대받은 손님들과 수상한 꿀 냄새."
  },
  {
   "id": "s-207",
@@ -3913,7 +4112,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "멸망까지 남은 시간은 1시간, 리치 마왕 앞에 선 이들."
  },
  {
   "id": "s-208",
@@ -3931,7 +4131,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "병원 침대에서 깨어난 탐정 더크, 기억나지 않는 사건이 그를 쫓아온다."
  },
  {
   "id": "s-209",
@@ -3949,7 +4150,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "2036년, 게이트와 누수가 일상이 된 세계의 현장 요원들."
  },
  {
   "id": "s-210",
@@ -3965,7 +4167,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "탐험 공사의 의뢰, 바다 위를 떠도는 유령선에 오른다."
  },
  {
   "id": "s-211",
@@ -3983,7 +4186,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "닭무덤에 얽힌 형제의 이야기, 저마다 숨긴 비밀이 있다."
  },
  {
   "id": "s-x01",
@@ -4000,7 +4204,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "새해를 맞아 떠난 오사카 여행, 뜻밖의 일이 기다린다."
  },
  {
   "id": "s-x02",
@@ -4015,7 +4220,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "야쿠츠크의 혹한 속에서 '푸른 심장'의 흔적을 쫓는다."
  },
  {
   "id": "s-x03",
@@ -4030,7 +4236,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "교류전 무대에 선 이들, 끝이 없는 무간의 싸움."
  },
  {
   "id": "s-x04",
@@ -4047,7 +4254,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "심연으로 짐을 나르는 짐꾼들의 위험한 원정."
  },
  {
   "id": "s-x05",
@@ -4062,7 +4270,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "죽은 뒤 몬스터 세계로 전생한 이들의 새 삶."
  },
  {
   "id": "s-x06",
@@ -4079,7 +4288,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "연쇄 살인마의 그림자가 드리운 도시, 엇갈리는 마음들."
  },
  {
   "id": "s-x07",
@@ -4094,7 +4304,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "FDO 요원들, 옷장 너머로 이어진 이상 현상을 조사한다."
  },
  {
   "id": "s-x08",
@@ -4111,7 +4322,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "THE SUMP, 빠져나갈 수 없다는 감옥에서 깨어난다."
  },
  {
   "id": "s-x09",
@@ -4126,7 +4338,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "드래곤의 핵을 둘러싼 모험, 거대한 용 앞에 선 파티."
  },
  {
   "id": "s-x10",
@@ -4141,7 +4354,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "화산파의 제자들, 비무대회를 앞두고 문파의 이름을 건다."
  },
  {
   "id": "s-x11",
@@ -4160,7 +4374,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "1925년 1월, 수술과 휴식을 마친 탐사자들이 밤에 떠나는 영국행 여객선 3등실에 몰래 오른다."
  },
  {
   "id": "s-x12",
@@ -4179,7 +4394,8 @@
    "prec": "day",
    "sure": false
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "1925년 5월 말, 무기를 정비하고 실종 신고를 마친 탐사자들이 칼라일 탐사대의 흔적을 좇아 이집트로 향한다."
  },
  {
   "id": "s-x13",
@@ -4198,6 +4414,7 @@
    "prec": "day",
    "sure": true
   },
-  "hasSource": true
+  "hasSource": true,
+  "summary": "다시 열린 가면들, 1921년 3월 페루 리마의 주점에서 한 통의 전보를 받고 모인 팀 그린라이트."
  }
 ]
