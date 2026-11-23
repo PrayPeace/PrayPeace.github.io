@@ -151,7 +151,7 @@ function home(){
   <section class="duo">
     <div class="panel"><div class="k">FROM THE ARCHIVES</div><h2>서고에서 꺼낸 오래된 기억</h2>
     ${pick?`<a class="memory" href="#${pick.id}">${pc?`<img src="${esc(pc.img)}" alt="">`:'<span class="noimg"></span>'}<div><b>${esc(pick.title)}</b><div style="color:var(--dust);font-size:13px">${dateText(pick.date)}${pc?' · '+esc(pc['이름']):''}</div><div style="font-size:13.5px;margin-top:4px">${esc(sumPub(pick))}</div><div style="color:var(--gilt);font-size:12.5px;margin-top:4px">다시 만나기 →</div></div></a>`
-      :`<p class="locked" style="margin:0">승인된 기록이 아직 없어요. ${isAdmin()?'<a href="#inbox">작업함</a>에서 요약을 승인하면':'관리자가 요약을 승인하면'} 하루에 하나씩 여기에 나타나요.</p>`}
+      :`<p class="locked" style="margin:0">${isAdmin()?'승인한 요약이 아직 없어요. <a href="#inbox">작업함</a>에서 요약을 승인하면 하루에 하나씩 여기에 나타나요.':'오늘 다시 만날 이야기를 준비하고 있어요.'}</p>`}
     </div>
     <div class="panel"><div class="k">THE JOURNEY</div><h2>나의 TRPG 발자취</h2>
       <div class="journey">${yearsAll().map(y=>{const n=D.sessions.filter(s=>yearOf(s)===y).length;return `<a class="yr" href="#journey/${y}"><i></i><span>${y}</span><small>${n}회</small></a>`}).join('')}</div>
@@ -440,11 +440,11 @@ function memoryView(){
   <div class="sect-t">HALL OF MEMORIES</div>
   <section class="halls">${halls.map(([h,p],i)=>`<div class="hall"><div class="k">${['QUOTES','LEGENDARY DICE','LAUGHTER','MOMENTS'][i]}</div><h3>${h}</h3><p>${p}</p>
     ${shownMems(halls[i][2]).map(memLine).join('')}
-    ${i===0&&qs.length?qs.map(c=>`<p style="margin-top:12px;color:var(--ivory);font-family:var(--f-head);font-size:16px">“${esc(c['한마디'])}” <a href="#${c.id}" style="font-size:13px;color:var(--gilt);font-family:var(--f-kr)">— ${esc(c['이름'])}</a></p>`).join('')+`<p class="locked" style="margin-top:8px">대표 대사 ${quotes.length}개 중 오늘의 ${qs.length}개</p>`:shownMems(halls[i][2]).length?'':`<p style="margin-top:12px" class="locked">아직 승인된 기록이 없어요. 세션 기록에서 후보를 뽑아 대장이 승인한 것만 여기에 걸려요.${role==='visitor'?' 친구가 나오는 장면은 로그인하면 보여요.':''}</p>`}</div>`).join('')}</section>
+    ${i===0&&qs.length?qs.map(c=>`<p style="margin-top:12px;color:var(--ivory);font-family:var(--f-head);font-size:16px">“${esc(c['한마디'])}” <a href="#${c.id}" style="font-size:13px;color:var(--gilt);font-family:var(--f-kr)">— ${esc(c['이름'])}</a></p>`).join('')+`<p class="locked" style="margin-top:8px">대표 대사 ${quotes.length}개 중 오늘의 ${qs.length}개</p>`:shownMems(halls[i][2]).length?'':`<p style="margin-top:12px" class="locked">${isAdmin()?'아직 건 추억이 없어요. <a href="#inbox" style="color:var(--gilt)">작업함</a>의 명장면 후보에서 걸어요.':role==='visitor'?'로그인하면 더 많은 추억이 보여요.':'아직 걸린 추억이 없어요.'}</p>`}</div>`).join('')}</section>
   <div class="sect-t">GALLERY</div>
   <p class="locked" style="text-align:center;margin:-4px 0 14px">캐릭터 서고와 같은 대표 그림을 보여요. 누르면 그 캐릭터의 앨범 ${albums.reduce((n,c)=>n+c['앨범'].length,0)}장을 넘겨 볼 수 있어요.</p>
   ${albums.length?`<div class="gallery">${albums.map(c=>`<button class="ccard" style="padding:0;text-align:left;font:inherit;color:inherit;cursor:zoom-in" data-lbopen="${c.id}" data-i="-1"><div class="pic"><img src="${esc(c.img||c['앨범'][0][0])}" alt="" loading="lazy"><span class="fav">${c['앨범'].length}장</span></div><div class="cap"><b>${esc(c['이름'])}</b><small>${esc(RULES[shelfOf(c)]||shelfOf(c))}</small></div></button>`).join('')}</div>`:'<p class="empty">앨범 그림이 아직 없어요.</p>'}
-  <section class="memoriam"><div class="k">IN MEMORIAM</div><h3>돌아오지 못한 이들에게</h3><p class="locked" style="font-size:14px">그들이 남긴 마지막 이야기. 최후와 마지막 말은 대장이 직접 쓴 것만 걸어요.</p>
+  <section class="memoriam"><div class="k">IN MEMORIAM</div><h3>돌아오지 못한 이들에게</h3><p class="locked" style="font-size:14px">그들이 남긴 마지막 이야기.</p>
   ${lost.length?`<div style="margin-top:12px">${lost.map(c=>`<a class="pc" href="#${c.id}">${c.img?`<img src="${esc(c.img)}" alt="">`:''}${esc(c['이름'])} <small class="locked">${esc(c['상태'])}</small></a>`).join('')}</div>`:'<p style="margin:10px 0 0">아직 돌아오지 못한 이가 없어요.</p>'}</section>`;
 }
 // ---------- 발자취 ----------
