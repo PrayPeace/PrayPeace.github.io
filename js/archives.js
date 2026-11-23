@@ -11,7 +11,7 @@ let MEM={};
 const MEM_KIND={quote:'명대사',dice:'전설적인 주사위',laugh:'웃겼던 순간',moment:'감동적인 장면'};
 const memRV=m=>RV['mem:'+m.id]||{};
 const memState=m=>memRV(m).st||(m.status==='approved'?'ok':'draft'), memText=m=>memRV(m).text||m.text, memVis=m=>memRV(m).vis||m.vis||(m.friends?'친구':'공개');
-const shownMems=kind=>Object.values(MEM).filter(m=>m.kind===kind&&(!isAdmin()||memState(m)==='ok')).sort((a,b)=>String(a.sessionId).localeCompare(String(b.sessionId))||String(a.id).localeCompare(String(b.id)));
+const shownMems=kind=>Object.values(MEM).filter(m=>m.kind===kind&&(!isAdmin()||memState(m)==='ok')).sort((a,b)=>(b.pinned?1:0)-(a.pinned?1:0)||String(a.sessionId).localeCompare(String(b.sessionId))||String(a.id).localeCompare(String(b.id)));
 let saveRV=()=>{};
 // 즐겨찾기: 지금 캐릭터 서고(/Character_Archive/)와 같은 주소라 같은 'fav' 칸을 함께 쓴다
 let FAV=new Set(store.get('fav',[]));
@@ -433,7 +433,7 @@ function memoryView(){
   const lost=D.characters.filter(isLost);
   const albums=D.characters.filter(c=>(c['앨범']||[]).length).sort((a,b)=>b['앨범'].length-a['앨범'].length);
   const halls=[['명대사','세션 속 대사와 캐릭터 대표 대사','quote'],['전설적인 주사위','믿기 힘든 판정의 순간','dice'],['웃겼던 순간','다시 읽어도 웃긴 장면','laugh'],['감동적인 장면','오래 남은 장면','moment']];
-  const memLine=m=>{const s=byId[m.sessionId];return `<p style="margin-top:12px;color:var(--ivory)">${m.kind==='quote'?`<span style="font-family:var(--f-head);font-size:16px">“${esc(memText(m))}”</span>`:esc(memText(m))}${isAdmin()&&memVis(m)!=='공개'?' <span class="tag warn">친구에게만</span>':''}<br><small class="locked">${m.who?esc(m.who)+' · ':''}${s?`<a href="#${s.id}" style="color:var(--gilt)">${esc(s.title)}</a>`:''}</small></p>`};
+  const memLine=m=>{const s=byId[m.sessionId];return `<p style="margin-top:12px;color:var(--ivory)">${m.kind==='quote'?`<span style="font-family:var(--f-head);font-size:16px">“${esc(memText(m))}”</span>`:esc(memText(m))}${m.pinned?' <span class="tag gold">고정</span>':''}${isAdmin()&&memVis(m)!=='공개'?' <span class="tag warn">친구에게만</span>':''}<br><small class="locked">${m.who?esc(m.who)+' · ':''}${s?`<a href="#${s.id}" style="color:var(--gilt)">${esc(s.title)}</a>`:''}</small></p>`};
   const quotes=D.characters.filter(c=>c['한마디']);
   const day=Math.floor(Date.now()/864e5), qs=quotes.length?Array.from({length:Math.min(4,quotes.length)},(_,i)=>quotes[(day*7+i*13)%quotes.length]).filter((c,i,a)=>a.indexOf(c)===i):[];
   return `<section class="mhead"><div class="eyebrow">THE PRAYPEACE ARCHIVES</div><h2>MEMORY</h2><p>모험은 끝났지만, 이야기는 남아 있다.</p></section>
