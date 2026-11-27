@@ -31,7 +31,7 @@ function webapp(route){
   if(q.op==='whoami')return j({ok:true,role});
   if(q.op==='sessions')return j({ok:true,sessions:[{'번호':'130','KP':'시험키퍼','PL':'시험플레이어','대장PC':'세켈','녹화':'있음','영상':'1부 https://youtu.be/x','링크':'https://drive.google.com/x'}]});
   if(q.op==='fav')return j({ok:true,fav:['coc-017']});
-  if(q.op==='pa_view')return j({ok:true,sum:{'s-130':'승인된 요약 시험'},end:{'s-130':'친구 결말 시험'},pt:{},rev:{},mem:{'m-001':{sessionId:'s-130',kind:'dice',who:'',text:'공개 추억 시험'},'m-002':{sessionId:'s-130',kind:'laugh',who:'',text:'친구 추억 시험'}}});
+  if(q.op==='pa_view')return j({ok:true,sum:{'s-130':'승인된 요약 시험'},end:{'s-130':'친구 결말 시험'},pt:{},rev:{},mem:{'m-001':{sessionId:'s-130',kind:'dice',who:'',text:'공개 추억 시험'},'m-002':{sessionId:'s-130',kind:'laugh',who:'',text:'친구 추억 시험'},'trpg-x-0':{sessionId:'TRPG:x#2',title:'CoC 시험 방 · 세션 2',kind:'quote',who:'',text:'방에서 온 명대사 시험'}}});
   if(role!=='admin')return j({ok:false,error:'role'});
   if(q.op==='pa_get')return j({ok:true,rv:WA.rv,priv:{sessions:{'s-130':{summary:{text:'초안 요약 시험',status:'draft',by:'AI'},ending:{text:'비공개 결말 시험',status:'draft',vis:'비공개'},notes:'관리 메모 시험'}},playthroughs:{},memories:{'m-002':{sessionId:'s-130',kind:'laugh',who:'',text:'친구 추억 시험',friends:true},'m-003':{sessionId:'s-130',kind:'quote',who:'세켈 콜트레인',text:'대사 후보 시험',friends:false}}}});
   if(q.op==='pa_set'){WA.rv=q.rv;return j({ok:true})}
@@ -122,7 +122,7 @@ function webapp(route){
   await p.click('#loginBtn'); await p.fill('#pw','friend'); await Promise.all([p.waitForNavigation(),p.click('#loginForm [type=submit]')]); await p.waitForSelector('main#view > *'); await p.waitForTimeout(400);
   ok('친구 로그인 표시',(await p.textContent('#loginBtn')).includes('친구'));
   await go('s-130'); await p.waitForTimeout(200); const f130=await text(); ok('친구: 함께한 사람·녹화 보임',f130.includes('시험키퍼')&&f130.includes('한글 파일 열기')); ok('친구: 친구 범위 결말 보임',f130.includes('친구 결말 시험')); ok('친구: 초안·메모 안 보임',!f130.includes('초안 요약')&&!f130.includes('관리 메모'));
-  await go('memory'); ok('친구: 친구 범위 추억도 보임',(await text()).includes('친구 추억 시험'));
+  await go('memory'); {const t=await text(); ok('친구: 친구 범위 추억도 보임',t.includes('친구 추억 시험')); ok('친구: TRPG 방 명대사와 방 제목',t.includes('방에서 온 명대사 시험')&&t.includes('CoC 시험 방 · 세션 2'))}
   await go('inbox'); ok('친구: 작업함 닫힘',(await text()).includes('관리자 화면이에요'));
   await p.click('#loginBtn'); await p.waitForNavigation(); await p.waitForSelector('main#view > *');
   ok('로그아웃',(await p.textContent('#loginBtn')).includes('로그인')&&!(await p.evaluate(()=>localStorage.getItem('tok'))));
