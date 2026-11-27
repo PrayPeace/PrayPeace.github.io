@@ -112,6 +112,8 @@ function webapp(route){
   ok('합쳐도 캐릭터 하나',await p.evaluate(()=>JSON.parse(localStorage.getItem('uw-dice-roller-v1')).characters.filter(c=>c.paId==='uw-030').length===1));
   // 캐릭터 서고에서 옮긴 것
   await go('coc-044'); await p.click('[data-ctab="인물"]'); await p.waitForTimeout(100); const c44=await text(); ok('이전/다음 단추',!!(await p.$('.cnav a.btn.sm'))); let relN=0; for(const id of ['coc-002','coc-003','coc-017','uw-030','coc-038','etc-007']){await go(id);if((await text()).includes('관련 인물'))relN++} ok('관련 인물 '+relN+'/6명',relN>=2); await go('coc-044');
+  {const f=await p.textContent('.fileno'); ok('파일 번호 표시 '+f.trim(),/^FILE #\d{3} · \d{3} \/ \d{3}$/.test(f.trim()))}
+  {const b0=await p.textContent('header #motionBtn'); await p.click('header #motionBtn'); const b1=await p.textContent('#motionBtn'); const st=await p.evaluate(()=>document.documentElement.classList.contains('still')); await p.click('#motionBtn'); ok('머리글 움직임 단추 '+b0.trim()+' → '+b1.trim(),b0.includes('ON')&&b1.includes('OFF')&&st)}
   ok('소개 카드 단추',!!(await p.$('[data-card="coc-044"]'))); ok('방문객에겐 추천 단추 없음',!(await p.$('[data-pick]')));
   const [dl]=await Promise.all([p.waitForEvent('download'),p.click('[data-card="coc-044"]')]); const png=fs.readFileSync(await dl.path()); ok('소개 카드 PNG 내려받기 '+png.length+'바이트',png.slice(1,4).toString()==='PNG'&&png.length>20000);
   await go(''); ok('처음 화면 전시',(await p.$$('.picks .pick')).length>=3);

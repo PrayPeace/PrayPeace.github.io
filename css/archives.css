@@ -364,3 +364,10 @@ h4.ybh{margin:14px 0 6px;font-size:14px;color:var(--gilt)}
 .ybmem p{margin:6px 0;color:var(--ivory)}
 .ybmem a{color:var(--gilt)}
 .camplinks{margin:10px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+/* 움직임 켜기·끄기 단추(머리글) · 캐릭터 파일 번호 */
+#motionBtn{display:inline-flex;align-items:center;gap:6px;font-variant-numeric:tabular-nums}
+#motionBtn .mdot{width:7px;height:7px;border-radius:50%;background:var(--gilt);display:inline-block}
+#motionBtn[aria-pressed="false"] .mdot{background:transparent;box-shadow:inset 0 0 0 1px var(--dust)}
+.fileno{font-family:ui-monospace,Consolas,monospace;font-size:12px;letter-spacing:.14em;color:var(--gilt);margin-bottom:2px}
+.fileno span{color:var(--dust)}
+.cd .tagline{font-family:var(--f-head);color:var(--ivory);font-size:16px;margin:4px 0 8px;opacity:.92}
