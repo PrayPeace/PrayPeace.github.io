@@ -433,7 +433,7 @@ function memoryView(){
   const lost=D.characters.filter(isLost);
   const albums=D.characters.filter(c=>(c['앨범']||[]).length).sort((a,b)=>b['앨범'].length-a['앨범'].length);
   const halls=[['명대사','세션 속 대사와 캐릭터 대표 대사','quote'],['전설적인 주사위','믿기 힘든 판정의 순간','dice'],['웃겼던 순간','다시 읽어도 웃긴 장면','laugh'],['감동적인 장면','오래 남은 장면','moment']];
-  const memLine=m=>{const s=byId[m.sessionId];return `<p style="margin-top:12px;color:var(--ivory)">${m.kind==='quote'?`<span style="font-family:var(--f-head);font-size:16px">“${esc(memText(m))}”</span>`:esc(memText(m))}${m.pinned?' <span class="tag gold">고정</span>':''}${isAdmin()&&memVis(m)!=='공개'?' <span class="tag warn">친구에게만</span>':''}<br><small class="locked">${m.who?esc(m.who)+' · ':''}${s?`<a href="#${s.id}" style="color:var(--gilt)">${esc(s.title)}</a>`:''}</small></p>`};
+  const memLine=m=>{const s=byId[m.sessionId];return `<p style="margin-top:12px;color:var(--ivory)">${m.kind==='quote'?`<span style="font-family:var(--f-head);font-size:16px">“${esc(memText(m))}”</span>`:esc(memText(m))}${m.pinned?' <span class="tag gold">고정</span>':''}${isAdmin()&&memVis(m)!=='공개'?' <span class="tag warn">친구에게만</span>':''}<br><small class="locked">${m.who?esc(m.who)+' · ':''}${s?`<a href="#${s.id}" style="color:var(--gilt)">${esc(s.title)}</a>`:m.title?esc(m.title):''}</small></p>`};
   const quotes=D.characters.filter(c=>c['한마디']);
   const day=Math.floor(Date.now()/864e5), qs=quotes.length?Array.from({length:Math.min(4,quotes.length)},(_,i)=>quotes[(day*7+i*13)%quotes.length]).filter((c,i,a)=>a.indexOf(c)===i):[];
   return `<section class="mhead"><div class="eyebrow">THE PRAYPEACE ARCHIVES</div><h2>MEMORY</h2><p>모험은 끝났지만, 이야기는 남아 있다.</p></section>
@@ -489,7 +489,7 @@ function inbItems(tab){
   if(tab==='end') return D.sessions.filter(s=>s.ending).map(s=>({key:'end:'+s.id,s,title:s.title,sub:`${s.no??''} · ${s.rule} · ${endVis(s)}`,st:endState(s)}));
   if(tab==='pt') return D.playthroughs.map(p=>{const i=ptInfo(p.id);return {key:'pt:'+p.id,p,title:scen[p.scenarioId]?.title||p.id,sub:`${p.id} · 세션 ${ptSessions(p.id).length}회 · ${i.sure?'확정 '+i.status:'AI 추정 '+i.status}`,st:i.sure?'ok':'draft'}});
   if(tab==='rev') return D.playthroughs.filter(p=>RV['rev:'+p.id]?.text).map(p=>({key:'rev:'+p.id,p,title:scen[p.scenarioId]?.title||p.id,sub:RV['rev:'+p.id].vis,st:'ok'}));
-  if(tab==='scene') return Object.values(MEM).map(m=>{const s=byId[m.sessionId];return {key:'mem:'+m.id,m,s,title:`${MEM_KIND[m.kind]||m.kind} · ${s?s.title:m.sessionId}`,sub:`${s?.no??'번호 없음'} · ${m.who||'여럿'} · ${m.friends?'친구 PC 나옴':'대장 PC만'} · ${memVis(m)}`,st:memState(m)}});
+  if(tab==='scene') return Object.values(MEM).map(m=>{const s=byId[m.sessionId];return {key:'mem:'+m.id,m,s,title:`${MEM_KIND[m.kind]||m.kind} · ${s?s.title:m.title||m.sessionId}`,sub:`${s?.no??'번호 없음'} · ${m.who||'여럿'} · ${m.friends?'친구 PC 나옴':'대장 PC만'} · ${memVis(m)}`,st:memState(m)}});
   return [];
 }
 const inbWait=x=>['draft','fix','hold'].includes(x.st);
@@ -635,9 +635,11 @@ function checkView(){
   const nSum=D.sessions.filter(s=>s.summary&&sumPub(s)==null).length, nEnd=D.sessions.filter(s=>s.ending&&!(endState(s)==='ok'&&endVis(s)==='공개')).length;
   add(leak.length?'bad':'ok','방문객용 공개 데이터에 비공개 정보가 섞이는가',leak.length?leak.join(', '):`섞이지 않음 · 빠진 것: 미승인 요약 ${nSum}개, 비공개 결말 ${nEnd}개, 원본 경로·관리 메모·회차 메모 전부, 친구 닉네임·녹화 링크(처음부터 없음). 공개 파일 크기 ${Math.round(pub.length/1024)}KB`);
   add('warn','실제 로그인','시험판의 보기 전환은 화면만 바꿔요. 정식판은 친구·관리자 데이터를 로그인 뒤 서버(웹 앱)가 권한을 확인하고 보내요');
-  return `<div class="pagehead"><h2>CHECK<span>점검</span></h2><p>시험 데이터로 돌린 자동 검사예요. 링크를 누르면 해당 기록으로 바로 가요. 실제 사이트에서는 "문제"가 하나라도 있으면 반영하지 않아요.</p></div><ul class="checks">${items.join('')}</ul>`;
+  return `<div class="pagehead"><h2>CHECK<span>점검</span></h2><p>시험 데이터로 돌린 자동 검사예요. 링크를 누르면 해당 기록으로 바로 가요. 실제 사이트에서는 "문제"가 하나라도 있으면 반영하지 않아요.</p></div>${isAdmin()?trpgLinkCard():''}<ul class="checks">${items.join('')}</ul>`;
 }
 
+// TRPG 아카이브 연결: 방 마스터 도구에 붙여 넣을 코드(웹 앱 주소#열쇠)를 만든다. 새로 만들면 예전 코드는 못 씀
+const trpgLinkCard=()=>`<section class="card" style="margin:14px 0;padding:14px"><h4 style="margin:0 0 6px">📚 TRPG 아카이브 연결</h4><p class="locked" style="margin:0 0 8px">TRPG 아카이브 방의 마스터 도구 → "서고 연결"에 붙여 넣을 코드예요. 연결된 방에서 세션 기록을 만들면 세션 로그에 한 줄이 생기고, 결말은 비공개로 남고, AI가 고른 명대사는 추억관(로그인한 사람만)에 걸려요. 새로 만들면 예전 코드는 더 못 써요.</p><button data-trpglink>연결 코드 새로 만들기</button> <input id="trpgCode" readonly style="width:min(100%,420px)" placeholder="여기에 코드가 나와요"> <span id="trpgOut" class="locked"></span></section>`;
 // ---------- PLAYER: 플레이어 서고 (대장 프레이피스의 플레이 특징). 공개 데이터와 캐릭터 서고에서 셈만 한다. 지어낸 글은 넣지 않는다.
 const normGender=g=>/^(남|男|m)/i.test(g||'')?'남':/^(여|女|f)/i.test(g||'')?'여':'';
 const normNation=n=>{n=String(n||'').split(/[\/(]/)[0].trim();return /^(한국|대한민국|서울|조선)/.test(n)?'한국':n};
@@ -868,6 +870,7 @@ document.addEventListener('click',e=>{
   const t=e.target.closest('button,[data-lbopen]'); if(!t) return;
   const d=t.dataset;
   if(d.hideNotice!==undefined){$('#notice').hidden=true;store.set('pa-notice-off',true)}
+  else if(d.trpglink!==undefined){t.disabled=true;$('#trpgOut').textContent='만드는 중…';api('trpg_link').then(j=>{if(!j.ok)throw 0;const c=LOG_URL+'#'+j.key;$('#trpgCode').value=c;$('#trpgCode').select();try{navigator.clipboard.writeText(c);$('#trpgOut').textContent='✔ 복사했어요. 방 마스터 도구에 붙여 넣어 주세요'}catch{$('#trpgOut').textContent='✔ 위 코드를 복사해 주세요'}}).catch(()=>{$('#trpgOut').textContent='만들지 못했어요. 다시 로그인해 주세요'}).finally(()=>{t.disabled=false})}
   else if(d.sqreset!==undefined){SQ={...SQ0,sort:SQ.sort,group:SQ.group};saveSQ();render()}
   else if(d.sqgroup!==undefined){SQ.group=!SQ.group;SQ.page=1;saveSQ();t.setAttribute('aria-pressed',SQ.group);renderSessionList()}
   else if(d.pg){SQ.page=+d.pg;saveSQ();renderSessionList();$('#slist').scrollIntoView({block:'start'});window.scrollBy(0,-90)}
