@@ -496,7 +496,7 @@ function rulesRow(ss){const r=countBy(ss,s=>s.rule||'미기록');return r.length
 function memsOf(ss){
   const ids=new Set(ss.map(s=>s.id)), L=Object.keys(MEM_KIND).flatMap(k=>shownMems(k)).filter(m=>ids.has(m.sessionId));
   if(!L.length) return role==='visitor'&&ss.length?'<p class="locked" style="margin:8px 0 0">로그인하면 이 기간의 추억이 더 보여요.</p>':'';
-  return `<h4 class="ybh">이 기간의 추억 ${L.length}</h4>${Object.keys(MEM_KIND).map(k=>{const M=L.filter(m=>m.kind===k);return M.length?`<div class="ybmem"><div class="k">${esc(MEM_KIND[k])}</div>${M.map(m=>{const s=byId[m.sessionId];return `<p>${m.kind==='quote'?`“${esc(memText(m))}”`:esc(memText(m))}${m.pinned?' <span class="tag gold">고정</span>':''}<br><small class="locked">${m.who?esc(m.who)+' · ':''}${s?`<a href="#${s.id}">${esc(s.title)}</a>`:''}</small></p>`}).join('')}</div>`:''}).join('')}`;
+  return `<h4 class="ybh">이 기간의 추억 ${L.length}</h4>${Object.keys(MEM_KIND).map(k=>{const M=L.filter(m=>m.kind===k);return M.length?`<div class="ybmem"><div class="k">${esc(MEM_KIND[k])}</div>${M.map(m=>{const s=byId[m.sessionId];return `<p>${m.kind==='quote'?`“${esc(memText(m))}”`:esc(memText(m))}${m.pinned?' <span class="tag gold">고정</span>':''}<br><small class="locked">${m.who?esc(m.who)+' · ':''}${s?`<a href="#${s.id}">${esc(s.title)}</a>`:esc(m.title||'')}</small></p>`}).join('')}</div>`:''}).join('')}`;
 }
 const campSessions=id=>D.sessions.filter(s=>s.campaignId===id).sort(cmpAsc);
 function campLinks(){const C=D.campaigns.filter(c=>campSessions(c.id).length);return C.length?`<p class="camplinks">캠페인 돌아보기: ${C.map(c=>`<a class="btn sm" href="#journey/c/${c.id}">${esc(c.title)}</a>`).join(' ')}</p>`:''}
