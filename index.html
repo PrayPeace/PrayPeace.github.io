@@ -21,13 +21,14 @@
       <a href="#">처음</a><a href="#sessions">SESSION</a><a href="#characters">CHARACTER</a><a href="#scenarios">SCENARIO</a><a href="#memory">MEMORY</a><a href="#player">PLAYER</a><a href="#journey">발자취</a><a href="#inbox" data-admin>작업함</a><a href="#check" data-admin>점검</a>
     </nav>
     <div class="tools">
+      <button class="btn" id="motionBtn" aria-pressed="false" title="배경 먼지와 캐릭터 입장 연출을 켜고 꺼요"></button>
       <button class="btn" id="searchBtn" aria-label="통합 검색 열기">⌕ 검색 <span class="kbd">Ctrl K</span></button>
       <button class="btn" id="loginBtn" data-login>로그인</button>
     </div>
   </header>
   <p class="notice" id="notice" hidden><span id="noticeText"></span><button aria-label="안내 닫기" data-hide-notice>✕</button></p>
   <main id="view" aria-live="polite"></main>
-  <footer>PRAYPEACE · PERSONAL TRPG COLLECTION<br><button class="btn sm" id="motionBtn"></button> <label class="locked">캐릭터 입장 연출 <select class="inp" id="fxSel" style="width:auto;display:inline-block;padding:2px 6px"><option value="first">처음 한 번</option><option value="always">매번</option><option value="off">끄기</option></select></label></footer>
+  <footer>PRAYPEACE · PERSONAL TRPG COLLECTION<br><label class="locked">캐릭터 입장 연출 <select class="inp" id="fxSel" style="width:auto;display:inline-block;padding:2px 6px"><option value="first">처음 한 번</option><option value="always">매번</option><option value="off">끄기</option></select></label></footer>
 </div>
 
 <dialog class="search" id="searchDlg" aria-label="통합 검색">

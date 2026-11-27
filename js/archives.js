@@ -17,7 +17,7 @@ let saveRV=()=>{};
 let FAV=new Set(store.get('fav',[]));
 let saveFav=()=>store.set('fav',[...FAV]);
 let still=store.get('pa-still',false);
-function applyMotion(){document.documentElement.classList.toggle('still',still);$('#motionBtn').textContent=still?'배경 움직임 켜기':'배경 움직임 끄기'}
+function applyMotion(){document.documentElement.classList.toggle('still',still);const mb=$('#motionBtn');mb.innerHTML=`<span class="mdot" aria-hidden="true"></span>움직임 ${still?'OFF':'ON'}`;mb.setAttribute('aria-pressed',String(!still));mb.setAttribute('aria-label',still?'움직임 켜기 (지금 꺼짐)':'움직임 끄기 (지금 켜짐)')}
 applyMotion();
 $('#motionBtn').addEventListener('click',()=>{still=!still;store.set('pa-still',still);applyMotion()});
 function toast(t){document.querySelectorAll('.toast').forEach(x=>x.remove());const d=document.createElement('div');d.className='toast';d.role='status';d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),2200)}
@@ -342,6 +342,10 @@ const isLost=c=>/로스트|사망|격리|모험불가/.test(c['상태']||'');
 const playsOf=c=>+c['시나리오횟수']||(c['시나리오']||[]).length||0;
 const CS0={shelf:'',st:'',sort:'img',q:'',fav:false};
 let CS={...CS0,...store.get('pa-cs',{})};
+// 파일 번호: 서가 순서 → 시대 → id로 늘 같은 번호. 필터·정렬과 상관없이 고정
+let FILENO=null;
+function fileNo(c){if(!FILENO){const ro=x=>{const i=RULE_ORDER.indexOf(shelfOf(x));return i<0?99:i};const L=[...D.characters].sort((a,b)=>ro(a)-ro(b)||String(a['시대']||'').localeCompare(String(b['시대']||''))||a.id.localeCompare(b.id));FILENO=new Map(L.map((x,i)=>[x.id,i+1]))}return FILENO.get(c.id)}
+const pad3=n=>String(n).padStart(3,'0');
 function charList(){
   const q=CS.q.trim().toLowerCase();
   const list=D.characters.filter(c=>(!CS.shelf||shelfOf(c)===CS.shelf)&&(!CS.fav||FAV.has(c.id))
@@ -410,7 +414,7 @@ function charDetail(c){
   const kv=[['원어/별명','원어·별명'],['성별','성별'],['나이','나이'],['국적','국적'],['종족','종족'],['직업','직업'],['시대','시대'],['이성','이성'],['시스템','룰']].filter(([k])=>c[k]).map(([k,l])=>`<dt>${l}</dt><dd>${esc(c[k])}</dd>`).join('');
   const tagList=[c['시대'],c['직업'],...(c['시나리오']||[])].filter(Boolean);
   const panes={
-    '인물':`${memHTML(c)}${c['한마디']?`<blockquote class="quote">“${esc(c['한마디'])}”</blockquote>`:''}
+    '인물':`${memHTML(c)}
       <dl class="kv">${kv}</dl>
       ${story?`<div class="prose"><h4>이야기</h4>${role==='admin'||store.get('pa-spoil-'+c.id,false)||first===story?`<p>${esc(story)}</p>`:`<p>${esc(first)}</p><button class="btn sm" data-spoil="${c.id}">스포일러 포함 · 이어서 읽기</button>`}</div>`:''}
       <div class="prose">${prose||'<p class="locked">인물 소개가 아직 없어요.</p>'}${c['비고']?`<h4>비고</h4><p>${esc(String(c['비고']).replace(/ \/ /g,'\n'))}</p>`:''}</div>
@@ -424,7 +428,8 @@ function charDetail(c){
   const {prev,next}=prevNext(c);
   return `<div class="cnav"><a href="#characters" class="btn back">← 캐릭터 서고</a><span>${prev?`<a class="btn sm" href="#${prev.id}" title="${esc(prev['이름'])}">‹ 이전</a>`:''}${next?`<a class="btn sm" href="#${next.id}" title="${esc(next['이름'])}">다음 ›</a>`:''}</span></div>
   <div class="cd ${enterClass(c)}"><aside>${c.img?'':'<div class="portrait ini">'+esc(c['이름'][0])+'</div>'}<img class="portrait"${c.img?'':' hidden'} src="${esc(c.img)}" alt="${esc(c['이름'])}" data-lbopen="${c.id}" data-i="-1"><div>
-    <h2>${esc(c['이름'])}</h2><div><span class="tag gold">${esc(RULES[shelfOf(c)]||shelfOf(c))}</span><span class="tag">${esc(c['상태']||'')}</span><span class="tag" title="세션 기록에 연결된 수">세션 기록 ${ss.length}</span>${playsOf(c)?`<span class="tag" title="캐릭터 시트에 적힌 시나리오 수">시나리오 ${playsOf(c)}</span>`:''}</div>
+    <div class="fileno" title="서가 순서로 매긴 서고 파일 번호">FILE #${pad3(fileNo(c))} <span>· ${pad3(fileNo(c))} / ${pad3(D.characters.length)}</span></div>
+    <h2>${esc(c['이름'])}</h2>${c['한마디']?`<p class="tagline">“${esc(c['한마디'])}”</p>`:''}<div><span class="tag gold">${esc(RULES[shelfOf(c)]||shelfOf(c))}</span><span class="tag">${esc(c['상태']||'')}</span><span class="tag" title="세션 기록에 연결된 수">세션 기록 ${ss.length}</span>${playsOf(c)?`<span class="tag" title="캐릭터 시트에 적힌 시나리오 수">시나리오 ${playsOf(c)}</span>`:''}</div>
     <div class="locked" style="margin-top:6px">${esc([c['시스템']||c['룰'],c['직업']].filter(Boolean).join(' · '))}</div>
     <div class="actions"><button class="btn" data-fav="${c.id}" aria-pressed="${FAV.has(c.id)}">${FAV.has(c.id)?'★ 즐겨찾기됨':'☆ 즐겨찾기'}</button><button class="btn" data-share="${c.id}">링크 복사</button><button class="btn" data-card="${c.id}">소개 카드 PNG</button>${isAdmin()?`<button class="btn" data-pick="${c.id}" aria-pressed="${PICKS.includes(c.id)}">${PICKS.includes(c.id)?'★ 첫 화면 추천됨':'첫 화면에 추천'}</button>`:''}${dice.ok.length?`<button class="btn gilt" data-dice="${c.id}">🎲 판정 굴리기</button>`:''}</div>
     ${album.length?`<div class="locked" style="margin-top:8px">그림을 누르면 크게 보여요 · 앨범 ${album.length}장</div>`:''}
