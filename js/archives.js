@@ -62,6 +62,11 @@ const yearOf=s=>s.date&&s.date.v?+s.date.v.slice(0,4):null;
 const padDate=v=>v.length===4?v+'-00-00':v.length===7?v+'-00':v;
 const sortKey=s=>(s.date&&s.date.v?padDate(s.date.v):'9999')+String(s.no??0).padStart(4,'0')+(s.part?String(s.part).padStart(2,'0'):'');
 const cmpAsc=(a,b)=>sortKey(a)<sortKey(b)?-1:sortKey(a)>sortKey(b)?1:0;
+// 초성 검색: 'ㄴㅇㄹㅌㅌ'처럼 자음만 쳐도 찾는다(띄어쓰기 무시). 자음이 없으면 평소처럼 글자 그대로.
+const CHO='ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ';
+const toCho=t=>String(t??'').replace(/[가-힣]/g,ch=>CHO[Math.floor((ch.charCodeAt(0)-0xAC00)/588)]);
+const hasCho=v=>/[ㄱ-ㅎ]/.test(v);
+const qHit=(hay,v)=>{hay=String(hay??'').toLowerCase();if(!v)return true;if(hay.includes(v))return true;if(!hasCho(v))return false;const sq=x=>toCho(x).replace(/\s+/g,'');return sq(hay).includes(sq(v))};
 const sessionsOfChar=id=>D.sessions.filter(s=>(s.pcs||[]).includes(id)).sort(cmpAsc);
 const ptSessions=id=>D.sessions.filter(s=>s.playthroughId===id).sort((a,b)=>(a.part||0)-(b.part||0)||cmpAsc(a,b));
 const pcName=p=>typeof p==='string'?(chars[p]?.['이름']||p):p.name;
@@ -169,7 +174,7 @@ let SQ={...SQ0,...store.get('pa-sq',{})};
 const PAGE=12;
 function sessionMatches(s){
   const q=SQ.q.trim().toLowerCase();
-  if(q){const hay=[s.no,s.title,s.rule,dateText(s.date,true),camp[s.campaignId]?.title,...(s.pcs||[]).map(pcName),canSeeSummary(s)?shownSum(s):''].join(' ').toLowerCase();if(!hay.includes(q))return false}
+  if(q){const hay=[s.no,s.title,s.rule,dateText(s.date,true),camp[s.campaignId]?.title,...(s.pcs||[]).map(pcName),canSeeSummary(s)?shownSum(s):''].join(' ');if(!qHit(hay,q))return false}
   if(SQ.year){if(SQ.year==='미상'?yearOf(s):String(yearOf(s))!==SQ.year)return false}
   if(SQ.rule&&s.rule!==SQ.rule)return false;
   if(SQ.role&&s.role!==SQ.role)return false;
@@ -281,7 +286,7 @@ function scenList(){
   const q=SCS.q.trim().toLowerCase();
   const L=D.scenarios.map(sc=>({sc,I:scenInfo(sc)})).map(x=>({...x,tags:scenTags(x.sc,x.I)}))
     .filter(({sc,I,tags})=>(!SCS.rule||sc.rule===SCS.rule)&&SCS.on.every(t=>tags.includes(t))
-      &&(!q||[sc.title,ruleLabel(sc.rule),sc.era,camp[sc.campaignId]?.title,...I.ss.map(s=>s.title+' '+(s.no??'')),...I.pcs.map(p=>chars[p]['이름'])].join(' ').toLowerCase().includes(q)));
+      &&qHit([sc.title,ruleLabel(sc.rule),sc.era,camp[sc.campaignId]?.title,...I.ss.map(s=>s.title+' '+(s.no??'')),...I.pcs.map(p=>chars[p]['이름'])].join(' '),q));
   const dk=d=>d&&d.v?padDate(d.v):'';
   const cmp={recent:(a,b)=>dk(b.I.last).localeCompare(dk(a.I.last)),old:(a,b)=>(dk(a.I.first)||'9999').localeCompare(dk(b.I.first)||'9999'),name:(a,b)=>a.sc.title.localeCompare(b.sc.title,'ko'),many:(a,b)=>b.I.n-a.I.n||b.I.pts-a.I.pts||dk(b.I.last).localeCompare(dk(a.I.last))}[SCS.sort];
   return L.sort(cmp);
@@ -341,7 +346,7 @@ function charList(){
   const q=CS.q.trim().toLowerCase();
   const list=D.characters.filter(c=>(!CS.shelf||shelfOf(c)===CS.shelf)&&(!CS.fav||FAV.has(c.id))
     &&(!CS.st||(CS.st==='생존'?/생존/.test(c['상태']||''):CS.st==='lost'?isLost(c):!/생존/.test(c['상태']||'')&&!isLost(c)))
-    &&(!q||[c['이름'],c['원어/별명'],c['직업'],c['시대'],c['종족'],c['시스템'],...(c['시나리오']||[]),...(c['태그']||[])].join(' ').toLowerCase().includes(q)));
+    &&qHit([c['이름'],c['원어/별명'],c['직업'],c['시대'],c['종족'],c['시스템'],...(c['시나리오']||[]),...(c['태그']||[])].join(' '),q));
   const ro=c=>{const i=RULE_ORDER.indexOf(shelfOf(c));return i<0?99:i};
   const byRule=(a,b)=>ro(a)-ro(b)||String(a['시대']||'').localeCompare(String(b['시대']||''))||a.id.localeCompare(b.id);
   const cmp={img:(a,b)=>(!!b.img-!!a.img)||byRule(a,b),id:byRule,name:(a,b)=>a['이름'].localeCompare(b['이름'],'ko'),plays:(a,b)=>playsOf(b)-playsOf(a)||byRule(a,b)}[CS.sort]||byRule;
@@ -461,6 +466,7 @@ function journeyView(y){
   const lostNoDate=D.characters.filter(c=>isLost(c)&&!lastS(c)).length;
   const face=c=>`<a class="pc" href="#${c.id}">${c.img?`<img src="${esc(c.img)}" alt="">`:''}${esc(c['이름'])}</a>`;
   return `<div class="pagehead"><h2>THE JOURNEY<span>나의 TRPG 발자취</span></h2><p>연도를 누르면 그해의 연감이 열려요. 세션 수·회차 수·완주 수는 따로 세요. 날짜를 모르는 세션 ${unknown}회는 어느 해에도 들어가지 않아요.</p></div>
+  ${campLinks()}
   <div class="journey">${ys.map(v=>`<a class="yr" href="#journey/${v}" aria-current="${v===y}"><i></i><span>${v}</span><small>${D.sessions.filter(s=>yearOf(s)===v).length}회</small></a>`).join('')}</div>
   <div class="yearbook"><div class="k">YEARBOOK</div><h3 style="font-family:var(--f-head);margin:4px 0 6px;font-size:20px">${y}년의 모험</h3>
   <div class="ybgrid">
@@ -472,10 +478,49 @@ function journeyView(y){
     <div><b>${bye.length}</b><small>작별한 인물 · 마지막 세션이 이 해인 로스트·사망${lostNoDate?` · 세션 기록 없는 ${lostNoDate}명은 빠짐`:''}</small></div>
   </div>
   ${top.length?`<p style="margin:6px 0">가장 많이 함께한 캐릭터: ${top.map(([id,n])=>`<a href="#${id}">${esc(chars[id]['이름'])}</a> ${n}회`).join(' · ')}</p>`:''}
+  ${rulesRow(ss)}
+  ${memsOf(ss)}
   ${newChars.length?`<h4 class="ybh">새로 만난 캐릭터</h4><div class="pcs">${newChars.map(face).join('')}</div>`:''}
   ${bye.length?`<h4 class="ybh">🕯 작별한 인물</h4><div class="pcs">${bye.map(c=>`<span>${face(c)}<small class="locked"> 마지막 세션 ${esc(lastS(c).title)}</small></span>`).join('')}</div>`:''}
   <ol class="chron" style="margin-top:8px">${ss.map(s=>`<li><span class="n">${s.no??'—'}</span><a href="#${s.id}">${esc(s.title)}</a><span class="d">${dateText(s.date)}</span></li>`).join('')||'<li class="locked">이 해의 세션이 없어요.</li>'}</ol>
   ${ss.length&&sure<ss.length?`<p class="locked" style="margin:8px 0 0">이 해의 세션 ${ss.length-sure}회는 파일 날짜로 짐작한 것이라 실제 해와 다를 수 있어요.</p>`:''}</div>`;
+}
+
+// 돌아보기 도우미: 룰 비율, 그 세션들에 걸린 추억(보여도 되는 것만), 캠페인 바로가기
+function rulesRow(ss){const r=countBy(ss,s=>s.rule||'미기록');return r.length?`<h4 class="ybh">룰</h4><div>${r.map(([k,n])=>`<span class="tag">${esc(ruleLabel(k))} ${n}</span>`).join('')}</div>`:''}
+function memsOf(ss){
+  const ids=new Set(ss.map(s=>s.id)), L=Object.keys(MEM_KIND).flatMap(k=>shownMems(k)).filter(m=>ids.has(m.sessionId));
+  if(!L.length) return role==='visitor'&&ss.length?'<p class="locked" style="margin:8px 0 0">로그인하면 이 기간의 추억이 더 보여요.</p>':'';
+  return `<h4 class="ybh">이 기간의 추억 ${L.length}</h4>${Object.keys(MEM_KIND).map(k=>{const M=L.filter(m=>m.kind===k);return M.length?`<div class="ybmem"><div class="k">${esc(MEM_KIND[k])}</div>${M.map(m=>{const s=byId[m.sessionId];return `<p>${m.kind==='quote'?`“${esc(memText(m))}”`:esc(memText(m))}${m.pinned?' <span class="tag gold">고정</span>':''}<br><small class="locked">${m.who?esc(m.who)+' · ':''}${s?`<a href="#${s.id}">${esc(s.title)}</a>`:''}</small></p>`}).join('')}</div>`:''}).join('')}`;
+}
+const campSessions=id=>D.sessions.filter(s=>s.campaignId===id).sort(cmpAsc);
+function campLinks(){const C=D.campaigns.filter(c=>campSessions(c.id).length);return C.length?`<p class="camplinks">캠페인 돌아보기: ${C.map(c=>`<a class="btn sm" href="#journey/c/${c.id}">${esc(c.title)}</a>`).join(' ')}</p>`:''}
+function campaignBook(id){
+  const c=camp[id];
+  if(!c) return `<p class="empty" style="margin-top:20px">그런 캠페인이 없어요. <a href="#journey">발자취로</a></p>`;
+  const ss=campSessions(id), dated=ss.filter(s=>s.date&&s.date.v);
+  const pcs=new Map(); ss.forEach(s=>(s.pcs||[]).forEach(p=>{if(typeof p==='string'&&chars[p])pcs.set(p,(pcs.get(p)||0)+1)}));
+  const pts=[...new Set(ss.map(s=>s.playthroughId).filter(Boolean))].map(pid=>({pid,i:ptInfo(pid),sc:scen[PT[pid]?.scenarioId],n:ss.filter(s=>s.playthroughId===pid)}));
+  const lost=[...pcs.keys()].map(p=>chars[p]).filter(isLost);
+  const face=(p,n)=>{const ch=chars[p];return `<a class="pc" href="#${p}">${ch.img?`<img src="${esc(ch.img)}" alt="">`:''}${esc(ch['이름'])}${n?` <small class="locked">${n}회</small>`:''}</a>`};
+  return `<div class="pagehead"><h2>CAMPAIGN<span>${esc(c.title)} 돌아보기</span></h2><p><a href="#journey">← 발자취</a> · 기록된 세션만 모았어요. 날짜를 모르는 세션은 맨 뒤에 놓여요.</p></div>
+  ${campLinks()}
+  <div class="yearbook"><div class="k">CAMPAIGN BOOK</div><h3 style="font-family:var(--f-head);margin:4px 0 6px;font-size:20px">${esc(c.title)}</h3>
+  <div class="ybgrid">
+    <div><b>${ss.length}</b><small>세션</small></div>
+    <div><b>${pts.length}</b><small>시나리오 회차</small></div>
+    <div><b>${pts.filter(x=>x.i.shown==='완주').length}</b><small>완주 (대장 확인)</small></div>
+    <div><b>${pcs.size}</b><small>함께한 대장 캐릭터</small></div>
+    <div><b>${dated.length?dateText(dated[0].date,true).replace(' 추정',''):'—'}</b><small>첫 세션${dated.length>1?` · 마지막 ${esc(dateText(dated[dated.length-1].date,true).replace(' 추정',''))}`:''}</small></div>
+    <div><b>${lost.length}</b><small>작별한 인물 (로스트·사망)</small></div>
+  </div>
+  ${pcs.size?`<h4 class="ybh">함께한 캐릭터</h4><div class="pcs">${[...pcs.entries()].sort((a,b)=>b[1]-a[1]).map(([p,n])=>face(p,n)).join('')}</div>`:''}
+  ${pts.length?`<h4 class="ybh">시나리오 회차</h4>${pts.map(x=>`<div style="margin:4px 0">${x.sc?`<a href="#${x.sc.id}">${esc(x.sc.title)}</a>`:esc(x.pid)} <small class="locked">세션 ${x.n.length}회</small> ${ptLabel(x.i)}</div>`).join('')}`:''}
+  ${rulesRow(ss)}
+  ${memsOf(ss)}
+  ${lost.length?`<h4 class="ybh">🕯 작별한 인물</h4><div class="pcs">${lost.map(ch=>face(ch.id)).join('')}</div>`:''}
+  <h4 class="ybh">세션 흐름</h4>
+  <ol class="chron" style="margin-top:8px">${ss.map(s=>`<li><span class="n">${s.no??'—'}</span><a href="#${s.id}">${esc(s.title)}</a><span class="d">${dateText(s.date)}</span></li>`).join('')||'<li class="locked">세션이 없어요.</li>'}</ol></div>`;
 }
 
 // ---------- 작업함(관리자): 한 번에 한 기록. 왼쪽 목록 + 오른쪽 편집기 ----------
@@ -495,7 +540,7 @@ function inbItems(tab){
 const inbWait=x=>['draft','fix','hold'].includes(x.st);
 function inbFiltered(){
   const q=INB.q.trim().toLowerCase();
-  return inbItems(INB.tab).filter(x=>(INB.f==='all'||(INB.f==='wait'?inbWait(x):x.st===INB.f))&&(!q||(x.title+' '+x.sub).toLowerCase().includes(q)))
+  return inbItems(INB.tab).filter(x=>(INB.f==='all'||(INB.f==='wait'?inbWait(x):x.st===INB.f))&&qHit(x.title+' '+x.sub,q))
     .sort((a,b)=>(inbWait(a)?0:1)-(inbWait(b)?0:1)||(a.s&&b.s?cmpAsc(a.s,b.s):0));
 }
 function inboxView(){
@@ -833,7 +878,7 @@ function render(){
   else if(h==='characters'){html=charactersView();page='list'}
   else if(h==='memory'){html=memoryView();page='memory'}
   else if(h==='player'){html=playerView();page='list'}
-  else if(base==='journey'){html=journeyView(+h.split('/')[1]||null);page='journey'}
+  else if(base==='journey'){const j=h.split('/');html=j[1]==='c'?campaignBook(j[2]):journeyView(+j[1]||null);page='journey'}
   else if(base==='inbox'||base==='check') {html=isAdmin()?(base==='inbox'?inboxView():checkView()):`<p class="empty" style="margin-top:20px">관리자 화면이에요. 관리자 로그인은 다음 단계에서 열려요.</p>`;page='detail'}
   else if(byId[h]){html=sessionDetail(byId[h]);page='read'}
   else if(scen[h]){html=scenarioDetail(scen[h]);page='read'}
@@ -916,8 +961,8 @@ window.addEventListener('hashchange',()=>{
 // 통합 검색: 이름·번호·날짜·시나리오·태그·캠페인·추억(앨범 설명)
 const dlg=$('#searchDlg'), q=$('#q'), sres=$('#sres');
 function search(){
-  const v=q.value.trim().toLowerCase(); if(!v){sres.innerHTML='<p class="locked" style="padding:8px 16px">이름, 세션 번호, 날짜(2022, 2022.10), 시나리오, 직업, 시대, 캠페인으로 찾아요.</p>';return}
-  const hit=(...xs)=>xs.some(s=>String(s??'').toLowerCase().includes(v));
+  const v=q.value.trim().toLowerCase(); if(!v){sres.innerHTML='<p class="locked" style="padding:8px 16px">이름, 세션 번호, 날짜(2022, 2022.10), 시나리오, 직업, 시대, 캠페인으로 찾아요. 초성(ㄴㅇㄹㅌㅌ)만 쳐도 돼요.</p>';return}
+  const hit=(...xs)=>xs.some(s=>qHit(s,v));
   const cs=D.characters.filter(c=>hit(c['이름'],c['직업'],c['시대'],c['서가'],c['원어/별명'],...(c['시나리오']||[])));
   const ss=D.sessions.filter(s=>hit(s.title,s.no,dateText(s.date,true),s.date?.v,camp[s.campaignId]?.title,...(s.pcs||[]).map(pcName))||(canSeeSummary(s)&&hit(shownSum(s))));
   const scs=D.scenarios.filter(s=>hit(s.title,s.rule,s.era,camp[s.campaignId]?.title));

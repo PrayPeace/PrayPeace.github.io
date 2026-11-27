@@ -95,8 +95,13 @@ function webapp(route){
   ok('추모관에 로스트 캐릭터',(await p.$$eval('.memoriam .pc',e=>e.length))>0);
   await go('journey'); ok('발자취',(await text()).includes('년의 모험'));
   await go('journey/2022'); ok('연도 주소',(await text()).includes('2022년의 모험'));
+  {await go('journey'); const jt=await text(); ok('발자취: 캠페인 돌아보기 바로가기',jt.includes('캠페인 돌아보기')&&!!(await p.$('a[href="#journey/c/cp-masks"]')))}
+  await go('journey/c/cp-masks'); {const t=await text(); ok('캠페인 돌아보기: 니알라토텝',t.includes('니알라토텝의 가면들 장기팀 돌아보기')&&t.includes('세션 흐름')&&t.includes('함께한 캐릭터'))}
+  await go('journey/c/없는캠페인'); ok('없는 캠페인 안내',(await text()).includes('그런 캠페인이 없어요'));
+  await go('journey/2022'); {const t=await text(); ok('연감: 이 해의 추억·룰',t.includes('이 기간의 추억')&&t.includes('공개 추억 시험')&&t.includes('룰'))}
   await go('memory'); {const t=await text(); ok('방문객: 승인한 추억만 추억관에',t.includes('공개 추억 시험')&&!t.includes('친구 추억 시험'))}
   await go('inbox'); ok('작업함은 방문객에게 닫힘',(await text()).includes('관리자 화면이에요'));
+  await p.keyboard.press('Control+k'); await p.fill('#q','ㅌㄹㅇㅇㄱ'); await p.waitForTimeout(100); ok('통합 검색 초성',(await p.textContent('#sres')).includes('트라이앵글')); await p.fill('#q','ㄴㅇㄹㅌㅌㅇ ㄱㅁ'); await p.waitForTimeout(100); ok('통합 검색 초성 띄어쓰기',(await p.textContent('#sres')).includes('니알라토텝')); await p.keyboard.press('Escape');
   await p.keyboard.press('Control+k'); await p.fill('#q','195'); await p.waitForTimeout(100); ok('통합 검색 번호',(await p.textContent('#sres')).includes('트라이앵글')); await p.keyboard.press('Escape');
   // Oracle Dice: 서고 → 주사위 → 다시 가져오기(합치기) → 서고로 돌아가기
   await go('uw-030'); await p.click('[data-dice="uw-030"]'); await p.waitForSelector('dialog[open] [data-m="add"]'); ok('주사위로 넘어감 · 못 가져온 판정 표시',(await p.textContent('dialog[open]')).includes('가져오지 못했어요'));
