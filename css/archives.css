@@ -358,3 +358,9 @@ label.chk{display:inline-flex;gap:6px;align-items:center;font-size:13.5px;margin
 /* 연감 */
 h4.ybh{margin:14px 0 6px;font-size:14px;color:var(--gilt)}
 .pcs{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+/* 돌아보기: 이 기간의 추억 · 캠페인 바로가기 */
+.ybmem{border-left:2px solid var(--gilt-dim);padding:2px 0 2px 12px;margin:8px 0}
+.ybmem .k{font-size:11px;letter-spacing:.12em;color:var(--gilt)}
+.ybmem p{margin:6px 0;color:var(--ivory)}
+.ybmem a{color:var(--gilt)}
+.camplinks{margin:10px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
