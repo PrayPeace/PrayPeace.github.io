@@ -252,7 +252,7 @@ function sessionDetail(s){
   const ending=s.aborted?'<span class="tag bad">세션 중단</span>':!s.ending?'<span class="locked">결말 미기록</span>':canSeeEnding(s)?`<details class="spoil"${isAdmin()?' open':''}><summary style="cursor:pointer">스포일러 · 결말 펼치기</summary><p style="margin:6px 0 0">${esc(s.ending.text)}</p>${isAdmin()?`<p style="margin:4px 0 0">${endState(s)==='ok'?`<span class="tag ok">승인 · ${esc(endVis(s))}</span>`:'<span class="tag warn">AI 초안 · 비공개</span>'}</p>`:''}</details>`:'<span class="locked">결말은 공개하지 않았어요.</span>';
   return `<div class="detail" style="padding:6px 0 20px"><a href="#sessions" class="btn back">← 세션 목록</a>
   <div class="pagehead" style="padding-top:14px"><h2 style="font-family:var(--f-head);font-size:24px">${esc(s.title)}</h2></div>
-  <div>${s.no!=null?`<span class="tag gold">${s.no}번</span>`:'<span class="tag warn">목차 번호 없음</span>'}<span class="tag">${esc(s.rule)}</span>${s.role==='KP'?'<span class="tag gold">대장 키퍼</span>':''}${s.campaignId?`<span class="tag">${esc(camp[s.campaignId].title)}</span>`:''}</div>
+  <div>${s.no!=null?`<span class="tag gold">${s.no}번</span>`:s.trpgKey?'':'<span class="tag warn">목차 번호 없음</span>'}${s.trpgKey?'<span class="tag gold" title="TRPG Archive 방에서 바로 보낸 세션">TRPG Archive</span>':''}<span class="tag">${esc(s.rule)}</span>${s.role==='KP'?'<span class="tag gold">대장 키퍼</span>':''}${s.campaignId?`<span class="tag">${esc(camp[s.campaignId].title)}</span>`:''}</div>
   <dl class="kv">
     <dt>날짜</dt><dd>${dateText(s.date)}${s.date?.src&&!dateSure(s.date)?` <small class="locked">(${esc(s.date.src)} 기준)</small>`:''}</dd>
     <dt>시나리오</dt><dd><a href="#${sc.id}">${esc(sc.title)}</a>${pts.length>1?` · ${pi+1}회차`:''}</dd>
@@ -786,15 +786,35 @@ function overlayPriv(pv){if(!pv)return;
   Object.entries(pv.playthroughs||{}).forEach(([id,p])=>{if(PT[id])Object.assign(PT[id],p)});
   MEM={};Object.entries(pv.memories||{}).forEach(([id,m])=>{MEM[id]={id,...m}});
 }
+// TRPG Archive 방에서 서고로 보낸 세션: 서버가 내준 목록을 세션·시나리오·회차·캐릭터(연대기)·발자취에 그대로 붙인다
+// 같은 세션을 다시 받으면 덮어쓰고, 결말·본문은 서버가 애초에 안 보낸다
+function mergeTrpg(list){
+  if(!Array.isArray(list)||!list.length)return;
+  const nk=t=>String(t||'').replace(/^(CoC|UW|SG|TA)[\s_\-]*/i,'').replace(/\d+\s*회차|세션\s*\d+/g,'').replace(/[\s_\-·.,:!?~'"()\[\]]/g,'').toLowerCase();
+  const byName=n=>{n=String(n||'').trim();if(!n)return null;const L=D.characters;return (L.find(c=>c['이름']===n)||L.filter(c=>c['이름'].split(/\s+/)[0]===n.split(/\s+/)[0]).length===1&&L.find(c=>c['이름'].split(/\s+/)[0]===n.split(/\s+/)[0]))?.id||null};
+  list.forEach(x=>{
+    const room=String(x.key).split('#')[0], id='trpg-'+String(x.key).replace(/[^a-z0-9]/g,'-');
+    const want=nk(x.room)||nk(x.title);
+    let sc=D.scenarios.find(v=>v.trpgRoom===room)||D.scenarios.find(v=>nk(v.title)===want);
+    if(!sc){sc={id:'sc-trpg-'+room,title:x.room||x.title,rule:x.rule||'기타',era:'',source:'',trpgRoom:room};D.scenarios.push(sc)}
+    const ptid='pt-trpg-'+room;
+    if(!D.playthroughs.find(p=>p.id===ptid))D.playthroughs.push({id:ptid,scenarioId:sc.id,status:'미확인',by:'AI 추정',note:'TRPG Archive 방 기록'});
+    const pcs=String(x.pc||'').split(/[,，]/).map(n=>n.trim()).filter(Boolean).map(n=>byName(n)||{name:n});
+    const ses={id,no:x.no??null,title:x.title||((x.room||'')+' '+x.sess+'회차'),scenarioId:sc.id,playthroughId:ptid,part:x.sess||null,rule:x.rule||sc.rule,role:'PL',pcs,
+      date:x.date?{v:x.date,prec:'day',sure:true,src:'TRPG Archive 기록'}:null,hasSource:true,summary:x.one?{text:x.one,status:'approved'}:null,trpgKey:x.key,trpg:{room:x.room,kp:x.kp||'',pl:x.pl||''}};
+    const i=D.sessions.findIndex(v=>v.id===id); if(i>=0)D.sessions[i]=ses; else D.sessions.push(ses);
+  });
+  idx(); D.sessions.forEach(s=>{if(s.trpgKey)byId['TRPG:'+s.trpgKey]=s});
+}
 async function syncServer(){
   try{const j=await(await fetch(LOG_URL+'?op=covers')).json();if(j.ok){applyCovers(j.cover);PICKS=j.picks||[]}}catch{}
-  if(!tok()){try{const j=await(await fetch(LOG_URL+'?op=pa_pub')).json();if(j.ok){overlayPub(j);SERVER.pub=true}}catch{}render();return}
+  if(!tok()){try{const j=await(await fetch(LOG_URL+'?op=pa_pub')).json();if(j.ok){mergeTrpg(j.trpg);overlayPub(j);SERVER.pub=true}}catch{}render();return}
   try{
     const w=await api('whoami'); if(!w.ok){setRole('visitor');return syncServer()}
     setRole(w.role==='admin'?'admin':'friend');
-    if(role==='admin'){const g=await api('pa_get');if(g.ok){RV=g.rv||{};overlayPriv(g.priv);SERVER.priv=true}
+    if(role==='admin'){const g=await api('pa_get');if(g.ok){mergeTrpg(g.trpg);RV=g.rv||{};overlayPriv(g.priv);SERVER.priv=true}
       const f=await api('fav');if(f.ok){FAV=new Set(f.fav||[]);store.set('ofav',[...FAV])}}
-    else{const v=await api('pa_view');if(v.ok){overlayPub(v);SERVER.pub=true}}
+    else{const v=await api('pa_view');if(v.ok){mergeTrpg(v.trpg);overlayPub(v);SERVER.pub=true}}
     const l=await api('sessions');if(l.ok)LOGS=l.sessions||[];
   }catch{toast('서버에 닿지 못했어요. 공개 자료로 보여 드려요')}
   render();
@@ -813,7 +833,7 @@ async function login(pw){$('#pwmsg').textContent='확인 중…';
   }catch{$('#pwmsg').textContent='서버에 닿지 못했어요. 잠시 뒤 다시 해 보세요.'}}
 async function logout(){try{await api('logout')}catch{}lsDel('tok');lsDel('ofav');toast('로그아웃했어요. 이 기기에서 표를 지웠어요');setTimeout(()=>location.reload(),400)}
 // 세션 로그(비공개 시트) 한 줄 찾기: 번호가 같은 줄
-const logFor=s=>LOGS&&s.no!=null?LOGS.filter(x=>String(x['번호'])===String(s.no)):[];
+const logFor=s=>!LOGS?[]:s.trpgKey?LOGS.filter(x=>String(x['파일'])==='TRPG:'+s.trpgKey):s.no!=null?LOGS.filter(x=>String(x['번호'])===String(s.no)):[];
 function vids(v){return String(v||'').split(/\n+/).map(t=>{const m=t.match(/https?:\/\/\S+/);return m?`<a href="${esc(m[0])}" target="_blank" rel="noopener">▶ ${esc(t.replace(m[0],'').trim()||'영상')}</a>`:''}).filter(Boolean).join(' ')}
 function logBox(s){
   if(role==='visitor')return '<p class="locked" style="margin:0">친구·관리자 비밀번호로 로그인하면 함께한 사람, 녹화, 한글 기록이 보여요.</p>';

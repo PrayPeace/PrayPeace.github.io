@@ -23,7 +23,7 @@ function webapp(route){
   const u=new URL(route.request().url()), j=o=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(o)});
   if(route.request().method()==='GET'){const op=u.searchParams.get('op');
     if(op==='covers')return j({ok:true,cover:WA.cover,picks:WA.picks});
-    if(op==='pa_pub')return j({ok:true,sum:{'s-130':'승인된 요약 시험'},end:{},pt:{'pt-angel-1':{status:'완주',endedAt:'2022-10-10'}},rev:{},sc:{'sc-angel':{owned:true,wish:false,prep:false}},rate:{'pt-angel-1':{work:4,play:5}},mem:{'m-001':{sessionId:'s-130',kind:'dice',who:'세켈 콜트레인',text:'공개 추억 시험'}}});
+    if(op==='pa_pub')return j({ok:true,trpg:[{key:'rv1v1azvd#2',room:'질긴 결속',sess:2,title:'CoC 질긴 결속',date:'2026-11-27',one:'방에서 온 한 줄 요약 시험',no:null,rule:'CoC',pc:'루시',kp:'',pl:''},{key:'rv1v1azvd#1',room:'질긴 결속',sess:1,title:'질긴 결속 1회차',date:'2026-11-19',one:'첫 회차 한 줄',no:null,rule:'CoC',pc:'루시',kp:'',pl:''}],sum:{'s-130':'승인된 요약 시험'},end:{},pt:{'pt-angel-1':{status:'완주',endedAt:'2022-10-10'}},rev:{},sc:{'sc-angel':{owned:true,wish:false,prep:false}},rate:{'pt-angel-1':{work:4,play:5}},mem:{'m-001':{sessionId:'s-130',kind:'dice',who:'세켈 콜트레인',text:'공개 추억 시험'}}});
     return j({ok:false})}
   const q=JSON.parse(route.request().postData()||'{}');WA.calls.push(q.op);
   if(q.op==='login')return j(q.pw==='admin'?{ok:true,token:'T',exp:Date.now()+1e9,role:'admin'}:q.pw==='friend'?{ok:true,token:'F',exp:Date.now()+1e9,role:'friend'}:{ok:false});
@@ -98,6 +98,11 @@ function webapp(route){
   {await go('journey'); const jt=await text(); ok('발자취: 캠페인 돌아보기 바로가기',jt.includes('캠페인 돌아보기')&&!!(await p.$('a[href="#journey/c/cp-masks"]')))}
   await go('journey/c/cp-masks'); {const t=await text(); ok('캠페인 돌아보기: 니알라토텝',t.includes('니알라토텝의 가면들 장기팀 돌아보기')&&t.includes('세션 흐름')&&t.includes('함께한 캐릭터'))}
   await go('journey/c/없는캠페인'); ok('없는 캠페인 안내',(await text()).includes('그런 캠페인이 없어요'));
+  await go('trpg-rv1v1azvd-2'); {const t=await text(); ok('방에서 보낸 세션 상세',t.includes('CoC 질긴 결속')&&t.includes('TRPG Archive')&&t.includes('방에서 온 한 줄 요약 시험')&&t.includes('루시 프레이저')&&t.includes('2026.11.27'))}
+  {await p.click('a.pc[href="#coc-037"]'); await p.waitForTimeout(150); await p.click('[data-ctab="연대기"]'); await p.waitForTimeout(100); const t=await text(); ok('캐릭터 연대기에 방 세션',t.includes('CoC 질긴 결속')&&t.includes('질긴 결속 1회차'))}
+  {const sc=await p.evaluate(()=>{const x=[...document.querySelectorAll('a')].find(a=>a.textContent.includes('질긴 결속 1회차'));return !!x}); await go('sc-trpg-rv1v1azvd'); const t=await text(); ok('방 시나리오 페이지에 두 세션',t.includes('질긴 결속')&&t.includes('CoC 질긴 결속'))}
+  await go('journey/2026'); {const t=await text(); ok('발자취 2026에 방 세션',t.includes('CoC 질긴 결속'))}
+  await go('sessions'); await p.fill('[data-sq="q"]','ㅈㄱ ㄱㅅ').catch(()=>{}); await p.waitForTimeout(150); ok('세션 목록에서 방 세션 찾기',(await p.textContent('main')).includes('질긴 결속')); await p.fill('[data-sq="q"]','').catch(()=>{});
   await go('journey/2022'); {const t=await text(); ok('연감: 이 해의 추억·룰',t.includes('이 기간의 추억')&&t.includes('공개 추억 시험')&&t.includes('룰'))}
   await go('memory'); {const t=await text(); ok('방문객: 승인한 추억만 추억관에',t.includes('공개 추억 시험')&&!t.includes('친구 추억 시험'))}
   await go('inbox'); ok('작업함은 방문객에게 닫힘',(await text()).includes('관리자 화면이에요'));
